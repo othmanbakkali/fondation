@@ -15,10 +15,10 @@ SECRET_KEY = os.environ.get("SECRET_KEY", "django-insecure-fondation-local-conve
 DEBUG = os.environ.get("DEBUG", "True").lower() in ("true", "1", "yes")
 
 # Allowed Hosts & CSRF
-raw_hosts = os.environ.get("ALLOWED_HOSTS", "fondation.sdbo.ma,www.fondation.sdbo.ma,127.0.0.1,localhost,testserver")
+raw_hosts = os.environ.get("ALLOWED_HOSTS", "fondation.sdbo.ma,www.fondation.sdbo.ma,198.199.75.86,127.0.0.1,localhost,testserver")
 ALLOWED_HOSTS = [host.strip() for host in raw_hosts.split(",") if host.strip()]
 
-raw_csrf = os.environ.get("CSRF_TRUSTED_ORIGINS", "https://fondation.sdbo.ma,http://fondation.sdbo.ma")
+raw_csrf = os.environ.get("CSRF_TRUSTED_ORIGINS", "https://fondation.sdbo.ma,http://fondation.sdbo.ma,http://198.199.75.86")
 CSRF_TRUSTED_ORIGINS = [origin.strip() for origin in raw_csrf.split(",") if origin.strip()]
 
 # Reverse Proxy SSL Header for Nginx

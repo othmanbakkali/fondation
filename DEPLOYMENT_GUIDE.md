@@ -35,7 +35,9 @@ git push -u origin main
 
 Connectez-vous à votre serveur VPS en SSH :
 ```bash
-ssh user@fondation.sdbo.ma
+ssh root@198.199.75.86
+# ou si votre utilisateur est ubuntu :
+# ssh ubuntu@198.199.75.86
 ```
 
 ### A. Installer les paquets requis
