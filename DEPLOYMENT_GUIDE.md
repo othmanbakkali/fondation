@@ -24,8 +24,8 @@ git branch -M main
 git add .
 git commit -m "feat: initial commit - Django configuration and CI/CD setup"
 
-# Lier à votre dépôt GitHub (remplacez avec votre URL GitHub)
-git remote add origin https://github.com/VOTRE_NOM_UTILISATEUR/django-fondation.git
+# Lier à votre dépôt GitHub
+git remote add origin git@github.com:othmanbakkali/fondation.git
 git push -u origin main
 ```
 
@@ -50,7 +50,7 @@ sudo mkdir -p /var/www/django-fondation
 sudo chown -R $USER:$USER /var/www/django-fondation
 
 # Cloner votre dépôt
-git clone https://github.com/VOTRE_NOM_UTILISATEUR/django-fondation.git /var/www/django-fondation
+git clone https://github.com/othmanbakkali/fondation.git /var/www/django-fondation
 cd /var/www/django-fondation
 
 # Créer et activer l'environnement virtuel
