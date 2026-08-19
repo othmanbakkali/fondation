@@ -11,7 +11,7 @@ ExecStart=/var/www/django-fondation/venv/bin/gunicorn \
           --access-logfile - \
           --error-logfile - \
           --workers 3 \
-          --bind 127.0.0.1:8000 \
+          --bind 127.0.0.1:8333 \
           --timeout 120 \
           config.wsgi:application
 
