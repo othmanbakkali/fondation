@@ -1,0 +1,43 @@
+{% extends "dashboard/base_admin.html" %}
+{% load %}
+{% block title %}Contenu du site{% endblock %}
+{% block admin_content %}
+<section class="page-heading">
+  <div>
+    <p class="eyebrow">Gestion globale</p>
+    <h1>Modifier toutes les pages du site</h1>
+    <p>Chaque carte ouvre un formulaire réel connecté à MySQL pour modifier les titres, introductions, contenus et paramètres SEO des pages publiques.</p>
+  </div>
+  <div class="heading-actions">
+    <a class="btn" href="{% url 'core:home' %}" target="_blank"><i class="fas fa-external-link-alt"></i> Voir le site</a>
+  </div>
+</section>
+
+<section class="site-pages-grid">
+  {% for page in managed_pages %}
+  <article class="site-page-card">
+    <div class="site-page-icon"><i class="fas fa-file-lines"></i></div>
+    <div>
+      <span class="status-badge status-{{ page.status }}">{{ page.status }}</span>
+      <h2>{{ page.title }}</h2>
+      <p>{{ page.subtitle|default:page.content|truncatechars:150 }}</p>
+      <small>Slug : {{ page.slug }} · dernière édition {{ page.updated_at|date:"d/m/Y H:i" }}</small>
+    </div>
+    <div class="site-page-actions">
+      <a class="btn" href="{% if page.slug == 'accueil' %}{% url 'core:home' %}{% elif page.slug == 'a-propos' %}{% url 'core:about' %}{% elif page.slug == 'activites' %}{% url 'core:activites' %}{% elif page.slug == 'actualites' %}{% url 'core:actualites' %}{% elif page.slug == 'formations' %}{% url 'core:formations' %}{% elif page.slug == 'medias' %}{% url 'core:medias' %}{% elif page.slug == 'benevolat' %}{% url 'core:benevolat' %}{% elif page.slug == 'contact' %}{% url 'core:contact' %}{% else %}{% url 'core:home' %}{% endif %}" target="_blank"><i class="fas fa-eye"></i> Voir</a>
+      <a class="btn primary" href="{% url 'dashboard:page_edit' page.slug %}"><i class="fas fa-edit"></i> Modifier</a>
+    </div>
+  </article>
+  {% endfor %}
+</section>
+
+<section class="panel">
+  <div class="panel-head"><div><h2><i class="fas fa-sitemap"></i> Sections connectées</h2><p>Les modules ci-dessous alimentent les pages publiques depuis la même base de données.</p></div></div>
+  <div class="quick-grid">
+    <a href="{% url 'dashboard:news_list' %}"><i class="fas fa-newspaper"></i><strong>Actualités &amp; Annonces</strong><span>Articles, annonces, communiqués et concours.</span></a>
+    <a href="{% url 'dashboard:partner_list' %}"><i class="fas fa-handshake"></i><strong>Nos Partenaires</strong><span>Logos, liens, ordre et visibilité accueil.</span></a>
+    <a href="{% url 'dashboard:activity_list' %}"><i class="fas fa-calendar-alt"></i><strong>Activités</strong><span>Actions terrain, dates, images et réseaux.</span></a>
+    <a href="{% url 'dashboard:formation_list' %}"><i class="fas fa-graduation-cap"></i><strong>Formations</strong><span>Sessions, formateurs, places et inscriptions.</span></a>
+  </div>
+</section>
+{% endblock %}

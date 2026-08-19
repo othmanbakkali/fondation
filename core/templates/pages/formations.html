@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Formations - {{ brand_name }}{% endblock %}
+{% block extra_head %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Développez vos compétences grâce aux formations et ateliers proposés par la {{ brand_name }}.">
+  <meta name="theme-color" content="#062B4F">
+  <meta name="keywords" content="Fondation, Tanger, Métropole, formations, ateliers, numérique, entrepreneuriat, développement personnel, Maroc">
+  <meta name="author" content="{{ brand_name }}">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.tangermetropole.ma/formations.html">
+  <meta property="og:title" content="Formations - {{ brand_name }}">
+  <meta property="og:description" content="Développez vos compétences grâce aux formations et ateliers proposés par la {{ brand_name }}.">
+  <meta property="og:type" content="website">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"CollectionPage","name":"Formations de la {{ brand_name }}","description":"Développez vos compétences grâce aux formations et ateliers.","url":"https://www.tangermetropole.ma/formations.html"}
+  </script>
+{% endblock %}
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'core/css/formations.css' %}">
+{% endblock %}
+{% block content %}
+<main>
+    {% csrf_token %}
+    <!-- Bannière -->
+    <section class="page-hero">
+      <div class="page-hero-overlay"></div>
+      <div class="container page-hero-content">
+        <div class="hero-decoration"><i class="fas fa-graduation-cap"></i></div>
+        <nav class="breadcrumb" aria-label="Fil d'Ariane">
+          <a href="{% url 'core:home' %}"><i class="fas fa-home"></i> {{ ui.home }}</a>
+          <span class="breadcrumb-separator">/</span>
+          <span class="breadcrumb-current">{{ ui.formations }}</span>
+        </nav>
+        <h1 class="page-hero-title">{{ page_content.title|default:brand_name }}</h1>
+        <p class="page-hero-subtitle">{{ page_content.subtitle|default:"Contenu géré depuis le dashboard." }}</p>
+      </div>
+    </section>
+
+    <!-- Présentation + Stats -->
+    <section class="intro-section">
+      <div class="container">
+        <p class="intro-text">
+          {% if current_language == 'ar' %}
+            تقدم مؤسسة طنجة الكبرى دورات تكوينية عملية ومتاحة للجميع موجهة للشباب والنساء وحاملي المشاريع والفاعلين الجمعويين. يمكن للمشاركين الاطلاع على تفاصيل كل دورة والتسجيل مباشرة عبر الإنترنت.
+          {% elif current_language == 'en' %}
+            {{ brand_name }} offers practical and accessible training programs designed for youth, women, entrepreneurs and association leaders. Participants can check details and register online.
+          {% else %}
+            {{ brand_name }} propose des formations pratiques et accessibles destinées aux jeunes, aux femmes, aux porteurs de projets et aux acteurs associatifs. Les participants peuvent consulter les détails de chaque formation et s'inscrire directement en ligne.
+          {% endif %}
+        </p>
+        <div class="stats-row" id="statsRow">
+          <div class="stat-box"><i class="fas fa-book-open"></i><span class="stat-num" id="statTotal">{{ stats.total|default:0 }}</span><span class="stat-label">{% if current_language == 'ar' %}دورات تكوينية{% elif current_language == 'en' %}Trainings{% else %}Formations{% endif %}</span></div>
+          <div class="stat-box"><i class="fas fa-door-open"></i><span class="stat-num" id="statOpen">{{ stats.open|default:0 }}</span><span class="stat-label">{% if current_language == 'ar' %}التسجيل مفتوح{% elif current_language == 'en' %}Open Registration{% else %}Inscriptions ouvertes{% endif %}</span></div>
+          <div class="stat-box"><i class="fas fa-chair"></i><span class="stat-num" id="statSeats">{{ stats.seats|default:0 }}</span><span class="stat-label">{% if current_language == 'ar' %}مقاعد متاحة{% elif current_language == 'en' %}Available seats{% else %}Places disponibles{% endif %}</span></div>
+          <div class="stat-box"><i class="fas fa-user-check"></i><span class="stat-num" id="statRegistered">{{ stats.registered|default:0 }}</span><span class="stat-label">{% if current_language == 'ar' %}المشاركين المسجلين{% elif current_language == 'en' %}Registered participants{% else %}Participants inscrits{% endif %}</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Filtres -->
+    <section class="filtres-section">
+      <div class="container">
+        <div class="filtres-wrapper">
+          <div class="filtre-group">
+            <label for="filterFormCat"><i class="fas fa-tag"></i> {{ ui.category_label }}</label>
+            <select id="filterFormCat" aria-label="Filtrer par catégorie">
+              <option value="all">{{ ui.all_categories }}</option>
+              <option value="numerique">💻 {% if current_language == 'ar' %}التدريب الرقمي والمعلوميات{% elif current_language == 'en' %}Digital & IT Training{% else %}Informatique et numérique{% endif %}</option>
+              <option value="entrepreneuriat">🚀 {% if current_language == 'ar' %}ريادة الأعمال{% elif current_language == 'en' %}Entrepreneurship{% else %}Entrepreneuriat{% endif %}</option>
+              <option value="devperso">🧠 {% if current_language == 'ar' %}التنمية الذاتية{% elif current_language == 'en' %}Personal Development{% else %}Développement personnel{% endif %}</option>
+              <option value="communication">📢 {% if current_language == 'ar' %}التواصل{% elif current_language == 'en' %}Communication{% else %}Communication{% endif %}</option>
+              <option value="gestion">📊 {% if current_language == 'ar' %}تسيير المشاريع{% elif current_language == 'en' %}Project Management{% else %}Gestion de projet{% endif %}</option>
+              <option value="langues">🌐 {% if current_language == 'ar' %}اللغات{% elif current_language == 'en' %}Languages{% else %}Langues{% endif %}</option>
+              <option value="culture">🎭 {% if current_language == 'ar' %}التنشيط الثافيي{% elif current_language == 'en' %}Cultural Animation{% else %}Animation culturelle{% endif %}</option>
+              <option value="social">🤝 {% if current_language == 'ar' %}العمل الاجتماعي{% elif current_language == 'en' %}Social Action{% else %}Action sociale{% endif %}</option>
+              <option value="sport">🏃 {% if current_language == 'ar' %}الرياضة والتأطير{% elif current_language == 'en' %}Sports & Coaching{% else %}Sport et encadrement{% endif %}</option>
+            </select>
+          </div>
+          <div class="filtre-group">
+            <label for="filterStatus"><i class="fas fa-circle"></i> {% if current_language == 'ar' %}الوضعية{% elif current_language == 'en' %}Status{% else %}Statut{% endif %}</label>
+            <select id="filterStatus" aria-label="Filtrer par statut">
+              <option value="all">{% if current_language == 'ar' %}كل الوضعيات{% elif current_language == 'en' %}All Statuses{% else %}Toutes les formations{% endif %}</option>
+              <option value="open">{% if current_language == 'ar' %}التسجيل مفتوح{% elif current_language == 'en' %}Open Registration{% else %}Inscriptions ouvertes{% endif %}</option>
+              <option value="limited">{% if current_language == 'ar' %}مقاعد محدودة{% elif current_language == 'en' %}Limited seats{% else %}Places limitées{% endif %}</option>
+              <option value="full">{% if current_language == 'ar' %}ممتلئ{% elif current_language == 'en' %}Full{% else %}Complet{% endif %}</option>
+              <option value="closed">{% if current_language == 'ar' %}التسجيل مغلق{% elif current_language == 'en' %}Closed Registration{% else %}Inscriptions fermées{% endif %}</option>
+              <option value="finished">{% if current_language == 'ar' %}دورة منتهية{% elif current_language == 'en' %}Completed course{% else %}Formation terminée{% endif %}</option>
+            </select>
+          </div>
+          <div class="filtre-group">
+            <label for="filterFormYear"><i class="fas fa-calendar"></i> {{ ui.year_label }}</label>
+            <select id="filterFormYear" aria-label="Filtrer par année"><option value="all">{{ ui.all_years }}</option></select>
+          </div>
+          <div class="filtre-group search-group">
+            <label for="searchForm"><i class="fas fa-search"></i> {% if current_language == 'ar' %}البحث{% elif current_language == 'en' %}Search{% else %}Recherche{% endif %}</label>
+            <input type="text" id="searchForm" placeholder="{% if current_language == 'ar' %}البحث عن دورة...{% elif current_language == 'en' %}Search for a course...{% else %}Rechercher une formation...{% endif %}" aria-label="Rechercher">
+          </div>
+          <div class="filtre-group reset-group">
+            <button id="resetFormFilters" class="btn btn-outline"><i class="fas fa-redo"></i> {{ ui.reset_filters }}</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Formations -->
+    <section class="formations-liste-section">
+      <div class="container">
+        <h2 class="section-title">{% if current_language == 'ar' %}الدورات التكوينية المتاحة{% elif current_language == 'en' %}Available courses{% else %}Formations disponibles{% endif %}</h2>
+        <p class="section-intro">{% if current_language == 'ar' %}تصفح الدورات المقبلة وسجل مباشرة عبر الإنترنت.{% elif current_language == 'en' %}Check out the upcoming courses and register directly online.{% else %}Consultez les prochaines formations et inscrivez-vous directement en ligne.{% endif %}</p>
+        <div class="formations-grid" id="formationsGrid"></div>
+        <div class="no-results" id="noFormResults" style="display:none;">
+          <i class="fas fa-search"></i><h3>{{ ui.no_results_title }}</h3>
+          <p>{{ ui.no_results_desc }}</p>
+          <button class="btn btn-primary" onclick="document.getElementById('resetFormFilters').click()">{{ ui.reset_filters }}</button>
+        </div>
+      </div>
+    </section>
+    <!-- Modals -->
+    <div id="inscriptionModal" class="modal-overlay" aria-hidden="true" role="dialog">
+      <div class="modal-container">
+        <button id="inscriptionModalClose" class="modal-close" aria-label="{% if current_language == 'ar' %}إغلاق{% elif current_language == 'en' %}Close{% else %}Fermer{% endif %}"><i class="fas fa-times"></i></button>
+        <div id="inscriptionModalBody" class="modal-body"></div>
+      </div>
+    </div>
+
+    <div id="detailModal" class="modal-overlay" aria-hidden="true" role="dialog">
+      <div class="modal-container">
+        <button id="detailModalClose" class="modal-close" aria-label="{% if current_language == 'ar' %}إغلاق{% elif current_language == 'en' %}Close{% else %}Fermer{% endif %}"><i class="fas fa-times"></i></button>
+        <div id="detailModalBody" class="modal-body"></div>
+      </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toastNotification" class="toast-notification">
+      <i class="fas fa-check-circle"></i>
+      <span id="toastMsg">{{ ui.link_copied }}</span>
+    </div>
+  </main>
+{% endblock %}
+{% block extra_js %}
+  {{ formations_json|json_script:"formations-data" }}
+  <script>window.FTM_FORMATIONS_DATA = JSON.parse(document.getElementById('formations-data').textContent);</script>
+  <script src="{% static 'core/js/formations.js' %}?v=backend_updated_2"></script>
+{% endblock %}

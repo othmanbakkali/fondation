@@ -1,0 +1,180 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Actualités - {{ brand_name }}{% endblock %}
+{% block extra_head %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Suivez les dernières actualités, communiqués, formations et concours de la {{ brand_name }}.">
+  <meta name="theme-color" content="#062B4F">
+  <meta name="keywords" content="Fondation, Tanger, Métropole, actualités, blog, communiqués, formations, concours, Maroc">
+  <meta name="author" content="{{ brand_name }}">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.tangermetropole.ma/actualites.html">
+  <meta property="og:title" content="Actualités - {{ brand_name }}">
+  <meta property="og:description" content="Suivez les dernières actualités, communiqués, formations et concours.">
+  <meta property="og:type" content="website">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Blog","name":"Actualités de la {{ brand_name }}","description":"Suivez les dernières actualités.","url":"https://www.tangermetropole.ma/actualites.html"}
+  </script>
+{% endblock %}
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'core/css/actualites.css' %}">
+{% endblock %}
+{% block content %}
+<main>
+    <!-- Bannière -->
+    <section class="page-hero">
+      <div class="page-hero-overlay"></div>
+      <div class="container page-hero-content">
+        <div class="hero-decoration"><i class="fas fa-newspaper"></i></div>
+        <nav class="breadcrumb" aria-label="Fil d'Ariane">
+          <a href="{% url 'core:home' %}"><i class="fas fa-home"></i> {{ ui.home }}</a>
+          <span class="breadcrumb-separator">/</span>
+          <span class="breadcrumb-current">{{ ui.news }}</span>
+        </nav>
+        <h1 class="page-hero-title">{{ page_content.title|default:brand_name }}</h1>
+        <p class="page-hero-subtitle">{{ page_content.subtitle|default:"Contenu géré depuis le dashboard." }}</p>
+      </div>
+    </section>
+
+    <!-- Article à la une -->
+    <section class="featured-section" id="featured">
+      <div class="container"><div class="featured-card" id="featuredCard"></div></div>
+    </section>
+
+    <!-- Catégories -->
+    <section class="categories-section">
+      <div class="container"><div class="categories-wrapper" id="categoriesWrapper"></div></div>
+    </section>
+
+    <!-- Filtres -->
+    <section class="filtres-section">
+      <div class="container">
+        <div class="filtres-wrapper">
+          <div class="filtre-group search-group">
+            <label for="searchNews"><i class="fas fa-search"></i> {% if current_language == 'ar' %}البحث{% elif current_language == 'en' %}Search{% else %}Recherche{% endif %}</label>
+            <input type="text" id="searchNews" placeholder="{% if current_language == 'ar' %}البحث عن منشور...{% elif current_language == 'en' %}Search for a post...{% else %}Rechercher une publication...{% endif %}" aria-label="Rechercher">
+          </div>
+          <div class="filtre-group">
+            <label for="filterCat"><i class="fas fa-tag"></i> {{ ui.category_label }}</label>
+            <select id="filterCat" aria-label="Filtrer par catégorie">
+              <option value="all">{{ ui.all_categories }}</option>
+              <option value="actualites">📰 {% if current_language == 'ar' %}المستجدات{% elif current_language == 'en' %}News{% else %}Actualités{% endif %}</option>
+              <option value="communiques">📢 {% if current_language == 'ar' %}البلاغات{% elif current_language == 'en' %}Announcements{% else %}Communiqués{% endif %}</option>
+              <option value="formations">📚 {{ ui.formations }}</option>
+              <option value="concours">🏆 {% if current_language == 'ar' %}المباريات{% elif current_language == 'en' %}Contests{% else %}Concours{% endif %}</option>
+            </select>
+          </div>
+          <div class="filtre-group">
+            <label for="filterYearNews"><i class="fas fa-calendar"></i> {{ ui.year_label }}</label>
+            <select id="filterYearNews" aria-label="Filtrer par année"><option value="all">{{ ui.all_years }}</option></select>
+          </div>
+          <div class="filtre-group">
+            <label for="filterMonthNews"><i class="fas fa-calendar-alt"></i> {{ ui.month_label }}</label>
+            <select id="filterMonthNews" aria-label="Filtrer par mois">
+              <option value="all">{{ ui.all_months }}</option>
+              <option value="01">{% if current_language == 'ar' %}يناير{% elif current_language == 'en' %}January{% else %}Janvier{% endif %}</option>
+              <option value="02">{% if current_language == 'ar' %}فبراير{% elif current_language == 'en' %}February{% else %}Février{% endif %}</option>
+              <option value="03">{% if current_language == 'ar' %}مارس{% elif current_language == 'en' %}March{% else %}Mars{% endif %}</option>
+              <option value="04">{% if current_language == 'ar' %}أبريل{% elif current_language == 'en' %}April{% else %}Avril{% endif %}</option>
+              <option value="05">{% if current_language == 'ar' %}ماي{% elif current_language == 'en' %}May{% else %}Mai{% endif %}</option>
+              <option value="06">{% if current_language == 'ar' %}يونيو{% elif current_language == 'en' %}June{% else %}Juin{% endif %}</option>
+              <option value="07">{% if current_language == 'ar' %}يوليوز{% elif current_language == 'en' %}July{% else %}Juillet{% endif %}</option>
+              <option value="08">{% if current_language == 'ar' %}غشت{% elif current_language == 'en' %}August{% else %}Août{% endif %}</option>
+              <option value="09">{% if current_language == 'ar' %}شتنبر{% elif current_language == 'en' %}September{% else %}Septembre{% endif %}</option>
+              <option value="10">{% if current_language == 'ar' %}أكتوبر{% elif current_language == 'en' %}October{% else %}Octobre{% endif %}</option>
+              <option value="11">{% if current_language == 'ar' %}نونبر{% elif current_language == 'en' %}November{% else %}Novembre{% endif %}</option>
+              <option value="12">{% if current_language == 'ar' %}دجنبر{% elif current_language == 'en' %}December{% else %}Décembre{% endif %}</option>
+            </select>
+          </div>
+          <div class="filtre-group reset-group">
+            <button id="resetNewsFilters" class="btn btn-outline"><i class="fas fa-redo"></i> {{ ui.reset_filters }}</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Publications -->
+    <section class="publications-section">
+      <div class="container">
+        <h2 class="section-title">{% if current_language == 'ar' %}آخر المنشورات{% elif current_language == 'en' %}Latest Publications{% else %}Dernières publications{% endif %}</h2>
+        <p class="section-intro">{% if current_language == 'ar' %}اكتشف آخر المستجدات والإعلانات الصادرة عن {{ brand_name }}.{% elif current_language == 'en' %}Discover the latest news and announcements from the {{ brand_name }}.{% else %}Découvrez les dernières actualités et annonces de la {{ brand_name }}.{% endif %}</p>
+        <div class="publications-grid" id="publicationsGrid"></div>
+        <div class="no-results" id="noNewsResults" style="display:none;">
+          <i class="fas fa-search"></i><h3>{{ ui.no_results_title }}</h3>
+          <p>{{ ui.no_results_desc }}</p>
+          <button class="btn btn-primary" onclick="document.getElementById('resetNewsFilters').click()">{{ ui.reset_filters }}</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Réseaux sociaux -->
+    <section class="social-section">
+      <div class="container">
+        <h2 class="section-title">
+          {% if current_language == 'ar' %}تابعونا على شبكات التواصل الاجتماعي{% elif current_language == 'en' %}Follow us on social media{% else %}Suivez-nous sur les réseaux sociaux{% endif %}
+        </h2>
+        <p class="section-intro">
+          {% if current_language == 'ar' %}شاهد الفيديوهات، الصور، البلاغات وآخر مستجدات {{ brand_name }} على منصاتنا الرسمية.{% elif current_language == 'en' %}Find videos, photos, announcements and the latest news of the {{ brand_name }} on our official platforms.{% else %}Retrouvez les vidéos, photos, communiqués et dernières actualités de la {{ brand_name }} sur nos plateformes officielles.{% endif %}
+        </p>
+        <div class="social-cards">
+          <div class="social-card instagram">
+            <i class="fab fa-instagram"></i>
+            <h3>Instagram</h3>
+            <p>{% if current_language == 'ar' %}اكتشف الصور والقصص ومقاطع الريلز وأبرز لحظات أنشطتنا.{% elif current_language == 'en' %}Discover photos, stories, Reels and highlights of our activities.{% else %}Découvrez les photos, les stories, les Reels et les moments forts de nos activités.{% endif %}</p>
+            <a href="{{ settings.instagram_url|default:'#' }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-light">{% if current_language == 'ar' %}متابعتنا على إنستغرام{% elif current_language == 'en' %}Follow on Instagram{% else %}Suivre sur Instagram{% endif %}</a>
+          </div>
+          <div class="social-card facebook">
+            <i class="fab fa-facebook-f"></i>
+            <h3>Facebook</h3>
+            <p>{% if current_language == 'ar' %}تابع منشوراتنا وفعالياتنا وبلاغاتنا الرسمية على فيسبوك.{% elif current_language == 'en' %}Follow our publications, events and official announcements on Facebook.{% else %}Suivez nos publications, nos événements et nos communiqués officiels.{% endif %}</p>
+            <a href="{{ settings.facebook_url|default:'#' }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-light">{% if current_language == 'ar' %}متابعتنا على فيسبوك{% elif current_language == 'en' %}Follow on Facebook{% else %}Suivre sur Facebook{% endif %}</a>
+          </div>
+          <div class="social-card youtube">
+            <i class="fab fa-youtube"></i>
+            <h3>YouTube</h3>
+            <p>{% if current_language == 'ar' %}شاهد فيديوهات برامجنا وفعالياتنا وتكويناتنا على يوتيوب.{% elif current_language == 'en' %}Watch videos of our programs, events and trainings on YouTube.{% else %}Regardez les vidéos de nos programmes, événements et formations.{% endif %}</p>
+            <a href="{{ settings.youtube_url|default:'#' }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-light">{% if current_language == 'ar' %}قناتنا على يوتيوب{% elif current_language == 'en' %}Watch on YouTube{% else %}Voir notre chaîne YouTube{% endif %}</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter-section">
+      <div class="container">
+        <h2 class="section-title">{% if current_language == 'ar' %}ابق على اطلاع{% elif current_language == 'en' %}Stay Informed{% else %}Restez informé{% endif %}</h2>
+        <p class="section-intro">{% if current_language == 'ar' %}اشترك في نشرتنا الإخبارية لتلقي آخر الأخبار والتكوينات والبلاغات والمباريات من {{ brand_name }}.{% elif current_language == 'en' %}Subscribe to our newsletter to receive the latest news, trainings, announcements and contests from the {{ brand_name }}.{% else %}Inscrivez-vous à notre newsletter pour recevoir les dernières actualités, formations, communiqués et concours de la {{ brand_name }}.{% endif %}</p>
+        <form class="newsletter-form" id="newsletterForm">
+          <div class="form-row">
+            <input type="text" placeholder="{% if current_language == 'ar' %}الاسم الكامل{% elif current_language == 'en' %}Full name{% else %}Nom complet{% endif %}" required aria-label="Nom complet">
+            <input type="email" placeholder="{% if current_language == 'ar' %}البريد الإلكتروني{% elif current_language == 'en' %}Email address{% else %}Adresse e-mail{% endif %}" required aria-label="Adresse e-mail">
+          </div>
+          <label class="checkbox-label"><input type="checkbox" required> {% if current_language == 'ar' %}أوافق على سياسة الخصوصية{% elif current_language == 'en' %}I accept the privacy policy{% else %}J'accepte la politique de confidentialité{% endif %}</label>
+          <button type="submit" class="btn btn-primary">{{ ui.subscribe }}</button>
+        </form>
+        <div class="newsletter-success" id="newsletterSuccess" style="display:none;"><i class="fas fa-check-circle"></i> {% if current_language == 'ar' %}شكراً لتسجيلكم !{% elif current_language == 'en' %}Thank you for subscribing!{% else %}Merci pour votre inscription !{% endif %}</div>
+      </div>
+    </section>
+    <!-- Modals -->
+    <div id="articleModal" class="modal-overlay" aria-hidden="true" role="dialog">
+      <div class="modal-container">
+        <button id="articleModalClose" class="modal-close" aria-label="{% if current_language == 'ar' %}إغلاق{% elif current_language == 'en' %}Close{% else %}Fermer{% endif %}"><i class="fas fa-times"></i></button>
+        <div id="articleModalBody" class="modal-body"></div>
+      </div>
+    </div>
+
+    <div id="videoModal" class="modal-overlay" aria-hidden="true" role="dialog">
+      <div class="modal-container">
+        <button id="videoModalClose" class="modal-close" aria-label="Fermer"><i class="fas fa-times"></i></button>
+        <div id="videoModalContent" class="modal-body"></div>
+      </div>
+    </div>
+  </main>
+{% endblock %}
+{% block extra_js %}
+  {{ news_json|json_script:"news-data" }}
+  <script>window.FTM_NEWS_DATA = JSON.parse(document.getElementById('news-data').textContent);</script>
+  <script src="{% static 'core/js/actualites.js' %}?v={% now 'U' %}"></script>
+{% endblock %}

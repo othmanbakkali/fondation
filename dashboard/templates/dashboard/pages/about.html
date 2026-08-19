@@ -1,0 +1,52 @@
+{% extends "dashboard/base_admin.html" %}
+{% load i18n %}
+{% block title %}A propos{% endblock %}
+{% block admin_content %}
+<section class="page-heading">
+  <div>
+    <p class="eyebrow">Fondation</p>
+    <h1>Gestion de la page À propos</h1>
+    <p>Consultez la présentation, les valeurs, les chiffres clés et les membres de l'équipe de la Fondation.</p>
+  </div>
+  <a class="btn primary" href="{% url 'dashboard:about_edit' %}"><i class="fas fa-edit"></i> Modifier le contenu</a>
+</section>
+
+<section class="dashboard-grid">
+  <!-- Presentation panel -->
+  <article class="panel span-2">
+    <h2>{{ presentation_title }}</h2>
+    <p class="rich-copy">{{ presentation_text|linebreaksbr }}</p>
+    <div class="values-grid" style="margin-top: 20px;">
+      {% for v in values %}
+      <span><i class="fas fa-check-circle"></i> {{ v }}</span>
+      {% endfor %}
+    </div>
+  </article>
+
+  <!-- Key figures panel -->
+  <article class="panel">
+    <h2>Chiffres clés (Dynamiques)</h2>
+    <div class="mini-stat">
+      <strong>2017</strong>
+      <span>Création</span>
+    </div>
+    <div class="mini-stat">
+      <strong>{{ beneficiaries_count }}</strong>
+      <span>Bénéficiaires</span>
+    </div>
+    <div class="mini-stat">
+      <strong>{{ partners_count }}</strong>
+      <span>Partenaires actifs</span>
+    </div>
+  </article>
+
+  <!-- Team panel -->
+  <article class="panel span-2">
+    <div class="panel-head" style="margin-bottom: 15px;">
+      <h2>Membres de l'équipe</h2>
+      <a class="btn primary" href="{% url 'dashboard:team_add' %}"><i class="fas fa-plus"></i> Ajouter un membre</a>
+    </div>
+    {% include "dashboard/components/data_table.html" with table_items=team_table_items columns=team_columns %}
+  </article>
+</section>
+{% endblock %}

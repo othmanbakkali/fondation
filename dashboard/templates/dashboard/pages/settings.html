@@ -1,0 +1,94 @@
+{% extends "dashboard/base_admin.html" %}
+{% load i18n %}
+{% block title %}Paramètres{% endblock %}
+{% block admin_content %}
+<section class="page-heading">
+  <div>
+    <p class="eyebrow">Configuration du site</p>
+    <h1>Paramètres &amp; Contacts</h1>
+    <p>Gérez toutes les informations générales du site, coordonnées de contacts (téléphone, email) et réseaux sociaux.</p>
+  </div>
+</section>
+
+<section class="settings-grid">
+  <!-- Panel to Add a new Setting -->
+  <article class="panel settings-card">
+    <div class="form-section-title">
+      <span><i class="fas fa-sliders"></i></span>
+      <div>
+        <h2>Ajouter un paramètre</h2>
+        <p>Exemple : téléphone, email, statistiques, réseaux sociaux.</p>
+      </div>
+    </div>
+    
+    <form method="post" class="form-grid" enctype="multipart/form-data">{% csrf_token %}
+      {% for field in form %}
+        {% if field.name == "value" %}
+          <div class="image-choice span-2">
+            <label>{{ field.label }} / lien</label>
+            {{ field }}
+            {% if field.errors %}<small class="field-error">{{ field.errors|striptags }}</small>{% endif %}
+            <label style="margin-top: 10px;">Ou uploader une image
+              <input class="admin-field" type="file" name="value_upload" accept="image/*">
+            </label>
+          </div>
+        {% elif field.name == "value_fr" or field.name == "value_ar" or field.name == "value_en" %}
+          <div class="i18n-field span-2">
+            <label>{{ field.label }} {% if "ar" in field.name %}<span class="lang-tag ar">AR</span>{% elif "en" in field.name %}<span class="lang-tag en">EN</span>{% else %}<span class="lang-tag fr">FR</span>{% endif %}</label>
+            {{ field }}
+            {% if field.errors %}<small class="field-error">{{ field.errors|striptags }}</small>{% endif %}
+          </div>
+        {% else %}
+          <label class="span-2">{{ field.label }} {{ field }}{% if field.errors %}<small class="field-error">{{ field.errors|striptags }}</small>{% endif %}</label>
+        {% endif %}
+      {% endfor %}
+      <button class="btn primary" type="submit"><i class="fas fa-plus"></i> Créer le paramètre</button>
+    </form>
+  </article>
+
+  <!-- Panel showing Existing Settings -->
+  <article class="panel settings-card">
+    <div class="panel-head">
+      <h2>Paramètres et Contacts existants</h2>
+    </div>
+    <div class="table-wrap">
+      <table class="admin-table compact">
+        <thead>
+          <tr>
+            <th>Groupe</th>
+            <th>Clé / Identifiant</th>
+            <th>Valeur (Français)</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for setting in settings %}
+          <tr>
+            <td><span class="status-badge status-publie">{{ setting.group }}</span></td>
+            <td><strong>{{ setting.key }}</strong></td>
+            <td>
+              {% if "http" in setting.value or "/media/" in setting.value %}
+                <a href="{{ setting.value }}" target="_blank" style="color: #0369a1; text-decoration: underline;">{{ setting.value|truncatechars:40 }}</a>
+              {% else %}
+                {{ setting.value_fr|default:setting.value|truncatechars:50 }}
+              {% endif %}
+            </td>
+            <td class="actions-cell">
+              <a class="icon-btn" href="{% url 'dashboard:setting_edit' setting.pk %}" aria-label="Modifier"><i class="fas fa-edit"></i></a>
+              <form method="post" action="{% url 'dashboard:setting_delete' setting.pk %}" class="inline-delete-form" style="display:inline;">
+                {% csrf_token %}
+                <button class="icon-btn danger" type="submit" data-confirm-submit="Supprimer ce paramètre ?"><i class="fas fa-trash"></i></button>
+              </form>
+            </td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="4">Aucun paramètre configuré.</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </article>
+</section>
+{% endblock %}

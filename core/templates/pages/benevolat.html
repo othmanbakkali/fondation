@@ -1,0 +1,248 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Bénévolat - {{ brand_name }}{% endblock %}
+{% block extra_head %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Devenez bénévole à la {{ brand_name }} et contribuez au développement humain, social et culturel du Grand Tanger.">
+  <meta name="theme-color" content="#062B4F">
+  <meta name="keywords" content="Fondation, Tanger, Métropole, bénévolat, engagement, volontariat, Maroc">
+  <meta name="author" content="{{ brand_name }}">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.tangermetropole.ma/benevolat.html">
+  <meta property="og:title" content="Bénévolat - {{ brand_name }}">
+  <meta property="og:description" content="Participez aux actions de la Fondation et contribuez au développement du Grand Tanger.">
+  <meta property="og:type" content="website">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebPage","name":"Bénévolat - {{ brand_name }}","description":"Devenez bénévole et participez aux actions de la Fondation.","url":"https://www.tangermetropole.ma/benevolat.html"}
+  </script>
+{% endblock %}
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'core/css/benevolat.css' %}">
+{% endblock %}
+{% block content %}
+<main>
+    <!-- Bannière -->
+    <section class="page-hero">
+      <div class="page-hero-overlay"></div>
+      <div class="container page-hero-content">
+        <div class="hero-decoration"><i class="fas fa-hands-helping"></i></div>
+        <nav class="breadcrumb" aria-label="Fil d'Ariane">
+          <a href="{% url 'core:home' %}"><i class="fas fa-home"></i> {{ ui.home }}</a>
+          <span class="breadcrumb-separator">/</span>
+          <span class="breadcrumb-current">{{ ui.volunteering }}</span>
+        </nav>
+        <h1 class="page-hero-title">{{ page_content.title|default:brand_name }}</h1>
+        <p class="page-hero-subtitle">{{ page_content.subtitle|default:"Contenu géré depuis le dashboard." }}</p>
+        <div class="hero-buttons">
+          <a href="#candidature" class="btn btn-primary">{% if current_language == 'ar' %}الانضمام إلى الفريق{% elif current_language == 'en' %}Join the team{% else %}Rejoindre l'équipe{% endif %}</a>
+          <a href="#actions" class="btn btn-outline-light">{% if current_language == 'ar' %}اكتشف مبادراتنا{% elif current_language == 'en' %}Discover our actions{% else %}Découvrir nos actions{% endif %}</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pourquoi devenir bénévole -->
+    <section class="pourquoi-section">
+      <div class="container">
+        <h2 class="section-title">{% if current_language == 'ar' %}لماذا تصبح متطوعاً؟{% elif current_language == 'en' %}Why become a volunteer?{% else %}Pourquoi devenir bénévole ?{% endif %}</h2>
+        <div class="pourquoi-wrapper">
+          <div class="pourquoi-text">
+            <div>{{ page_content.content|linebreaks }}</div>
+          </div>
+          <div class="pourquoi-image">
+            {% if page_content.hero_image_url %}<img src="{{ page_content.hero_image_url }}" alt="{{ page_content.title }}" loading="lazy">{% endif %}
+          </div>
+        </div>
+        <div class="avantages-grid">
+          <div class="avantage-card reveal"><i class="fas fa-brain"></i><h4>{% if current_language == 'ar' %}تطوير مهارات جديدة{% elif current_language == 'en' %}Develop new skills{% else %}Développer de nouvelles compétences{% endif %}</h4></div>
+          <div class="avantage-card reveal"><i class="fas fa-star"></i><h4>{% if current_language == 'ar' %}المشاركة في مشاريع مفيدة{% elif current_language == 'en' %}Participate in useful projects{% else %}Participer à des projets utiles{% endif %}</h4></div>
+          <div class="avantage-card reveal"><i class="fas fa-users"></i><h4>{% if current_language == 'ar' %}التعرف على أشخاص جدد{% elif current_language == 'en' %}Meet new people{% else %}Rencontrer de nouvelles personnes{% endif %}</h4></div>
+          <div class="avantage-card reveal"><i class="fas fa-map-marked-alt"></i><h4>{% if current_language == 'ar' %}اكتساب تجربة ميدانية{% elif current_language == 'en' %}Acquire field experience{% else %}Acquérir une expérience de terrain{% endif %}</h4></div>
+          <div class="avantage-card reveal"><i class="fas fa-heart"></i><h4>{% if current_language == 'ar' %}تعزيز الالتزام المواطناتي{% elif current_language == 'en' %}Strengthen civic engagement{% else %}Renforcer son engagement citoyen{% endif %}</h4></div>
+          <div class="avantage-card reveal"><i class="fas fa-city"></i><h4>{% if current_language == 'ar' %}المساهمة في تنمية طنجة الكبرى{% elif current_language == 'en' %}Contribute to the development of Grand Tanger{% else %}Contribuer au développement du Grand Tanger{% endif %}</h4></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Chiffres -->
+    <section class="chiffres-section">
+      <div class="container">
+        <div class="chiffres-grid">
+          <div class="chiffre-item"><i class="fas fa-users"></i><span class="chiffre-num" data-target="{{ stats.volunteers|default_if_none:940 }}">0</span><span class="chiffre-label">{% if current_language == 'ar' %}متطوعين{% elif current_language == 'en' %}Volunteers{% else %}Bénévoles{% endif %}</span></div>
+          <div class="chiffre-item"><i class="fas fa-clock"></i><span class="chiffre-num" data-target="{{ stats.hours|default_if_none:12500 }}">0</span><span class="chiffre-label">{% if current_language == 'ar' %}ساعات التطوع{% elif current_language == 'en' %}Volunteering hours{% else %}Heures de bénévolat{% endif %}</span></div>
+          <div class="chiffre-item"><i class="fas fa-calendar-check"></i><span class="chiffre-num" data-target="{{ stats.activities|default_if_none:85 }}">0</span><span class="chiffre-label">{% if current_language == 'ar' %}أنشطة منجزة{% elif current_language == 'en' %}Activities completed{% else %}Activités réalisées{% endif %}</span></div>
+          <div class="chiffre-item"><i class="fas fa-smile"></i><span class="chiffre-num" data-target="{{ stats.beneficiaries|default_if_none:15000 }}">0</span><span class="chiffre-label">{% if current_language == 'ar' %}مستفيدين{% elif current_language == 'en' %}Beneficiaries{% else %}Bénéficiaires{% endif %}</span></div>
+          <div class="chiffre-item"><i class="fas fa-clipboard-list"></i><span class="chiffre-num" data-target="{{ stats.missions|default_if_none:12 }}">0</span><span class="chiffre-label">{% if current_language == 'ar' %}مهام متاحة{% elif current_language == 'en' %}Available missions{% else %}Missions disponibles{% endif %}</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Activités des bénévoles -->
+    <section class="actions-section" id="actions">
+      <div class="container">
+        <h2 class="section-title">{% if current_language == 'ar' %}متطوعونا في الميدان{% elif current_language == 'en' %}Our volunteers in action{% else %}Nos bénévoles en action{% endif %}</h2>
+        <p class="section-intro">{% if current_language == 'ar' %}اكتشف بعض اللحظات البارزة للأنشطة المنجزة بفضل التزام متطوعينا.{% elif current_language == 'en' %}Discover highlights of actions completed thanks to our volunteers' commitment.{% else %}Découvrez quelques moments forts des actions réalisées grâce à l'engagement de nos bénévoles.{% endif %}</p>
+        <div class="actions-grid" id="actionsGrid"></div>
+      </div>
+    </section>
+
+
+
+    <!-- Domaines de bénévolat -->
+    <section class="domaines-section">
+      <div class="container">
+        <h2 class="section-title">
+          {% if current_language == 'ar' %}اختر مجال التزامك{% elif current_language == 'en' %}Choose your field of engagement{% else %}Choisissez votre domaine d'engagement{% endif %}
+        </h2>
+        <div class="domaines-grid" id="domainesGrid"></div>
+      </div>
+    </section>
+
+
+    <!-- FAQ -->
+    <section class="faq-section">
+      <div class="container">
+        <h2 class="section-title">
+          {% if current_language == 'ar' %}الأسئلة الشائعة{% elif current_language == 'en' %}Frequently Asked Questions{% else %}Questions fréquentes{% endif %}
+        </h2>
+        <div class="faq-list" id="faqList"></div>
+      </div>
+    </section>
+
+    <!-- Formulaire de candidature -->
+    <section class="candidature-section" id="candidature">
+      <div class="container">
+        <h2 class="section-title">
+          {% if current_language == 'ar' %}انضم إلى فريق متطوعينا{% elif current_language == 'en' %}Join our team of volunteers{% else %}Rejoignez notre équipe de bénévoles{% endif %}
+        </h2>
+        <p class="section-intro">
+          {% if current_language == 'ar' %}يرجى ملء الاستمارة أدناه لتقديم طلب التطوع الخاص بك. سيتصل بك فريقنا فور توفر فرصة تطوع تناسب ملفك الشخصي.{% elif current_language == 'en' %}Fill out the form below to submit your candidacy. Our team will contact you when a mission matching your profile becomes available.{% else %}Remplissez le formulaire ci-dessous pour proposer votre candidature. Notre équipe vous contactera lorsqu'une mission correspondant à votre profil sera disponible.{% endif %}
+        </p>
+        <form class="candidature-form" id="candidatureForm" novalidate>
+          <div class="form-row">
+            <div class="form-group"><label for="nom">{{ ui.full_name_label }}</label><input type="text" id="nom" name="nom" placeholder="{% if current_language == 'ar' %}الاسم الكامل{% elif current_language == 'en' %}Full name{% else %}Votre nom complet{% endif %}" required></div>
+            <div class="form-group"><label for="tel">{{ ui.phone_label }}</label><input type="tel" id="tel" name="telephone" placeholder="{% if current_language == 'ar' %}الهاتف{% elif current_language == 'en' %}Phone{% else %}Téléphone{% endif %}" required></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label for="email">{{ ui.email_label }}</label><input type="email" id="email" name="email" placeholder="nom@exemple.com" required></div>
+            <div class="form-group"><label for="ville">{{ ui.city_label }}</label>
+              <select id="ville" required>
+                <option value="">{% if current_language == 'ar' %}اختر المدينة{% elif current_language == 'en' %}Select{% else %}Sélectionnez{% endif %}</option>
+                <option>{% if current_language == 'ar' %}طنجة{% else %}Tanger{% endif %}</option>
+                <option>{% if current_language == 'ar' %}تطوان{% else %}Tétouan{% endif %}</option>
+                <option>{% if current_language == 'ar' %}العرائش{% else %}Larache{% endif %}</option>
+                <option>{% if current_language == 'ar' %}القصر الكبير{% else %}Ksar El Kébir{% endif %}</option>
+                <option>{% if current_language == 'ar' %}أصيلة{% else %}Asilah{% endif %}</option>
+                <option value="autre">{% if current_language == 'ar' %}أخرى{% else %}Autre{% endif %}</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group" id="autreVilleGroup" style="display:none">
+            <label for="autreVille">{% if current_language == 'ar' %}حدد مدينتك{% elif current_language == 'en' %}Specify your city{% else %}Précisez votre ville{% endif %}</label>
+            <input type="text" id="autreVille">
+          </div>
+          <div class="form-group">
+            <label>{% if current_language == 'ar' %}المهارات{% elif current_language == 'en' %}Skills{% else %}Compétences{% endif %}</label>
+            <div class="competences-grid" id="competencesGrid"></div>
+          </div>
+          <div class="form-group">
+            <label for="descComp">{% if current_language == 'ar' %}صف مهاراتك باختصار{% elif current_language == 'en' %}Briefly describe your skills{% else %}Décrivez brièvement vos compétences{% endif %}</label>
+            <textarea id="descComp" rows="3"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="cv">{% if current_language == 'ar' %}السيرة الذاتية (PDF, DOC, DOCX - حد أقصى 5 ميغا){% elif current_language == 'en' %}Curriculum vitæ (PDF, DOC, DOCX - Max 5 MB){% else %}Curriculum vitæ (PDF, DOC, DOCX - Max 5 Mo){% endif %}</label>
+            <input type="file" id="cv" accept=".pdf,.doc,.docx"><small id="cvInfo"></small>
+          </div>
+          <div class="form-group">
+            <label>{% if current_language == 'ar' %}الأوقات المتاحة{% elif current_language == 'en' %}Availability{% else %}Disponibilité{% endif %}</label>
+            <div class="dispo-grid" id="dispoGrid"></div>
+          </div>
+          <div class="form-group">
+            <label>{% if current_language == 'ar' %}المجال المطلوب{% elif current_language == 'en' %}Desired Field{% else %}Domaine souhaité{% endif %}</label>
+            <div class="domaines-check-grid" id="domainesCheckGrid"></div>
+          </div>
+          <div class="form-group">
+            <label for="motivation">{% if current_language == 'ar' %}لماذا ترغب في الانضمام إلى المؤسسة؟ *{% elif current_language == 'en' %}Why do you want to join the Foundation? *{% else %}Pourquoi souhaitez-vous rejoindre la Fondation ? *{% endif %}</label>
+            <textarea id="motivation" rows="4" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="experience">{% if current_language == 'ar' %}هل سبق لك المشاركة في أنشطة تطوعية؟{% elif current_language == 'en' %}Have you ever participated in volunteer activities?{% else %}Avez-vous déjà participé à des activités bénévoles ?{% endif %}</label>
+            <textarea id="experience" rows="3"></textarea>
+          </div>
+          <label class="checkbox-label"><input type="checkbox" id="consentement" required> {% if current_language == 'ar' %}أوافق على استخدام معلوماتي لمعالجة طلب التطوع الخاص بي *{% elif current_language == 'en' %}I accept that my information will be used to process my application *{% else %}J'accepte que mes informations soient utilisées pour traiter ma candidature *{% endif %}</label>
+          <label class="checkbox-label"><input type="checkbox" id="newsletter"> {% if current_language == 'ar' %}أوافق على تلقي المستجدات وفرص التطوع{% elif current_language == 'en' %}I accept to receive news and volunteer opportunities{% else %}J'accepte de recevoir les actualités et les opportunités de bénévolat{% endif %}</label>
+          <button type="submit" class="btn btn-primary btn-lg" id="submitBtn">{% if current_language == 'ar' %}إرسال الطلب{% elif current_language == 'en' %}Submit my candidacy{% else %}Envoyer ma candidature{% endif %}</button>
+        </form>
+        <div class="candidature-success" id="candidatureSuccess" style="display:none">
+          <i class="fas fa-check-circle"></i>
+          <h3>{% if current_language == 'ar' %}تم إرسال الطلب بنجاح{% elif current_language == 'en' %}Candidacy submitted successfully{% else %}Candidature envoyée avec succès{% endif %}</h3>
+          <p>{% if current_language == 'ar' %}شكراً لاهتمامكم بـ {{ brand_name }}. تم تسجيل طلبكم بنجاح.{% elif current_language == 'en' %}Thank you for your interest in the {{ brand_name }}. Your candidacy has been successfully registered.{% else %}Merci pour votre intérêt envers la {{ brand_name }}. Votre candidature a bien été enregistrée.{% endif %}</p>
+          <p><strong>{% if current_language == 'ar' %}المرجع{% elif current_language == 'en' %}Reference{% else %}Référence{% endif %} :</strong> <span id="refCandidature"></span></p>
+          <a href="{% url 'core:home' %}" class="btn btn-primary">{{ ui.home }}</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Réseaux sociaux -->
+    <section class="social-section">
+      <div class="container">
+        <h2 class="section-title">
+          {% if current_language == 'ar' %}تابعوا مبادرات متطوعينا{% elif current_language == 'en' %}Follow our volunteers' initiatives{% else %}Suivez les actions de nos bénévoles{% endif %}
+        </h2>
+        <div class="social-cards">
+          <div class="social-card youtube">
+            <i class="fab fa-youtube"></i>
+            <h3>YouTube</h3>
+            <p>{% if current_language == 'ar' %}شاهدوا فيديوهات أنشطتنا ومبادراتنا الميدانية.{% elif current_language == 'en' %}Watch videos of our activities and field actions.{% else %}Regardez les vidéos de nos activités et actions de terrain.{% endif %}</p>
+            <a href="{{ settings.youtube_url|default:'#' }}" target="_blank" rel="noopener" class="btn btn-outline-light">{% if current_language == 'ar' %}قناتنا على يوتيوب{% elif current_language == 'en' %}Watch on YouTube{% else %}Voir notre chaîne{% endif %}</a>
+          </div>
+          <div class="social-card instagram">
+            <i class="fab fa-instagram"></i>
+            <h3>Instagram</h3>
+            <p>{% if current_language == 'ar' %}اكتشفوا صوراً واللحظات المميزة لمتطوعينا.{% elif current_language == 'en' %}Discover photos and highlights of our volunteers.{% else %}Découvrez les photos et moments forts de nos bénévoles.{% endif %}</p>
+            <a href="{{ settings.instagram_url|default:'#' }}" target="_blank" rel="noopener" class="btn btn-outline-light">{% if current_language == 'ar' %}متابعتنا على إنستغرام{% elif current_language == 'en' %}Follow on Instagram{% else %}Suivre sur Instagram{% endif %}</a>
+          </div>
+          <div class="social-card facebook">
+            <i class="fab fa-facebook-f"></i>
+            <h3>Facebook</h3>
+            <p>{% if current_language == 'ar' %}تابعوا منشوراتنا وآخر أخبار العمل التطوعي.{% elif current_language == 'en' %}Follow our volunteer posts and news.{% else %}Suivez nos publications et actualités bénévoles.{% endif %}</p>
+            <a href="{{ settings.facebook_url|default:'#' }}" target="_blank" rel="noopener" class="btn btn-outline-light">{% if current_language == 'ar' %}متابعتنا على فيسبوك{% elif current_language == 'en' %}Follow on Facebook{% else %}Suivre sur Facebook{% endif %}</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="lightbox" id="lightbox" aria-modal="true" role="dialog">
+      <button class="lightbox-close" id="lightboxClose" aria-label="Fermer la galerie">&times;</button>
+      <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Photo précédente"><i class="fas fa-chevron-left"></i></button>
+      <div class="lightbox-content" id="lightboxContent"></div>
+      <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Photo suivante"><i class="fas fa-chevron-right"></i></button>
+    </div>
+
+    <div class="modal-overlay" id="videoModal" aria-modal="true" role="dialog">
+      <div class="modal-container">
+        <button class="modal-close" id="videoModalClose" aria-label="Fermer la vidéo">&times;</button>
+        <div class="modal-video-wrapper" id="videoModalContent"></div>
+      </div>
+    </div>
+  </main>
+{% endblock %}
+{% block extra_js %}
+  {{ volunteer_actions|json_script:"volunteer-actions" }}
+  {{ volunteer_photos|json_script:"volunteer-photos" }}
+  {{ volunteer_videos|json_script:"volunteer-videos" }}
+  {{ testimonials_json|json_script:"testimonials-data" }}
+  {{ faq_json|json_script:"faq-data" }}
+  <script>
+    window.FTM_VOLUNTEER_ACTIONS = JSON.parse(document.getElementById('volunteer-actions').textContent);
+    window.FTM_VOLUNTEER_PHOTOS = JSON.parse(document.getElementById('volunteer-photos').textContent);
+    window.FTM_VOLUNTEER_VIDEOS = JSON.parse(document.getElementById('volunteer-videos').textContent);
+    window.FTM_TESTIMONIALS = JSON.parse(document.getElementById('testimonials-data').textContent);
+    window.FTM_VOLUNTEER_FAQ = JSON.parse(document.getElementById('faq-data').textContent);
+  </script>
+  <script src="{% static 'core/js/benevolat.js' %}?v={% now 'U' %}"></script>
+{% endblock %}
+
+
+

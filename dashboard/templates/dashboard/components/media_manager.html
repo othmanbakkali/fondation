@@ -1,0 +1,12 @@
+{% load %}
+<div class="media-manager">
+  <div class="media-choice-tools">
+    <label>Ajouter par lien<input class="admin-field" type="text" placeholder="https://... ou /media/..."></label>
+    <div class="upload-zone" data-upload-zone tabindex="0"><i class="fas fa-cloud-arrow-up-alt"></i><strong>Ou uploader des images, vidéos ou PDF</strong><span>PNG, JPG, MP4, PDF</span><input type="file" multiple data-file-input aria-label="Ajouter des médias"></div>
+  </div>
+  <div class="media-grid">
+    <article><img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=320&h=220&fit=crop" alt="Atelier jeunes"><input value="Atelier jeunes Tanger" aria-label="Texte alternatif"><button type="button" data-confirm="Supprimer cette image ?"><i class="fas fa-trash"></i></button></article>
+    <article><img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=320&h=220&fit=crop" alt="Action sociale"><input value="Distribution sociale" aria-label="Texte alternatif"><button type="button" data-confirm="Supprimer cette image ?"><i class="fas fa-trash"></i></button></article>
+    <article class="media-placeholder"><i class="fas fa-plus"></i><span>Ajouter un média</span></article>
+  </div>
+</div>

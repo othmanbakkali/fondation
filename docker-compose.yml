@@ -1,0 +1,34 @@
+services:
+  web:
+    build: .
+    container_name: django_fondation_app
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+      - static_volume:/app/staticfiles
+      - media_volume:/app/media
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    container_name: django_fondation_mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: django_fondation
+      MYSQL_USER: django_user
+      MYSQL_PASSWORD: secure_password
+      MYSQL_ROOT_PASSWORD: root_secure_password
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+volumes:
+  mysql_data:
+  static_volume:
+  media_volume:

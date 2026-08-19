@@ -1,0 +1,9 @@
+{% load %}
+{% if messages %}
+  {% for message in messages %}
+  <div class="inline-alert {{ message.tags }}" id="inlineAlert">
+    <i class="fas fa-circle-check"></i><span>{{ message }}</span>
+    <button type="button" data-dismiss-alert aria-label="Fermer"><i class="fas fa-times"></i></button>
+  </div>
+  {% endfor %}
+{% endif %}

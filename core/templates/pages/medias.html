@@ -1,0 +1,179 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Médiathèque - {{ brand_name }}{% endblock %}
+{% block extra_head %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Découvrez les photos, les vidéos et les documents officiels de la {{ brand_name }}.">
+  <meta name="theme-color" content="#062B4F">
+  <meta name="keywords" content="Fondation, Tanger, Métropole, médias, photos, vidéos, documents, PDF, Maroc">
+  <meta name="author" content="{{ brand_name }}">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.tangermetropole.ma/medias.html">
+  <meta property="og:title" content="Médiathèque - {{ brand_name }}">
+  <meta property="og:description" content="Découvrez les photos, vidéos et documents officiels de la {{ brand_name }}.">
+  <meta property="og:type" content="website">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"MediaGallery","name":"Médiathèque de la {{ brand_name }}","description":"Photos, vidéos et documents officiels.","url":"https://www.tangermetropole.ma/medias.html"}
+  </script>
+{% endblock %}
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'core/css/medias.css' %}">
+{% endblock %}
+{% block content %}
+<main>
+    <!-- Bannière -->
+    <section class="page-hero">
+      <div class="page-hero-overlay"></div>
+      <div class="container page-hero-content">
+        <div class="hero-decoration"><i class="fas fa-photo-video"></i></div>
+        <nav class="breadcrumb" aria-label="Fil d'Ariane">
+          <a href="{% url 'core:home' %}"><i class="fas fa-home"></i> {{ ui.home }}</a>
+          <span class="breadcrumb-separator">/</span>
+          <span class="breadcrumb-current">{{ ui.media }}</span>
+        </nav>
+        <h1 class="page-hero-title">{{ page_content.title|default:brand_name }}</h1>
+        <p class="page-hero-subtitle">{{ page_content.subtitle|default:"Contenu géré depuis le dashboard." }}</p>
+      </div>
+    </section>
+
+    <!-- Intro + Stats -->
+    <section class="intro-section">
+      <div class="container">
+        <p class="intro-text">
+          {% if current_language == 'ar' %}
+            اكتشف في معرض الوسائط الخاص بنا أبرز اللحظات والفعاليات والأنشطة والتكوينات والبلاغات والوثائق الرسمية لـ {{ brand_name }}.
+          {% elif current_language == 'en' %}
+            Find in our media gallery the highlights, events, activities, trainings, announcements and official documents of the {{ brand_name }}.
+          {% else %}
+            Retrouvez dans notre médiathèque les moments forts, les événements, les activités, les formations, les communiqués et les documents officiels de la {{ brand_name }}.
+          {% endif %}
+        </p>
+        <div class="stats-row" id="statsRow">
+          <div class="stat-box"><i class="fas fa-images"></i><span class="stat-num" id="statPhotos">0</span><span class="stat-label">{% if current_language == 'ar' %}صور{% elif current_language == 'en' %}Photos{% else %}Photos{% endif %}</span></div>
+          <div class="stat-box"><i class="fas fa-video"></i><span class="stat-num" id="statVideos">0</span><span class="stat-label">{% if current_language == 'ar' %}فيديوهات{% elif current_language == 'en' %}Videos{% else %}Vidéos{% endif %}</span></div>
+          <div class="stat-box"><i class="fas fa-file-pdf"></i><span class="stat-num" id="statPdfs">0</span><span class="stat-label">{% if current_language == 'ar' %}وثائق PDF{% elif current_language == 'en' %}PDF Documents{% else %}Documents PDF{% endif %}</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Onglets -->
+    <section class="tabs-section">
+      <div class="container">
+        <div class="tabs-wrapper" id="tabsWrapper">
+          <button class="tab-btn active" data-tab="all"><i class="fas fa-th-large"></i> {% if current_language == 'ar' %}الكل{% elif current_language == 'en' %}All{% else %}Tous{% endif %} <span class="tab-count" id="countAll">0</span></button>
+          <button class="tab-btn" data-tab="photo"><i class="fas fa-images"></i> {% if current_language == 'ar' %}صور{% elif current_language == 'en' %}Photos{% else %}Photos{% endif %} <span class="tab-count" id="countPhotos">0</span></button>
+          <button class="tab-btn" data-tab="video"><i class="fas fa-video"></i> {% if current_language == 'ar' %}فيديوهات{% elif current_language == 'en' %}Videos{% else %}Vidéos{% endif %} <span class="tab-count" id="countVideos">0</span></button>
+          <button class="tab-btn" data-tab="pdf"><i class="fas fa-file-pdf"></i> PDF <span class="tab-count" id="countPdfs">0</span></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Filtres -->
+    <section class="filtres-section">
+      <div class="container">
+        <div class="filtres-wrapper">
+          <div class="filtre-group search-group">
+            <label for="searchMedia"><i class="fas fa-search"></i> {% if current_language == 'ar' %}البحث{% elif current_language == 'en' %}Search{% else %}Recherche{% endif %}</label>
+            <input type="text" id="searchMedia" placeholder="{% if current_language == 'ar' %}البحث عن وسيط...{% elif current_language == 'en' %}Search for media...{% else %}Rechercher un média...{% endif %}" aria-label="Rechercher">
+          </div>
+          <div class="filtre-group">
+            <label for="filterMediaCat"><i class="fas fa-tag"></i> {{ ui.category_label }}</label>
+            <select id="filterMediaCat" aria-label="Filtrer par catégorie">
+              <option value="all">{% if current_language == 'ar' %}الكل{% elif current_language == 'en' %}All{% else %}Toutes{% endif %}</option>
+              <option value="activites">{% if current_language == 'ar' %}أنشطة{% elif current_language == 'en' %}Activities{% else %}Activités{% endif %}</option>
+              <option value="formations">{% if current_language == 'ar' %}تكوينات{% elif current_language == 'en' %}Trainings{% else %}Formations{% endif %}</option>
+              <option value="evenements">{% if current_language == 'ar' %}فعاليات{% elif current_language == 'en' %}Events{% else %}Événements{% endif %}</option>
+              <option value="culture">{% if current_language == 'ar' %}ثقافة{% elif current_language == 'en' %}Culture{% else %}Culture{% endif %}</option>
+              <option value="sport">{% if current_language == 'ar' %}رياضة{% elif current_language == 'en' %}Sport{% else %}Sport{% endif %}</option>
+              <option value="social">{% if current_language == 'ar' %}تضامن{% elif current_language == 'en' %}Social{% else %}Social{% endif %}</option>
+              <option value="rapports">{% if current_language == 'ar' %}تقارير{% elif current_language == 'en' %}Reports{% else %}Rapports{% endif %}</option>
+            </select>
+          </div>
+          <div class="filtre-group">
+            <label for="filterMediaYear"><i class="fas fa-calendar"></i> {{ ui.year_label }}</label>
+            <select id="filterMediaYear" aria-label="Filtrer par année"><option value="all">{% if current_language == 'ar' %}الكل{% elif current_language == 'en' %}All{% else %}Toutes{% endif %}</option></select>
+          </div>
+          <div class="filtre-group reset-group">
+            <button id="resetMediaFilters" class="btn btn-outline"><i class="fas fa-redo"></i> {{ ui.reset_filters }}</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contenu -->
+    <section class="media-content-section">
+      <div class="container">
+        <div class="photos-grid" id="photosGrid"></div>
+        <div class="videos-grid" id="videosGrid"></div>
+        <div class="pdfs-grid" id="pdfsGrid"></div>
+        <div class="no-results" id="noMediaResults" style="display:none;">
+          <i class="fas fa-search"></i><h3>{{ ui.no_results_title }}</h3>
+          <p>{{ ui.no_results_desc }}</p>
+          <button class="btn btn-primary" onclick="document.getElementById('resetMediaFilters').click()">{{ ui.reset_filters }}</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Réseaux sociaux -->
+    <section class="social-section">
+      <div class="container">
+        <h2 class="section-title">
+          {% if current_language == 'ar' %}تابعوا وسائطنا على شبكات التواصل الاجتماعي{% elif current_language == 'en' %}Follow our media on social networks{% else %}Retrouvez nos médias sur les réseaux sociaux{% endif %}
+        </h2>
+        <div class="social-cards">
+          <div class="social-card youtube">
+            <i class="fab fa-youtube"></i>
+            <h3>YouTube</h3>
+            <p>{% if current_language == 'ar' %}شاهد فيديوهات برامجنا وفعالياتنا وتكويناتنا على يوتيوب.{% elif current_language == 'en' %}Watch videos of our programs, events and trainings on YouTube.{% else %}Regardez les vidéos de nos événements, programmes et formations.{% endif %}</p>
+            <a href="{{ settings.youtube_url|default:'#' }}" target="_blank" rel="noopener" class="btn btn-outline-light">{% if current_language == 'ar' %}قناتنا على يوتيوب{% elif current_language == 'en' %}Watch on YouTube{% else %}Voir notre chaîne{% endif %}</a>
+          </div>
+          <div class="social-card instagram">
+            <i class="fab fa-instagram"></i>
+            <h3>Instagram</h3>
+            <p>{% if current_language == 'ar' %}اكتشف الصور والقصص ومقاطع الريلز وأبرز لحظات أنشطتنا.{% elif current_language == 'en' %}Discover photos, stories, Reels and highlights of our activities.{% else %}Découvrez les photos, Reels et moments forts de nos activités.{% endif %}</p>
+            <a href="{{ settings.instagram_url|default:'#' }}" target="_blank" rel="noopener" class="btn btn-outline-light">{% if current_language == 'ar' %}متابعتنا على إنستغرام{% elif current_language == 'en' %}Follow on Instagram{% else %}Suivre sur Instagram{% endif %}</a>
+          </div>
+          <div class="social-card facebook">
+            <i class="fab fa-facebook-f"></i>
+            <h3>Facebook</h3>
+            <p>{% if current_language == 'ar' %}تابع ألبوماتنا وفيديوهاتنا ومنشوراتنا الرسمية على فيسبوك.{% elif current_language == 'en' %}Consult our albums, videos and official posts on Facebook.{% else %}Consultez nos albums, vidéos et publications officielles.{% endif %}</p>
+            <a href="{{ settings.facebook_url|default:'#' }}" target="_blank" rel="noopener" class="btn btn-outline-light">{% if current_language == 'ar' %}متابعتنا على فيسبوك{% elif current_language == 'en' %}Follow on Facebook{% else %}Suivre sur Facebook{% endif %}</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox" aria-hidden="true" role="dialog">
+      <button id="lightboxClose" class="lightbox-close" aria-label="{% if current_language == 'ar' %}إغلاق{% elif current_language == 'en' %}Close{% else %}Fermer{% endif %}"><i class="fas fa-times"></i></button>
+      <button id="lightboxPrev" class="lightbox-nav lightbox-prev" aria-label="{% if current_language == 'ar' %}السابق{% elif current_language == 'en' %}Previous{% else %}Précédent{% endif %}"><i class="fas fa-chevron-left"></i></button>
+      <button id="lightboxNext" class="lightbox-nav lightbox-next" aria-label="{% if current_language == 'ar' %}التالي{% elif current_language == 'en' %}Next{% else %}Suivant{% endif %}"><i class="fas fa-chevron-right"></i></button>
+      <div id="lightboxContent" class="lightbox-content"></div>
+      <div id="lightboxCounter" class="lightbox-counter"></div>
+    </div>
+
+    <!-- Modal Vidéo -->
+    <div id="videoModal" class="modal-overlay" aria-hidden="true" role="dialog">
+      <div class="modal-container">
+        <button id="videoModalClose" class="modal-close" aria-label="{% if current_language == 'ar' %}إغلاق{% elif current_language == 'en' %}Close{% else %}Fermer{% endif %}"><i class="fas fa-times"></i></button>
+        <div class="modal-video-wrapper" id="videoModalContent"></div>
+        <div class="modal-body">
+          <h3 id="videoModalTitle" style="color:var(--text-primary);margin-bottom:8px"></h3>
+          <p id="videoModalDesc" style="color:var(--text-secondary);font-size:.9rem"></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast-notification">
+      <i class="fas fa-check-circle"></i>
+      <span id="toastMsg">Lien copié !</span>
+    </div>
+  </main>
+{% endblock %}
+{% block extra_js %}
+  {{ media_json|json_script:"media-data" }}
+  <script>window.FTM_MEDIA_DATA = JSON.parse(document.getElementById('media-data').textContent);</script>
+  <script src="{% static 'core/js/medias.js' %}?v=backend_updated_2"></script>
+{% endblock %}

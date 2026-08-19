@@ -1,0 +1,54 @@
+name: Deploy Django to VPS (fondation.sdbo.ma)
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy to Production Server
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Execute Remote SSH Commands & Deploy
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SERVER_PORT || 22 }}
+          script: |
+            set -e
+            echo "🚀 Starting automated deployment on VPS..."
+            PROJECT_DIR="${{ secrets.PROJECT_PATH || '/var/www/django-fondation' }}"
+            
+            cd "$PROJECT_DIR"
+            
+            # Fetch and apply latest code from main
+            git fetch origin main
+            git reset --hard origin/main
+            
+            # Activate Virtual Environment
+            if [ -d "venv" ]; then
+                source venv/bin/activate
+            else
+                python3 -m venv venv
+                source venv/bin/activate
+            fi
+            
+            # Update Python dependencies
+            pip install --upgrade pip
+            pip install -r requirements.txt
+            
+            # Apply migrations & collectstatic
+            python manage.py migrate --noinput
+            python manage.py collectstatic --noinput
+            
+            # Restart Gunicorn service
+            sudo systemctl restart django-fondation
+            
+            echo "✅ Deployment completed successfully on fondation.sdbo.ma!"

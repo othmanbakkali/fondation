@@ -1,0 +1,1584 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: django-fondation 1.0\n"
+"Language: ar\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+msgid "? Pourquoi devenir bénévole"
+msgstr "لماذا تصبح متطوعا؟"
+
+msgid "A la une"
+msgstr "في الواجهة"
+
+msgid "A propos"
+msgstr "من نحن"
+
+msgid "About"
+msgstr "من نحن"
+
+msgid "Accepté"
+msgstr "مقبول"
+
+msgid "Accueil"
+msgstr "الرئيسية"
+
+msgid "Accueil et orientation"
+msgstr "الاستقبال والتوجيه"
+
+msgid "Acquérir une expérience de terrain"
+msgstr "اكتساب تجربة ميدانية"
+
+msgid "Actif"
+msgstr "نشط"
+
+msgid "Action"
+msgstr "إجراء"
+
+msgid "Action groupée"
+msgstr "إجراء جماعي"
+
+msgid "Action non autorisée."
+msgstr "إجراء غير مسموح."
+
+msgid "Action sociale"
+msgstr "عمل اجتماعي"
+
+msgid "Actions"
+msgstr "الإجراءات"
+
+msgid "Actions rapides"
+msgstr "إجراءات سريعة"
+
+msgid "Actions sociales"
+msgstr "الأعمال الاجتماعية"
+
+msgid "Actions terrain, dates, images et réseaux."
+msgstr "أنشطة ميدانية، تواريخ، صور وشبكات."
+
+msgid "Activités"
+msgstr "الأنشطة"
+
+msgid "Activités culturelles"
+msgstr "الأنشطة الثقافية"
+
+msgid "Activités de la Fondation"
+msgstr "أنشطة المؤسسة"
+
+msgid "Activités par mois"
+msgstr "الأنشطة حسب الشهر"
+
+msgid "Activités réalisées"
+msgstr "أنشطة منجزة"
+
+msgid "Activités récentes"
+msgstr "أنشطة حديثة"
+
+msgid "Activités sportives"
+msgstr "الأنشطة الرياضية"
+
+msgid "Actualiser"
+msgstr "تحديث"
+
+msgid "Actualités"
+msgstr "الأخبار"
+
+msgid "Actualités & Annonces"
+msgstr "الأخبار والإعلانات"
+
+msgid "Actualités & annonces"
+msgstr "الأخبار والإعلانات"
+
+msgid "Administrateur"
+msgstr "مدير"
+
+msgid "Administration"
+msgstr "الإدارة"
+
+msgid "Afficher le mot de passe"
+msgstr "إظهار كلمة المرور"
+
+msgid "Ajouter"
+msgstr "إضافة"
+
+msgid "Ajouter activité"
+msgstr "إضافة نشاط"
+
+msgid "Ajouter des médias"
+msgstr "إضافة وسائط"
+
+msgid "Ajouter par lien"
+msgstr "إضافة برابط"
+
+msgid "Ajouter un média"
+msgstr "إضافة وسيط"
+
+msgid "Ajouter un paramètre"
+msgstr "إضافة إعداد"
+
+msgid "Ajoutez un nouveau contenu et préparez-le pour l’affichage public."
+msgstr "أضف محتوى جديدا وجهزه للعرض العام."
+
+msgid "Anglais"
+msgstr "الإنجليزية"
+
+msgid "Animation"
+msgstr "التنشيط"
+
+msgid "Animation et encadrement"
+msgstr "التنشيط والتأطير"
+
+msgid "Annee"
+msgstr "السنة"
+
+msgid "Annonce modifiée avec succès."
+msgstr "تم تعديل الإعلان بنجاح."
+
+msgid "Annuler"
+msgstr "إلغاء"
+
+msgid "Année"
+msgstr "السنة"
+
+msgid "Août"
+msgstr "غشت"
+
+msgid "Aperçu Google"
+msgstr "معاينة Google"
+
+msgid "Aperçu contenu"
+msgstr "معاينة المحتوى"
+
+msgid "Aperçu depuis MySQL"
+msgstr "معاينة من MySQL"
+
+msgid "Appliquer"
+msgstr "تطبيق"
+
+msgid "Arabe"
+msgstr "العربية"
+
+msgid "Archivé"
+msgstr "مؤرشف"
+
+msgid "Articles, annonces, communiqués et concours."
+msgstr "مقالات، إعلانات، بلاغات ومباريات."
+
+msgid "Atelier jeunes"
+msgstr "Atelier jeunes"
+
+msgid "Atelier jeunes Tanger"
+msgstr "Atelier jeunes Tanger"
+
+msgid "Aucun paramètre."
+msgstr "لا توجد إعدادات."
+
+msgid "Auteur"
+msgstr "الكاتب"
+
+msgid "Auteur / Email / Responsable"
+msgstr "الكاتب / البريد / المسؤول"
+
+msgid "Auteur / responsable"
+msgstr "الكاتب / المسؤول"
+
+msgid "Automatique"
+msgstr "تلقائي"
+
+msgid "Autre"
+msgstr "أخرى"
+
+msgid "Avez-vous déjà participé à des activités bénévoles ?"
+msgstr "هل سبق أن شاركت في أنشطة تطوعية؟"
+
+msgid "Avr"
+msgstr "أبريل"
+
+msgid "Base MySQL"
+msgstr "قاعدة MySQL"
+
+msgid "Benevolat"
+msgstr "التطوع"
+
+msgid "Boîte"
+msgstr "صندوق"
+
+msgid "Brouillon"
+msgstr "مسودة"
+
+msgid "Brouillons et programmés"
+msgstr "مسودات ومجدولات"
+
+msgid "Bénéficiaires"
+msgstr "مستفيدون"
+
+msgid "Bénévolat"
+msgstr "التطوع"
+
+msgid "Bénévoles"
+msgstr "متطوعون"
+
+msgid "Candidature bénévole"
+msgstr "طلب تطوع"
+
+msgid "Candidature envoyée avec succès"
+msgstr "تم إرسال الطلب بنجاح"
+
+msgid "Candidatures bénévoles"
+msgstr "طلبات التطوع"
+
+msgid "Canonical URL"
+msgstr "رابط Canonical"
+
+msgid "Categorie"
+msgstr "الفئة"
+
+msgid "Catégorie"
+msgstr "الفئة"
+
+msgid "Catégorie / Fonction"
+msgstr "الفئة / المهمة"
+
+msgid "Catégorie française"
+msgstr "الفئة بالفرنسية"
+
+msgid "Catégories"
+msgstr "الفئات"
+
+msgid "Ces champs sont enregistrés directement dans MySQL."
+msgstr "هذه الحقول تسجل مباشرة في MySQL."
+
+msgid "Ces champs sont les données réelles enregistrées dans MySQL."
+msgstr "هذه الحقول هي البيانات الحقيقية المسجلة في MySQL."
+
+msgid "Cette action est simulée dans le frontend."
+msgstr "هذا الإجراء محاكى في الواجهة."
+
+msgid "Changer le mot de passe"
+msgstr "تغيير كلمة المرور"
+
+msgid "Changer le thème"
+msgstr "تغيير المظهر"
+
+msgid ""
+"Chaque carte ouvre un formulaire réel connecté à MySQL pour modifier les "
+"titres, introductions, contenus et paramètres SEO des pages publiques."
+msgstr ""
+"كل بطاقة تفتح استمارة حقيقية مرتبطة بـ MySQL لتعديل العناوين والمقدمات "
+"والمحتويات وإعدادات SEO للصفحات العامة."
+
+msgid "Chiffres clés"
+msgstr "أرقام رئيسية"
+
+msgid "Choisissez votre domaine d'engagement"
+msgstr "اختر مجال التطوع"
+
+msgid "Citoyenneté"
+msgstr "المواطنة"
+
+msgid "Clair"
+msgstr "فاتح"
+
+msgid "Clé"
+msgstr "المفتاح"
+
+msgid "Communication"
+msgstr "التواصل"
+
+msgid "Compte"
+msgstr "الحساب"
+
+msgid "Compétences"
+msgstr "المهارات"
+
+msgid "Configuration du site"
+msgstr "إعدادات الموقع"
+
+msgid "Confirmation"
+msgstr "تأكيد"
+
+msgid "Confirmer"
+msgstr "تأكيد"
+
+msgid "Connectez-vous pour gérer le contenu du site"
+msgstr "سجل الدخول لإدارة محتوى الموقع"
+
+msgid "Connexion"
+msgstr "تسجيل الدخول"
+
+msgid "Consulter"
+msgstr "عرض"
+
+msgid "Contact"
+msgstr "اتصل بنا"
+
+msgid "Contenu"
+msgstr "المحتوى"
+
+msgid "Contenu anglais"
+msgstr "المحتوى بالإنجليزية"
+
+msgid "Contenu arabe"
+msgstr "المحتوى بالعربية"
+
+msgid "Contenu de page"
+msgstr "محتوى الصفحة"
+
+msgid "Contenu du site"
+msgstr "محتوى الموقع"
+
+msgid "Contenu détaillé"
+msgstr "محتوى مفصل"
+
+msgid "Contenu détaillé / Biographie"
+msgstr "محتوى مفصل / سيرة"
+
+msgid "Contenu détaillé français"
+msgstr "المحتوى المفصل بالفرنسية"
+
+msgid "Contenu en attente"
+msgstr "محتوى قيد الانتظار"
+
+msgid "Contenu enregistré avec succès."
+msgstr "تم حفظ المحتوى بنجاح."
+
+msgid "Contenu français"
+msgstr "المحتوى بالفرنسية"
+
+msgid "Contenus de pages"
+msgstr "محتويات الصفحات"
+
+msgid "Contribuer au développement du Grand Tanger"
+msgstr "المساهمة في تنمية طنجة الكبرى"
+
+msgid "Corrigez les champs indiqués ci-dessous."
+msgstr "صحح الحقول المبينة أسفله."
+
+msgid "Création"
+msgstr "إنشاء"
+
+msgid "Créer formation"
+msgstr "إنشاء تكوين"
+
+msgid "Culture"
+msgstr "الثقافة"
+
+msgid "Culture Tanger"
+msgstr "Culture Tanger"
+
+msgid "Culturelles"
+msgstr "ثقافية"
+
+msgid "Culturelles 22%"
+msgstr "Culturelles 22%"
+
+msgid "Curriculum vitæ (PDF, DOC, DOCX - Max 5 Mo)"
+msgstr "السيرة الذاتية (PDF أو DOC أو DOCX - حد أقصى 5 ميغابايت)"
+
+msgid "Dashboard"
+msgstr "لوحة التحكم"
+
+msgid ""
+"Dashboard connecté au backend MySQL. Les boutons Enregistrer modifient "
+"réellement le contenu du site."
+msgstr "لوحة التحكم مرتبطة بـ MySQL. أزرار الحفظ تعدل محتوى الموقع فعليا."
+
+msgid "Date"
+msgstr "التاريخ"
+
+msgid "Date de début"
+msgstr "تاريخ البداية"
+
+msgid "Date de fin"
+msgstr "تاريخ النهاية"
+
+msgid "Depuis la base MySQL"
+msgstr "من قاعدة MySQL"
+
+msgid "Dernière connexion"
+msgstr "آخر تسجيل دخول"
+
+msgid "Dernière modification"
+msgstr "آخر تعديل"
+
+msgid "Dernières candidatures"
+msgstr "آخر الترشيحات"
+
+msgid "Description"
+msgstr "الوصف"
+
+msgid "Description anglaise"
+msgstr "الوصف بالإنجليزية"
+
+msgid "Description arabe"
+msgstr "الوصف بالعربية"
+
+msgid "Description courte"
+msgstr "وصف مختصر"
+
+msgid "Description courte anglaise"
+msgstr "الوصف المختصر بالإنجليزية"
+
+msgid "Description courte arabe"
+msgstr "الوصف المختصر بالعربية"
+
+msgid "Description courte française"
+msgstr "الوصف المختصر بالفرنسية"
+
+msgid "Design graphique"
+msgstr "التصميم الغرافيكي"
+
+msgid "Devenir Bénévole"
+msgstr "كن متطوعا"
+
+msgid "Devenir Bénévoles"
+msgstr "كن متطوعا"
+
+msgid "Devenir bénévole"
+msgstr "كن متطوعا"
+
+msgid "Disponibilité"
+msgstr "التوفر"
+
+msgid "Distribution sociale"
+msgstr "توزيع اجتماعي"
+
+msgid "Domaine souhaité"
+msgstr "المجال المطلوب"
+
+msgid "Duplication simulée"
+msgstr "نسخ محاكى"
+
+msgid "Déconnexion"
+msgstr "تسجيل الخروج"
+
+msgid "Déconnexion effectuée."
+msgstr "تم تسجيل الخروج."
+
+msgid "Découvrez les photos et moments forts de nos bénévoles."
+msgstr "اكتشف صور ولحظات متطوعينا."
+
+msgid ""
+"Découvrez quelques moments forts des actions réalisées grâce à l'engagement "
+"de nos bénévoles."
+msgstr "اكتشف لحظات من الأنشطة التي تحققت بفضل التزام المتطوعين."
+
+msgid "Découvrir"
+msgstr "اكتشف"
+
+msgid "Découvrir l'activité"
+msgstr "اكتشف النشاط"
+
+msgid "Découvrir la Fondation"
+msgstr "اكتشف المؤسسة"
+
+msgid "Découvrir nos actions"
+msgstr "اكتشف أنشطتنا"
+
+msgid "Décrivez brièvement vos compétences"
+msgstr "صف مهاراتك باختصار"
+
+msgid "Défiler"
+msgstr "مرر"
+
+msgid "Détails"
+msgstr "التفاصيل"
+
+msgid "Détails %(singular)s"
+msgstr "تفاصيل %(singular)s"
+
+msgid "Développement web"
+msgstr "تطوير الويب"
+
+msgid "Développer de nouvelles compétences"
+msgstr "تطوير مهارات جديدة"
+
+msgid "Editeur"
+msgstr "محرر"
+
+msgid "Educatives"
+msgstr "تربوية"
+
+msgid "Educatives 36%"
+msgstr "Educatives 36%"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Email *"
+msgstr "البريد الإلكتروني *"
+
+msgid "Email ou mot de passe incorrect."
+msgstr "البريد أو كلمة المرور غير صحيحة."
+
+msgid "En attente"
+msgstr "قيد الانتظار"
+
+msgid "En semaine"
+msgstr "وسط الأسبوع"
+
+msgid "Encadrement"
+msgstr "التأطير"
+
+msgid "Engagement"
+msgstr "الالتزام"
+
+msgid "Enregistrer"
+msgstr "حفظ"
+
+msgid "Envoi en cours..."
+msgstr "جار الإرسال..."
+
+msgid "Envoyer ma candidature"
+msgstr "إرسال الطلب"
+
+msgid "Equipe"
+msgstr "الفريق"
+
+msgid "Espace Administration"
+msgstr "فضاء الإدارة"
+
+msgid "Exemple : téléphone, email, statistiques, réseaux sociaux."
+msgstr "مثال: الهاتف، البريد، الإحصائيات، الشبكات."
+
+msgid "Export"
+msgstr "تصدير"
+
+msgid "Exporter"
+msgstr "تصدير"
+
+msgid "Facebook"
+msgstr "Facebook"
+
+msgid "Fermer"
+msgstr "إغلاق"
+
+msgid "Fermer le menu"
+msgstr "إغلاق القائمة"
+
+msgid "Fiche complète alimentée par la base de données."
+msgstr "بطاقة كاملة مغذاة من قاعدة البيانات."
+
+msgid "Fichier trop volumineux (>5 Mo)"
+msgstr "الملف كبير جدا، الحد الأقصى 5 ميغابايت"
+
+msgid "Filtrer par statut"
+msgstr "تصفية حسب الحالة"
+
+msgid "Filtres appliqués"
+msgstr "تم تطبيق الفلاتر"
+
+msgid "Filtres avancés"
+msgstr "فلاتر متقدمة"
+
+msgid "Fonction"
+msgstr "الوظيفة"
+
+msgid "Fondation"
+msgstr "المؤسسة"
+
+msgid "Fondation Tanger Metropole"
+msgstr "مؤسسة طنجة الكبرى"
+
+msgid "Fondation Tanger Métropole"
+msgstr "مؤسسة طنجة الكبرى"
+
+msgid "Formateur"
+msgstr "المكون"
+
+msgid "Formateur anglais"
+msgstr "المكون بالإنجليزية"
+
+msgid "Formateur arabe"
+msgstr "المكون بالعربية"
+
+msgid "Formateur français"
+msgstr "المكون بالفرنسية"
+
+msgid "Formation"
+msgstr "التكوين"
+
+msgid "Formation et accompagnement"
+msgstr "التكوين والمواكبة"
+
+msgid "Formation jeunesse"
+msgstr "تكوين الشباب"
+
+msgid "Formations"
+msgstr "التكوينات"
+
+msgid "Français"
+msgstr "الفرنسية"
+
+msgid "Fév"
+msgstr "فبراير"
+
+msgid "Galerie des bénévoles"
+msgstr "معرض المتطوعين"
+
+msgid "Gestion de contenu"
+msgstr "إدارة المحتوى"
+
+msgid "Gestion de la page À propos"
+msgstr "إدارة صفحة من نحن"
+
+msgid "Gestion du site"
+msgstr "إدارة الموقع"
+
+msgid "Gestion globale"
+msgstr "إدارة عامة"
+
+msgid "Groupe"
+msgstr "المجموعة"
+
+msgid ""
+"Gérez les informations générales utilisées par le site public et le "
+"dashboard."
+msgstr "أدر المعلومات العامة المستعملة في الموقع ولوحة التحكم."
+
+msgid "Hero section"
+msgstr "قسم Hero"
+
+msgid "Heure de début"
+msgstr "ساعة البداية"
+
+msgid "Heure de fin"
+msgstr "ساعة النهاية"
+
+msgid "Heures de bénévolat"
+msgstr "ساعات تطوع"
+
+msgid "Ils partagent leur expérience"
+msgstr "تجارب المتطوعين"
+
+msgid "Image"
+msgstr "صورة"
+
+msgid "Image Open Graph"
+msgstr "صورة Open Graph"
+
+msgid "Image Open Graph par lien"
+msgstr "صورة Open Graph برابط"
+
+msgid "Image SEO actuelle"
+msgstr "صورة SEO الحالية"
+
+msgid "Image actuelle"
+msgstr "الصورة الحالية"
+
+msgid "Image de couverture"
+msgstr "صورة الغلاف"
+
+msgid "Image par lien"
+msgstr "صورة برابط"
+
+msgid "Image par lien URL"
+msgstr "صورة برابط URL"
+
+msgid "Image principale"
+msgstr "الصورة الرئيسية"
+
+msgid "Image principale et liens utilisés sur le site public."
+msgstr "الصورة الرئيسية والروابط المستعملة في الموقع."
+
+msgid "Image, vidéo, réseaux sociaux, dates et informations d’organisation."
+msgstr "Image, vidéo, réseaux sociaux, dates et informations d’organisation."
+
+msgid "Images"
+msgstr "الصور"
+
+msgid "Inactif"
+msgstr "غير نشط"
+
+msgid "Inclusion"
+msgstr "Inclusion"
+
+msgid "Informations"
+msgstr "معلومات"
+
+msgid "Informations personnelles"
+msgstr "معلومات شخصية"
+
+msgid "Informations principales"
+msgstr "معلومات رئيسية"
+
+msgid "Innovation"
+msgstr "Innovation"
+
+msgid "Inscription formation"
+msgstr "تسجيل في تكوين"
+
+msgid "Inscriptions"
+msgstr "التسجيلات"
+
+msgid "Inscriptions formations"
+msgstr "تسجيلات التكوينات"
+
+msgid "Instagram"
+msgstr "Instagram"
+
+msgid "J'accepte de recevoir les actualités et les opportunités de bénévolat"
+msgstr "أوافق على تلقي أخبار وفرص التطوع"
+
+msgid ""
+"J'accepte que mes informations soient utilisées pour traiter ma candidature "
+"*"
+msgstr "أوافق على استعمال معلوماتي لمعالجة طلبي *"
+
+msgid "Jan"
+msgstr "Jan"
+
+msgid "Juil"
+msgstr "Juil"
+
+msgid "Juillet"
+msgstr "Juillet"
+
+msgid "Juin"
+msgstr "Juin"
+
+msgid "L'après-midi"
+msgstr "بعد الزوال"
+
+msgid "La Fondation Tanger Metropole"
+msgstr "مؤسسة طنجة الكبرى"
+
+msgid "La Fondation Tanger Métropole"
+msgstr "مؤسسة طنجة الكبرى"
+
+msgid "Langue"
+msgstr "اللغة"
+
+msgid "Langues"
+msgstr "اللغات"
+
+msgid "Le matin"
+msgstr "الصباح"
+
+msgid "Le soir"
+msgstr "المساء"
+
+msgid "Le week-end"
+msgstr "نهاية الأسبوع"
+
+msgid ""
+"Les messages de contact sont en lecture seule. Ouvrez le détail pour les "
+"consulter."
+msgstr "رسائل الاتصال للقراءة فقط. افتح التفاصيل للاطلاع."
+
+msgid ""
+"Les modules ci-dessous alimentent les pages publiques depuis la même base de"
+" données."
+msgstr ""
+"Les modules ci-dessous alimentent les pages publiques depuis la même base de"
+" données."
+
+msgid "Lien"
+msgstr "رابط"
+
+msgid "Lien Facebook"
+msgstr "رابط فيسبوك"
+
+msgid "Lien Instagram"
+msgstr "رابط إنستغرام"
+
+msgid "Lien YouTube"
+msgstr "رابط يوتيوب"
+
+msgid "Lien externe"
+msgstr "رابط خارجي"
+
+msgid "Lieu"
+msgstr "المكان"
+
+msgid "Lieu anglais"
+msgstr "المكان بالإنجليزية"
+
+msgid "Lieu arabe"
+msgstr "المكان بالعربية"
+
+msgid "Lieu français"
+msgstr "المكان بالفرنسية"
+
+msgid "Lire l'article"
+msgstr "اقرأ المقال"
+
+msgid "Lire la suite"
+msgstr "اقرأ المزيد"
+
+msgid "Liste"
+msgstr "اللائحة"
+
+msgid ""
+"Liste, filtres, statuts, actions, pagination et exports pour %(label)s."
+msgstr ""
+"Liste, filtres, statuts, actions, pagination et exports pour %(label)s."
+
+msgid "Logistique"
+msgstr "اللوجستيك"
+
+msgid "Logo"
+msgstr "الشعار"
+
+msgid "Logos, liens, ordre et visibilité accueil."
+msgstr "الشعارات، الروابط، الترتيب وظهور الرئيسية."
+
+msgid "Mai"
+msgstr "ماي"
+
+msgid "Mar"
+msgstr "Mar"
+
+msgid "Medias"
+msgstr "الوسائط"
+
+msgid "Message de contact"
+msgstr "رسالة اتصال"
+
+msgid "Messages"
+msgstr "الرسائل"
+
+msgid "Messages contact"
+msgstr "رسائل الاتصال"
+
+msgid "Messages de contact"
+msgstr "رسائل اتصال"
+
+msgid "Messages récents"
+msgstr "رسائل حديثة"
+
+msgid "Meta description"
+msgstr "وصف Meta"
+
+msgid "Meta description anglais"
+msgstr "وصف Meta بالإنجليزية"
+
+msgid "Meta description arabe"
+msgstr "وصف Meta بالعربية"
+
+msgid "Meta description français"
+msgstr "وصف Meta بالفرنسية"
+
+msgid "Meta title"
+msgstr "Meta title"
+
+msgid "Meta title anglais"
+msgstr "Meta title anglais"
+
+msgid "Meta title arabe"
+msgstr "Meta title arabe"
+
+msgid "Meta title français"
+msgstr "Meta title français"
+
+msgid "Mettre à la une"
+msgstr "إبراز"
+
+msgid "Missions disponibles"
+msgstr "مهام متاحة"
+
+msgid "Modification contenu"
+msgstr "تعديل المحتوى"
+
+msgid "Modifier"
+msgstr "تعديل"
+
+msgid "Modifier %(title)s"
+msgstr "تعديل %(title)s"
+
+msgid ""
+"Modifier les informations principales, le contenu et les paramètres SEO de "
+"la page."
+msgstr ""
+"تعديل les informations principales, le contenu et les paramètres SEO de la "
+"page."
+
+msgid "Modifier toutes les pages du site"
+msgstr "تعديل toutes les pages du site"
+
+msgid "Module"
+msgstr "الوحدة"
+
+msgid "Mois"
+msgstr "الشهر"
+
+msgid "Montage vidéo"
+msgstr "مونتاج الفيديو"
+
+msgid "Mot de passe"
+msgstr "كلمة المرور"
+
+msgid "Mots-clés"
+msgstr "الكلمات المفتاحية"
+
+msgid "Mots-clés français"
+msgstr "Mots-clés français"
+
+msgid "Médias"
+msgstr "الوسائط"
+
+msgid "Médias et liens"
+msgstr "وسائط وروابط"
+
+msgid "Médias et réseaux sociaux"
+msgstr "وسائط وشبكات اجتماعية"
+
+msgid "Médiathèque"
+msgstr "مكتبة الوسائط"
+
+msgid "Navigation administrateur"
+msgstr "تنقل المدير"
+
+msgid "Nom"
+msgstr "الاسم"
+
+msgid "Nom anglais"
+msgstr "الاسم بالإنجليزية"
+
+msgid "Nom arabe"
+msgstr "الاسم بالعربية"
+
+msgid "Nom complet"
+msgstr "الاسم الكامل"
+
+msgid "Nom complet *"
+msgstr "الاسم الكامل *"
+
+msgid "Nombre de places"
+msgstr "عدد المقاعد"
+
+msgid "Nos Partenaires"
+msgstr "شركاؤنا"
+
+msgid "Nos bénévoles en action"
+msgstr "متطوعونا في الميدان"
+
+msgid "Nos formations"
+msgstr "تكويناتنا"
+
+msgid "Nos partenaires"
+msgstr "شركاؤنا"
+
+msgid "Note"
+msgstr "Note"
+
+msgid "Notifications"
+msgstr "الإشعارات"
+
+msgid "Nouveau mot de passe"
+msgstr "كلمة مرور جديدة"
+
+msgid "Ordre"
+msgstr "الترتيب"
+
+msgid "Ordre d'affichage"
+msgstr "ترتيب العرض"
+
+msgid "Ordre d’affichage"
+msgstr "ترتيب العرض"
+
+msgid "Organisation"
+msgstr "التنظيم"
+
+msgid "Organisation d'événements"
+msgstr "تنظيم الفعاليات"
+
+msgid "Ou uploader des images, vidéos ou PDF"
+msgstr "Ou uploader des images, vidéos ou PDF"
+
+msgid "Ou uploader une image"
+msgstr "Ou uploader une image"
+
+msgid "Ou uploader une image SEO"
+msgstr "Ou uploader une image SEO"
+
+msgid "Ouvrir le menu"
+msgstr "فتح القائمة"
+
+msgid "PNG, JPG, MP4, PDF - simulation frontend"
+msgstr "PNG, JPG, MP4, PDF - simulation frontend"
+
+msgid "Page modifiée avec succès."
+msgstr "تم تعديل الصفحة بنجاح."
+
+msgid "Page précédente"
+msgstr "الصفحة السابقة"
+
+msgid "Page suivante"
+msgstr "الصفحة التالية"
+
+msgid "Pages publiques"
+msgstr "الصفحات العامة"
+
+msgid "Paramètre du site"
+msgstr "إعداد الموقع"
+
+msgid "Paramètre enregistré."
+msgstr "تم حفظ الإعداد."
+
+msgid "Paramètres"
+msgstr "الإعدادات"
+
+msgid "Paramètres du site"
+msgstr "إعدادات الموقع"
+
+msgid "Paramètres existants"
+msgstr "الإعدادات الموجودة"
+
+msgid "Partenaire"
+msgstr "شريك"
+
+msgid "Partenaires"
+msgstr "الشركاء"
+
+msgid "Participants"
+msgstr "المشاركون"
+
+msgid "Participer à des projets utiles"
+msgstr "المشاركة في مشاريع مفيدة"
+
+msgid "Photographie"
+msgstr "التصوير"
+
+msgid "Photographie et vidéo"
+msgstr "التصوير والفيديو"
+
+msgid "Pilotage général"
+msgstr "تدبير عام"
+
+msgid "Places"
+msgstr "المقاعد"
+
+msgid "Places occupées"
+msgstr "المقاعد المشغولة"
+
+msgid "Pourquoi devenir bénévole ?"
+msgstr "لماذا تصبح متطوعا؟"
+
+msgid "Pourquoi souhaitez-vous rejoindre la Fondation ? *"
+msgstr "لماذا تريد الانضمام إلى المؤسسة؟ *"
+
+msgid "Premiers secours"
+msgstr "الإسعافات الأولية"
+
+msgid "Profession"
+msgstr "Profession"
+
+msgid "Profil administrateur"
+msgstr "ملف المدير"
+
+msgid "Profil mis à jour"
+msgstr "تم تحديث الملف"
+
+msgid "Programme"
+msgstr "البرنامج"
+
+msgid "Programmes"
+msgstr "Programmes"
+
+msgid "Programmé"
+msgstr "مجدول"
+
+msgid "Précisez votre ville"
+msgstr "حدد المدينة"
+
+msgid "Présentation de la Fondation"
+msgstr "تقديم المؤسسة"
+
+msgid ""
+"Présentation, mission, vision, objectifs, valeurs, historique, équipe et "
+"SEO."
+msgstr ""
+"Présentation, mission, vision, objectifs, valeurs, historique, équipe et "
+"SEO."
+
+msgid "Publication"
+msgstr "النشر"
+
+msgid "Publier actualité"
+msgstr "نشر خبر"
+
+msgid "Publié"
+msgstr "منشور"
+
+msgid "Questions fréquentes"
+msgstr "أسئلة شائعة"
+
+msgid "Rapport exporté visuellement."
+msgstr "Rapport exporté visuellement."
+
+msgid "Rapports"
+msgstr "التقارير"
+
+msgid "Recherche"
+msgstr "بحث"
+
+msgid "Recherche globale"
+msgstr "بحث عام"
+
+msgid "Rechercher"
+msgstr "بحث"
+
+msgid "Rechercher dans le tableau"
+msgstr "البحث في الجدول"
+
+msgid "Rechercher une page, un message, une candidature..."
+msgstr "ابحث عن صفحة، رسالة، ترشيح..."
+
+msgid "Refusé"
+msgstr "مرفوض"
+
+msgid "Regardez les vidéos de nos activités et actions de terrain."
+msgstr "شاهد فيديوهات أنشطتنا الميدانية."
+
+msgid "Reinitialiser"
+msgstr "إعادة الضبط"
+
+msgid "Rejoignez notre équipe de bénévoles"
+msgstr "انضم إلى فريق المتطوعين"
+
+msgid "Rejoignez-nous"
+msgstr "انضموا إلينا"
+
+msgid "Rejoindre l'équipe"
+msgstr "انضم إلى الفريق"
+
+msgid ""
+"Remplissez le formulaire ci-dessous pour proposer votre candidature. Notre "
+"équipe vous contactera lorsqu'une mission correspondant à votre profil sera "
+"disponible."
+msgstr ""
+"املأ الاستمارة أسفله لترشيح نفسك. سنتواصل معك عندما تتوفر مهمة مناسبة."
+
+msgid "Rencontrer de nouvelles personnes"
+msgstr "التعرف على أشخاص جدد"
+
+msgid "Renforcer son engagement citoyen"
+msgstr "تعزيز الالتزام المواطن"
+
+msgid "Responsabilité"
+msgstr "Responsabilité"
+
+msgid "Retour"
+msgstr "رجوع"
+
+msgid "Retour au site"
+msgstr "العودة إلى الموقع"
+
+msgid "Retour à l'accueil"
+msgstr "العودة إلى الرئيسية"
+
+msgid "Réduire"
+msgstr "تصغير"
+
+msgid "Réinitialiser"
+msgstr "إعادة الضبط"
+
+msgid "Réinitialiser les filtres"
+msgstr "إعادة ضبط الفلاتر"
+
+msgid "Réseaux sociaux"
+msgstr "الشبكات الاجتماعية"
+
+msgid "Rôle"
+msgstr "الدور"
+
+msgid "SEO"
+msgstr "SEO"
+
+msgid "SEO & statut"
+msgstr "SEO والحالة"
+
+msgid "SEO accueil"
+msgstr "SEO الرئيسية"
+
+msgid "Se connecter"
+msgstr "تسجيل الدخول"
+
+msgid "Se souvenir de moi"
+msgstr "تذكرني"
+
+msgid "Sections connectées"
+msgstr "أقسام مرتبطة"
+
+msgid "Selon les besoins"
+msgstr "حسب الحاجة"
+
+msgid "Sep"
+msgstr "Sep"
+
+msgid "Session sécurisée"
+msgstr "جلسة آمنة"
+
+msgid "Sessions, formateurs, places et inscriptions."
+msgstr "Sessions, formateurs, places et inscriptions."
+
+msgid "Slug"
+msgstr "Slug"
+
+msgid "Slug :"
+msgstr "Slug:"
+
+msgid "Sociales"
+msgstr "Sociales"
+
+msgid "Sociales 28%"
+msgstr "Sociales 28%"
+
+msgid "Solidarité"
+msgstr "Solidarité"
+
+msgid "Sombre"
+msgstr "داكن"
+
+msgid "Sous-titre"
+msgstr "العنوان الفرعي"
+
+msgid "Sous-titre anglais"
+msgstr "العنوان الفرعي بالإنجليزية"
+
+msgid "Sous-titre arabe"
+msgstr "العنوان الفرعي بالعربية"
+
+msgid "Sous-titre backend v?rifi"
+msgstr "التزام بالتربية والثقافة والعمل الاجتماعي والرياضة بطنجة"
+
+msgid "Sous-titre backend vérifié"
+msgstr "التزام بالتربية والثقافة والعمل الاجتماعي والرياضة بطنجة"
+
+msgid "Sous-titre backend v�rifi"
+msgstr "التزام بالتربية والثقافة والعمل الاجتماعي والرياضة بطنجة"
+
+msgid "Sous-titre français"
+msgstr "العنوان الفرعي بالفرنسية"
+
+msgid "Sport"
+msgstr "الرياضة"
+
+msgid "Sportives"
+msgstr "Sportives"
+
+msgid "Sportives 14%"
+msgstr "Sportives 14%"
+
+msgid "Statistiques animées"
+msgstr "إحصائيات متحركة"
+
+msgid "Statut"
+msgstr "الحالة"
+
+msgid "Suivez les actions de nos bénévoles"
+msgstr "تابع أنشطة متطوعينا"
+
+msgid "Suivez nos publications et actualités bénévoles."
+msgstr "تابع منشورات وأخبار التطوع."
+
+msgid "Suivre sur Facebook"
+msgstr "تابعنا على فيسبوك"
+
+msgid "Suivre sur Instagram"
+msgstr "تابعنا على إنستغرام"
+
+msgid "Sujet"
+msgstr "Sujet"
+
+msgid "Super admin"
+msgstr "مدير عام"
+
+msgid "Supprimer cet élément ?"
+msgstr "حذف هذا العنصر؟"
+
+msgid "Supprimer cette image ?"
+msgstr "حذف هذه الصورة؟"
+
+msgid "Sélectionner"
+msgstr "اختيار"
+
+msgid "Sélectionner un média"
+msgstr "اختيار وسيط"
+
+msgid "Sélectionnez"
+msgstr "اختر"
+
+msgid "Tableau de bord"
+msgstr "لوحة التحكم"
+
+msgid "Temps / note"
+msgstr "المدة / الملاحظة"
+
+msgid "Temps de lecture"
+msgstr "وقت القراءة"
+
+msgid "Texte alternatif"
+msgstr "النص البديل"
+
+msgid "Texte court et clair pour l'affichage public."
+msgstr "نص قصير وواضح للعرض العام."
+
+msgid "Thème"
+msgstr "المظهر"
+
+msgid "Titre"
+msgstr "العنوان"
+
+msgid "Titre anglais"
+msgstr "العنوان بالإنجليزية"
+
+msgid "Titre arabe"
+msgstr "العنوان بالعربية"
+
+msgid "Titre enregistré actuellement :"
+msgstr "العنوان المسجل حاليا:"
+
+msgid "Titre français"
+msgstr "العنوان بالفرنسية"
+
+msgid "Tous"
+msgstr "الكل"
+
+msgid "Tous droits réservés"
+msgstr "جميع الحقوق محفوظة"
+
+msgid "Tous les mois"
+msgstr "كل الأشهر"
+
+msgid "Tous les statuts"
+msgstr "كل الحالات"
+
+msgid "Tout sélectionner"
+msgstr "تحديد الكل"
+
+msgid "Toutes"
+msgstr "الكل"
+
+msgid "Toutes les années"
+msgstr "كل السنوات"
+
+msgid "Toutes les catégories"
+msgstr "كل الفئات"
+
+msgid "Type"
+msgstr "النوع"
+
+msgid "Type anglais"
+msgstr "النوع بالإنجليزية"
+
+msgid "Type arabe"
+msgstr "النوع بالعربية"
+
+msgid "Type français"
+msgstr "النوع بالفرنسية"
+
+msgid "Téléphone"
+msgstr "الهاتف"
+
+msgid "Téléphone *"
+msgstr "الهاتف *"
+
+msgid "Témoignages"
+msgstr "Témoignages"
+
+msgid "URL canonique"
+msgstr "الرابط القانوني"
+
+msgid "Utilisateurs"
+msgstr "المستخدمون"
+
+msgid "Valeur"
+msgstr "القيمة"
+
+msgid "Valeur anglaise"
+msgstr "القيمة بالإنجليزية"
+
+msgid "Valeur arabe"
+msgstr "القيمة بالعربية"
+
+msgid "Valeur française"
+msgstr "القيمة بالفرنسية"
+
+msgid "Vidéo"
+msgstr "الفيديو"
+
+msgid "Vidéo URL"
+msgstr "Vidéo URL"
+
+msgid "Vidéo principale"
+msgstr "Vidéo principale"
+
+msgid "Vidéos de nos actions"
+msgstr "فيديوهات أنشطتنا"
+
+msgid "Ville"
+msgstr "Ville"
+
+msgid "Ville *"
+msgstr "المدينة *"
+
+msgid "Voir"
+msgstr "عرض"
+
+msgid "Voir détail"
+msgstr "عرض التفاصيل"
+
+msgid "Voir le site"
+msgstr "عرض الموقع"
+
+msgid "Voir le site public"
+msgstr "عرض الموقع العام"
+
+msgid "Voir messages"
+msgstr "عرض الرسائل"
+
+msgid "Voir notre chaîne"
+msgstr "شاهد القناة"
+
+msgid "Voir tout"
+msgstr "عرض الكل"
+
+msgid "Voir toutes les activités"
+msgstr "عرض كل الأنشطة"
+
+msgid "Votre nom complet"
+msgstr "اسمك الكامل"
+
+msgid "Vue générale"
+msgstr "نظرة عامة"
+
+msgid ""
+"Vue synthétique des contenus, demandes et performances de la Fondation "
+"Tanger Métropole."
+msgstr "نظرة ملخصة للمحتويات والطلبات وأداء مؤسسة طنجة الكبرى."
+
+msgid "YouTube"
+msgstr "YouTube"
+
+msgid "accepte"
+msgstr "مقبول"
+
+msgid "actif"
+msgstr "نشط"
+
+msgid "activité"
+msgstr "نشاط"
+
+msgid "archive"
+msgstr "مؤرشف"
+
+msgid "article"
+msgstr "مقال"
+
+msgid "articles"
+msgstr "مقالات"
+
+msgid "brouillon"
+msgstr "مسودة"
+
+msgid "bénévoles"
+msgstr "متطوعين"
+
+msgid "candidature"
+msgstr "ترشيح"
+
+msgid "candidature(s) en attente"
+msgstr "candidature(s) en attente"
+
+msgid "candidatures"
+msgstr "ترشيحات"
+
+msgid "contenu(s) à valider"
+msgstr "محتوى قيد المراجعة"
+
+msgid "depuis MySQL"
+msgstr "depuis MySQL"
+
+msgid "dernière édition"
+msgstr "dernière édition"
+
+msgid "en_attente"
+msgstr "en_attente"
+
+msgid "fichiers"
+msgstr "fichiers"
+
+msgid "formation"
+msgstr "formation"
+
+msgid "inactif"
+msgstr "inactif"
+
+msgid "lien"
+msgstr "lien"
+
+msgid "membre"
+msgstr "membre"
+
+msgid "message"
+msgstr "message"
+
+msgid "message(s) non lu(s)"
+msgstr "message(s) non lu(s)"
+
+msgid "messages"
+msgstr "رسائل"
+
+msgid "média"
+msgstr "وسيط"
+
+msgid "par lien"
+msgstr "par lien"
+
+msgid "partenaire"
+msgstr "شريك"
+
+msgid "partenaires"
+msgstr "شركاء"
+
+msgid "programme"
+msgstr "برنامج"
+
+msgid "publie"
+msgstr "منشور"
+
+msgid "publié"
+msgstr "منشور"
+
+msgid "refuse"
+msgstr "مرفوض"
+
+msgid "sessions"
+msgstr "sessions"
+
+msgid "témoignage"
+msgstr "témoignage"
+
+msgid "utilisateur"
+msgstr "مستخدم"
+
+msgid "À la une"
+msgstr "في الواجهة"
+
+msgid "À propos"
+msgstr "من نحن"
+
+msgid "Édition de contenu"
+msgstr "تحرير المحتوى"
+
+msgid "Élément de contenu"
+msgstr "عنصر محتوى"
+
+msgid "Élément supprimé avec succès."
+msgstr "تم حذف العنصر بنجاح."
+
+msgid "Éléments de contenu"
+msgstr "عناصر المحتوى"
+
+msgid "Équipe"
+msgstr "Équipe"
+
+msgid "à connecter"
+msgstr "à connecter"
+
+msgid "⭐ À la une"
+msgstr "⭐ في الواجهة"

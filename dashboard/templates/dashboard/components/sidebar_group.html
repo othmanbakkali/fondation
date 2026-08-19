@@ -1,0 +1,10 @@
+{% load %}
+<div class="sidebar-group {% if active_prefix in request.resolver_match.url_name %}open{% endif %}">
+  <button class="sidebar-link sidebar-toggle {% if active_prefix in request.resolver_match.url_name %}active{% endif %}" type="button">
+    <i class="fas {{ icon }}"></i><span>{{ label }}</span><i class="fas fa-chevron-down group-arrow"></i>
+  </button>
+  <div class="sidebar-submenu">
+    <a href="{% url list_url %}">Liste</a>
+    <a href="{% url add_url %}">Ajouter</a>
+  </div>
+</div>

@@ -1,0 +1,769 @@
+{
+  "empty_arabic_msgstr": [],
+  "fuzzy_arabic_entries": [],
+  "french_like_arabic_msgstr": [],
+  "mojibake_arabic_msgstr": [],
+  "hardcoded_french_templates": [
+    {
+      "file": "dashboard\\templates\\dashboard\\dashboard.html",
+      "hints": [
+        "Activités",
+        "Contenu",
+        "Messages",
+        "Tableau",
+        "Voir",
+        "messages",
+        "page"
+      ]
+    },
+    {
+      "file": "dashboard\\templates\\dashboard\\login.html",
+      "hints": [
+        "Connexion",
+        "Mot de passe",
+        "Retour",
+        "contenu",
+        "description",
+        "gestion",
+        "messages",
+        "mot de passe",
+        "utilisateur"
+      ]
+    },
+    {
+      "file": "dashboard\\templates\\dashboard\\components\\admin_navbar.html",
+      "hints": [
+        "Bénévolat",
+        "Déconnexion",
+        "Paramètres",
+        "Profil",
+        "Recherche",
+        "Voir",
+        "contenu",
+        "messages",
+        "page"
+      ]
+    },
+    {
+      "file": "dashboard\\templates\\dashboard\\components\\admin_sidebar.html",
+      "hints": [
+        "Activités",
+        "Actualités",
+        "Bénévolat",
+        "Contenu",
+        "Formations",
+        "Gestion",
+        "Messages",
+        "Médias",
+        "Page",
+        "Paramètres",
+        "Partenaires",
+        "Tableau",
+        "accueil"
+      ]
+    },
+    {
+      "file": "dashboard\\templates\\dashboard\\components\\breadcrumbs.html",
+      "hints": [
+        "Tableau"
+      ]
+    },
+    {
+      "file": "dashboard\\templates\\dashboard\\components\\confirmation_modal.html",
+      "hints": [
+        "Annuler",
+        "Confirmer"
+      ]
+    },
+    {
+      "file": "dashboard\\templates\\dashboard\\components\\data_table.html",
+      "hints": [
+        "Filtrer",
+        "Modifier",
+        "Supprimer",
+        "contenu",
+        "statut",
+        "tableau"
+      ]
+    },
+    {
+      "file": "dashboard\\templates\\dashboard\\components\\media_manager.html",
+      "hints": [
+        "Ajouter",
+        "Supprimer",
+        "médias"
+      ]
+    },
+    {
+      "file": "dashboard\\templates\\dashboard\\components\\notifications.html",
+      "hints": [
+        "Enregistrer",
+        "contenu",
+        "messages"
+      ]
+    },
+    {
+      "file": "dashboard\\templates\\dashboard\\components\\pagination.html",
+      "hints": [
+        "Page",
+        "page"
+      ]
+    },
+    {
+      "file": "dashboard\\templates\\dashboard\\components\\seo_fields.html",
+      "hints": [
+        "description"
+      ]
+    },
+    {
+      "file": "dashboard\\templates\\dashboard\\components\\sidebar_group.html",
+      "hints": [
+        "Ajouter"
+      ]
+    },
+    {
+      "file": "dashboard\\templates\\dashboard\\pages\\about.html",
+      "hints": [
+        "Gestion",
+        "Modifier",
+        "Partenaires",
+        "page"
+      ]
+    },
+    {
+      "file": "dashboard\\templates\\dashboard\\pages\\home_page.html",
+      "hints": [
+        "Activités",
+        "Actualités",
+        "Ajouter",
+        "Bénévolat",
+        "Catégorie",
+        "Description",
+        "Enregistrer",
+        "Gestion",
+        "Modifier",
+        "Page",
+        "Partenaires",
+        "Statut",
+        "Supprimer",
+        "Titre",
+        "Voir",
+        "accueil",
+        "activités",
+        "page",
+        "partenaires",
+        "statut"
+      ]
+    },
+    {
+      "file": "dashboard\\templates\\dashboard\\pages\\module_detail.html",
+      "hints": [
+        "Catégorie",
+        "Contenu",
+        "Modifier",
+        "Retour",
+        "page"
+      ]
+    },
+    {
+      "file": "dashboard\\templates\\dashboard\\pages\\module_form.html",
+      "hints": [
+        "Catégorie",
+        "Contenu",
+        "Description",
+        "Enregistrer",
+        "Médias",
+        "Retour",
+        "Statut",
+        "Titre",
+        "Voir",
+        "contenu",
+        "description",
+        "page"
+      ]
+    },
+    {
+      "file": "dashboard\\templates\\dashboard\\pages\\module_list.html",
+      "hints": [
+        "Ajouter",
+        "Catégorie",
+        "Gestion",
+        "Recherche",
+        "Statut",
+        "contenu",
+        "page"
+      ]
+    },
+    {
+      "file": "dashboard\\templates\\dashboard\\pages\\news_form.html",
+      "hints": [
+        "Actualités",
+        "Catégorie",
+        "Contenu",
+        "Description",
+        "Enregistrer",
+        "Médias",
+        "Retour",
+        "Statut",
+        "Titre",
+        "Voir",
+        "accueil",
+        "description",
+        "page"
+      ]
+    },
+    {
+      "file": "dashboard\\templates\\dashboard\\pages\\page_form.html",
+      "hints": [
+        "Enregistrer",
+        "Modifier",
+        "Retour",
+        "contenu",
+        "page",
+        "paramètres",
+        "statut"
+      ]
+    },
+    {
+      "file": "dashboard\\templates\\dashboard\\pages\\profile.html",
+      "hints": [
+        "Enregistrer",
+        "Profil",
+        "mot de passe",
+        "page"
+      ]
+    },
+    {
+      "file": "dashboard\\templates\\dashboard\\pages\\settings.html",
+      "hints": [
+        "Ajouter",
+        "Enregistrer",
+        "Paramètres",
+        "page"
+      ]
+    },
+    {
+      "file": "dashboard\\templates\\dashboard\\pages\\site_content.html",
+      "hints": [
+        "Activités",
+        "Actualités",
+        "Contenu",
+        "Formations",
+        "Gestion",
+        "Modifier",
+        "Partenaires",
+        "Voir",
+        "accueil",
+        "formations",
+        "modifier",
+        "page",
+        "paramètres"
+      ]
+    },
+    {
+      "file": "core\\templates\\components\\navbar.html",
+      "hints": [
+        "formations"
+      ]
+    },
+    {
+      "file": "core\\templates\\pages\\about.html",
+      "hints": [
+        "Accueil",
+        "page"
+      ]
+    },
+    {
+      "file": "core\\templates\\pages\\activites.html",
+      "hints": [
+        "Accueil",
+        "Activités",
+        "Catégorie",
+        "Contenu",
+        "Filtrer",
+        "Recherche",
+        "Voir",
+        "activités",
+        "actualités",
+        "catégorie",
+        "description",
+        "page"
+      ]
+    },
+    {
+      "file": "core\\templates\\pages\\actualites.html",
+      "hints": [
+        "Accueil",
+        "Actualités",
+        "Catégorie",
+        "Contenu",
+        "Filtrer",
+        "Formations",
+        "Recherche",
+        "Voir",
+        "activités",
+        "actualités",
+        "catégorie",
+        "description",
+        "formations",
+        "page",
+        "recherche"
+      ]
+    },
+    {
+      "file": "core\\templates\\pages\\benevolat.html",
+      "hints": [
+        "Accueil",
+        "Activités",
+        "Bénévolat",
+        "Contenu",
+        "Retour",
+        "Voir",
+        "accueil",
+        "activités",
+        "actualités",
+        "bénévolat",
+        "description",
+        "page",
+        "profil"
+      ]
+    },
+    {
+      "file": "core\\templates\\pages\\contact.html",
+      "hints": [
+        "Accueil",
+        "Bénévolat",
+        "Contenu",
+        "Voir",
+        "activités",
+        "actualités",
+        "description",
+        "formations",
+        "médias",
+        "page"
+      ]
+    },
+    {
+      "file": "core\\templates\\pages\\formations.html",
+      "hints": [
+        "Accueil",
+        "Catégorie",
+        "Contenu",
+        "Filtrer",
+        "Formations",
+        "Gestion",
+        "Recherche",
+        "Statut",
+        "catégorie",
+        "description",
+        "formations",
+        "gestion",
+        "page",
+        "statut"
+      ]
+    },
+    {
+      "file": "core\\templates\\pages\\index.html",
+      "hints": [
+        "Activités",
+        "Bénévolat",
+        "bénévolat",
+        "description",
+        "formations",
+        "partenaires"
+      ]
+    },
+    {
+      "file": "core\\templates\\pages\\medias.html",
+      "hints": [
+        "Accueil",
+        "Activités",
+        "Catégorie",
+        "Contenu",
+        "Filtrer",
+        "Formations",
+        "Médias",
+        "Recherche",
+        "Voir",
+        "activités",
+        "catégorie",
+        "contenu",
+        "description",
+        "formations",
+        "médias",
+        "page"
+      ]
+    }
+  ],
+  "hardcoded_french_python": [
+    {
+      "file": "config\\settings.py",
+      "hints": [
+        "messages"
+      ]
+    },
+    {
+      "file": "core\\admin.py",
+      "hints": [
+        "description"
+      ]
+    },
+    {
+      "file": "core\\i18n.py",
+      "hints": [
+        "Accueil",
+        "Activités",
+        "Actualités",
+        "Bénévolat",
+        "Catégorie",
+        "Formations",
+        "Médias",
+        "Partenaires",
+        "Recherche",
+        "Voir",
+        "activités",
+        "formations"
+      ]
+    },
+    {
+      "file": "core\\models.py",
+      "hints": [
+        "Activités",
+        "Actualités",
+        "Contenu",
+        "Formations",
+        "Messages",
+        "Médias",
+        "Paramètres",
+        "Partenaires",
+        "contenu",
+        "description",
+        "formations",
+        "page"
+      ]
+    },
+    {
+      "file": "core\\translation.py",
+      "hints": [
+        "description"
+      ]
+    },
+    {
+      "file": "core\\urls.py",
+      "hints": [
+        "formations"
+      ]
+    },
+    {
+      "file": "core\\views.py",
+      "hints": [
+        "accueil",
+        "description",
+        "formations",
+        "page",
+        "titre"
+      ]
+    },
+    {
+      "file": "dashboard\\forms.py",
+      "hints": [
+        "Catégorie",
+        "Contenu",
+        "Description",
+        "Statut",
+        "Titre",
+        "accueil",
+        "description",
+        "page",
+        "titre"
+      ]
+    },
+    {
+      "file": "dashboard\\urls.py",
+      "hints": [
+        "formations",
+        "page"
+      ]
+    },
+    {
+      "file": "dashboard\\views.py",
+      "hints": [
+        "Accueil",
+        "Activités",
+        "Actualités",
+        "Ajouter",
+        "Bénévolat",
+        "Catégorie",
+        "Connexion",
+        "Contenu",
+        "Déconnexion",
+        "Formations",
+        "Gestion",
+        "Messages",
+        "Modifier",
+        "Médias",
+        "Page",
+        "Paramètres",
+        "Partenaires",
+        "Profil",
+        "Statut",
+        "Tableau"
+      ]
+    },
+    {
+      "file": "core\\migrations\\0001_initial.py",
+      "hints": [
+        "Activités",
+        "Actualités",
+        "Formations",
+        "Médias",
+        "description"
+      ]
+    },
+    {
+      "file": "core\\migrations\\0003_alter_contactmessage_options_and_more.py",
+      "hints": [
+        "Contenu",
+        "Messages",
+        "Paramètres",
+        "Partenaires",
+        "contenu",
+        "formations",
+        "page"
+      ]
+    },
+    {
+      "file": "core\\migrations\\0004_populate_fr_translation_fields.py",
+      "hints": [
+        "description"
+      ]
+    },
+    {
+      "file": "core\\management\\commands\\audit_arabic_i18n.py",
+      "hints": [
+        "Accueil",
+        "Activités",
+        "Actualités",
+        "Ajouter",
+        "Annuler",
+        "Bénévolat",
+        "Catégorie",
+        "Confirmer",
+        "Connexion",
+        "Contenu",
+        "Description",
+        "Déconnexion",
+        "Enregistrer",
+        "Filtrer",
+        "Formations",
+        "Gestion",
+        "Messages",
+        "Modifier",
+        "Mot de passe",
+        "Médias"
+      ]
+    },
+    {
+      "file": "core\\management\\commands\\seed_fondation.py",
+      "hints": [
+        "Activités",
+        "Actualités",
+        "Bénévolat",
+        "Contenu",
+        "Médias",
+        "accueil",
+        "formations"
+      ]
+    }
+  ],
+  "hardcoded_french_javascript": [
+    {
+      "file": "dashboard\\static\\dashboard\\js\\admin.js",
+      "hints": [
+        "Accueil",
+        "Activités",
+        "Actualités",
+        "Bénévolat",
+        "Confirmer",
+        "Formations",
+        "Messages",
+        "Paramètres",
+        "Tableau",
+        "formations",
+        "messages",
+        "page"
+      ]
+    },
+    {
+      "file": "core\\static\\core\\js\\about.js",
+      "hints": [
+        "Statut"
+      ]
+    },
+    {
+      "file": "core\\static\\core\\js\\activites.js",
+      "hints": [
+        "ACTIVITÉS",
+        "Activités",
+        "Page",
+        "Voir",
+        "activités",
+        "description"
+      ]
+    },
+    {
+      "file": "core\\static\\core\\js\\actualites.js",
+      "hints": [
+        "Actualités",
+        "Formations",
+        "Page",
+        "formations"
+      ]
+    },
+    {
+      "file": "core\\static\\core\\js\\benevolat.js",
+      "hints": [
+        "Accueil",
+        "Activités",
+        "Page",
+        "description"
+      ]
+    },
+    {
+      "file": "core\\static\\core\\js\\contact.js",
+      "hints": [
+        "Page"
+      ]
+    },
+    {
+      "file": "core\\static\\core\\js\\formations.js",
+      "hints": [
+        "Confirmer",
+        "Formations",
+        "Gestion",
+        "Page",
+        "description",
+        "formations",
+        "gestion"
+      ]
+    },
+    {
+      "file": "core\\static\\core\\js\\i18n-ui.js",
+      "hints": [
+        "Accueil",
+        "Activités",
+        "Actualités",
+        "Bénévolat",
+        "Catégorie",
+        "Formations",
+        "Médias",
+        "Partenaires",
+        "Recherche",
+        "Retour",
+        "Voir",
+        "accueil",
+        "activités",
+        "actualités",
+        "bénévolat",
+        "formations",
+        "partenaires",
+        "profil",
+        "titre"
+      ]
+    },
+    {
+      "file": "core\\static\\core\\js\\main.js",
+      "hints": [
+        "titre"
+      ]
+    },
+    {
+      "file": "core\\static\\core\\js\\medias.js",
+      "hints": [
+        "Activités",
+        "Formations",
+        "description",
+        "formations"
+      ]
+    }
+  ],
+  "template_msgids_missing_from_po": [
+    {
+      "file": "dashboard\\templates\\dashboard\\login.html",
+      "msgid": "Espace d\\"
+    },
+    {
+      "file": "dashboard\\templates\\dashboard\\login.html",
+      "msgid": "Email ou nom d"
+    },
+    {
+      "file": "dashboard\\templates\\dashboard\\login.html",
+      "msgid": "Plateforme d"
+    },
+    {
+      "file": "dashboard\\templates\\dashboard\\components\\admin_sidebar.html",
+      "msgid": "Page d"
+    },
+    {
+      "file": "dashboard\\templates\\dashboard\\components\\breadcrumbs.html",
+      "msgid": "Fil d"
+    },
+    {
+      "file": "dashboard\\templates\\dashboard\\components\\confirmation_modal.html",
+      "msgid": "Confirmer l"
+    },
+    {
+      "file": "dashboard\\templates\\dashboard\\pages\\about.html",
+      "msgid": "La Fondation Tanger Métropole accompagne les jeunes, les femmes et les acteurs associatifs du Grand Tanger avec des programmes de formation, d"
+    },
+    {
+      "file": "dashboard\\templates\\dashboard\\pages\\news_form.html",
+      "msgid": "Créez une actualité qui alimentera la page Actualités et les annonces de l"
+    },
+    {
+      "file": "dashboard\\templates\\dashboard\\pages\\news_form.html",
+      "msgid": "Titre de l"
+    },
+    {
+      "file": "dashboard\\templates\\dashboard\\pages\\news_form.html",
+      "msgid": "Ordre d"
+    },
+    {
+      "file": "dashboard\\templates\\dashboard\\pages\\profile.html",
+      "msgid": "Informations personnelles, sécurité, préférences et historique d"
+    },
+    {
+      "file": "dashboard\\templates\\dashboard\\pages\\profile.html",
+      "msgid": "Historique d"
+    }
+  ],
+  "database_empty_arabic_fields": {
+    "PageContent": {
+      "title_ar": 8,
+      "subtitle_ar": 8,
+      "content_ar": 8,
+      "meta_title_ar": 8,
+      "meta_description_ar": 8,
+      "keywords_ar": 8
+    },
+    "ContentItem": {
+      "title_ar": 11,
+      "category_ar": 11,
+      "summary_ar": 11,
+      "body_ar": 11,
+      "meta_title_ar": 11,
+      "meta_description_ar": 11,
+      "keywords_ar": 11,
+      "location_ar": 11,
+      "instructor_name_ar": 11
+    },
+    "Partner": {
+      "name_ar": 4,
+      "partner_type_ar": 4,
+      "description_ar": 4
+    },
+    "SiteSetting": {
+      "value_ar": 3
+    }
+  }
+}

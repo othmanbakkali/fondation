@@ -1,0 +1,200 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{ page_content.meta_title|default:page_content.title }} - {{ brand_name }}{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{% static 'core/css/about.css' %}?v=about-dashboard-editable2">{% endblock %}
+{% block content %}
+<main>
+  <section class="page-hero" id="pageHero">
+    <div class="page-hero-overlay"></div>
+    <div class="container page-hero-content">
+      <div class="hero-decoration"><i class="fas fa-building"></i></div>
+      <nav class="breadcrumb" aria-label="Fil d'Ariane">
+        <a href="{% url 'core:home' %}"><i class="fas fa-home"></i> Accueil</a>
+        <span class="breadcrumb-separator">/</span>
+        <span class="breadcrumb-current">{{ page_content.title|default:"Ã€ propos" }}</span>
+      </nav>
+      <h1 class="page-hero-title">{{ page_content.title|default:"Ã€ propos de la Fondation" }}</h1>
+      <p class="page-hero-subtitle">{{ page_content.subtitle|default:"DÃ©couvrez notre histoire, notre mission, notre vision, nos objectifs et les membres de notre bureau dirigeant." }}</p>
+    </div>
+  </section>
+
+  <section class="presentation-section" id="presentation">
+    <div class="container">
+      <h2 class="section-title">{{ about_texts.presentation_title }}</h2>
+      <div class="presentation-grid">
+        {% for card in presentation_cards %}
+        <div class="info-card reveal">
+          <div class="info-card-icon"><i class="fas {{ card.icon|default:'fa-circle-info' }}"></i></div>
+          <h3>{{ card.title }}</h3>
+          <p>{{ card.text }}</p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="mission-section" id="mission">
+    <div class="container">
+      <div class="mission-wrapper">
+        <div class="mission-image reveal">
+          {% if page_content.hero_image_url %}
+          <img src="{{ page_content.hero_image_url }}" alt="{{ page_content.title }}" loading="lazy">
+          {% else %}
+          <img src="{% static 'core/images/fonlogo.png' %}" alt="{{ page_content.title|default:'Fondation Tanger MÃ©tropole' }}" loading="lazy">
+          {% endif %}
+        </div>
+        <div class="mission-text reveal">
+          <span class="section-label">{{ about_texts.mission_label }}</span>
+          <h2>{{ about_texts.mission_title }}</h2>
+          <div class="rich-copy">{{ page_content.content|default:"Autonomiser les jeunes et les femmes du Grand Tanger Ã  travers des programmes de formation et d'accompagnement visant Ã  renforcer les compÃ©tences, Ã  favoriser l'insertion professionnelle et sociale et Ã  consolider les valeurs de citoyennetÃ©."|linebreaks }}</div>
+          <div class="mission-features">
+            {% for item in mission_features %}
+            <div class="mission-feature"><i class="fas fa-check-circle"></i><span>{% if item.feature %}{{ item.feature }}{% else %}{{ item }}{% endif %}</span></div>
+            {% endfor %}
+          </div>
+          <a href="{% url 'core:programme' %}" class="btn btn-primary">{{ about_texts.mission_button_text }}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="objectifs-section" id="objectifs">
+    <div class="container">
+      <h2 class="section-title">{{ about_texts.objectives_title }}</h2>
+      <div class="objectifs-grid">
+        {% for item in objectives %}
+        <div class="objectif-card reveal">
+          <span class="objectif-number">{{ forloop.counter|stringformat:"02d" }}</span>
+          <div class="objectif-icon"><i class="fas {{ item.icon|default:'fa-star' }}"></i></div>
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.text }}</p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="valeurs-section" id="valeurs">
+    <div class="container">
+      <h2 class="section-title">{{ about_texts.values_title }}</h2>
+      <div class="valeurs-grid">
+        {% for item in values %}
+        <div class="valeur-item reveal"><i class="fas {{ item.icon|default:'fa-heart' }}"></i><span>{{ item.title }}</span></div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="bureau-section" id="bureau">
+    <div class="container">
+      <h2 class="section-title">{{ about_texts.bureau_title }}</h2>
+      <p class="section-intro">{{ about_texts.bureau_intro }}</p>
+      <div class="bureau-grid">
+        {% for member in team_members %}
+        <article class="bureau-card {% if forloop.first %}president{% endif %} reveal">
+          <div class="bureau-photo">
+            <img src="{{ member.image }}" alt="{{ member.name }}" loading="lazy">
+            {% if forloop.first %}<div class="bureau-badge">{% if member.role %}{{ member.role }}{% else %}{% if current_language == 'ar' %}الرئيس{% elif current_language == 'en' %}President{% else %}Président{% endif %}{% endif %}</div>{% endif %}
+          </div>
+          <div class="bureau-info">
+            <h3>{{ member.name }}</h3>
+            <p class="bureau-role">{{ member.role }}</p>
+            {% if member.bio %}<p class="bureau-bio">{{ member.bio|truncatewords:24 }}</p>{% endif %}
+            <div class="bureau-social">
+              {% if member.linkedin %}<a href="{{ member.linkedin }}" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>{% endif %}
+              {% if member.facebook %}<a href="{{ member.facebook }}" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>{% endif %}
+              {% if member.instagram %}<a href="{{ member.instagram }}" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>{% endif %}
+              {% if member.youtube %}<a href="{{ member.youtube }}" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>{% endif %}
+              {% if member.twitter %}<a href="{{ member.twitter }}" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>{% endif %}
+              {% if member.tiktok %}<a href="{{ member.tiktok }}" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>{% endif %}
+              {% if member.email %}<a href="mailto:{{ member.email }}" aria-label="Email"><i class="fas fa-envelope"></i></a>{% endif %}
+            </div>
+          </div>
+        </article>
+        {% empty %}
+        <p class="empty-copy">{% if current_language == 'ar' %}لا يوجد أي عضو منشور من لوحة التحكم.{% elif current_language == 'en' %}No members published from the dashboard.{% else %}Aucun membre publié depuis le dashboard.{% endif %}</p>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="membres-liste-section" id="membres-liste">
+    <div class="container">
+      <h2 class="section-title">{{ about_texts.members_title }}</h2>
+      <p class="section-intro">{{ about_texts.members_intro }}</p>
+      <div class="membres-tools">
+        <div class="search-box">
+          <i class="fas fa-search"></i>
+          <input type="text" id="searchMembre" placeholder="{{ about_texts.members_search_placeholder }}" aria-label="Rechercher un membre">
+          <button class="search-clear" id="searchClear" aria-label="Effacer la recherche" style="display:none;"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="filter-box">
+          <i class="fas fa-filter"></i>
+          <select id="filterFonction" aria-label="Filtrer par fonction">
+            <option value="all">{{ about_texts.members_filter_all }}</option>
+            {% for member in team_members %}<option value="{{ member.role }}">{{ member.role }}</option>{% endfor %}
+          </select>
+        </div>
+      </div>
+      <div class="membres-info-bar">
+        <p id="memberCount" class="member-count"><span>{{ team_members|length }}</span> membres affichÃ©s sur <span>{{ team_members|length }}</span></p>
+        <button id="exportBtn" class="btn btn-sm btn-outline" aria-label="{{ about_texts.members_export }}"><i class="fas fa-download"></i> {{ about_texts.members_export }}</button>
+      </div>
+      <div class="table-wrapper">
+        <div class="table-responsive">
+          <table class="membres-table" id="membresTable">
+            <thead><tr><th>NÂ°</th><th>Photo</th><th>Nom complet</th><th>Fonction</th><th>Statut</th><th>Actions</th></tr></thead>
+            <tbody>
+              {% for member in team_members %}
+              <tr data-fonction="{{ member.role }}" data-nom="{{ member.name }}">
+                <td><span class="num-badge">{{ forloop.counter|stringformat:"02d" }}</span></td>
+                <td><div class="member-avatar"><img src="{{ member.image }}" alt="{{ member.name }}" loading="lazy"><span class="avatar-status online"></span></div></td>
+                <td class="col-nom"><strong>{{ member.name }}</strong><small>{{ member.email|default:"contact@tangermetropole.ma" }}</small></td>
+                <td><span class="badge-fonction {% if forloop.first %}president{% else %}vice-president{% endif %}">{{ member.role }}</span></td>
+                <td><span class="badge-statut actif">Actif</span></td>
+                <td class="col-actions"><button class="action-btn" title="Voir profil"><i class="fas fa-eye"></i></button><button class="action-btn" title="Envoyer message"><i class="fas fa-envelope"></i></button></td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div id="noResults" class="no-results" style="display:none;"><i class="fas fa-search"></i><h3>{{ about_texts.members_empty_title }}</h3><p>{{ about_texts.members_empty_text }}</p></div>
+    </div>
+  </section>
+
+  <section class="zone-section" id="zone">
+    <div class="container">
+      <h2 class="section-title">{{ about_texts.zone_title }}</h2>
+      <div class="zone-wrapper">
+        <div class="zone-info reveal">
+          <div class="zone-icon-wrapper"><i class="fas fa-map-marked-alt"></i></div>
+          <h3>{{ about_texts.zone_name }}</h3>
+          <p>{{ about_texts.zone_text }}</p>
+          <div class="zone-stats">
+            {% for stat in zone_stats %}
+            <div class="zone-stat"><i class="fas {{ stat.icon|default:'fa-map-marker-alt' }}"></i><span>{{ stat.title }}</span></div>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="map-container reveal">
+          <iframe src="https://www.google.com/maps?q=Tanger,Maroc&output=embed" width="100%" height="450" style="border:0;" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Carte de Tanger"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="container cta-content">
+      <h2>{{ about_texts.cta_title }}</h2>
+      <p>{{ about_texts.cta_text }}</p>
+      <div class="cta-buttons">
+        <a href="{% url 'core:benevolat' %}" class="btn btn-primary">{{ about_texts.cta_primary_text }}</a>
+        <a href="{% url 'core:contact' %}" class="btn btn-outline-light">{{ about_texts.cta_secondary_text }}</a>
+      </div>
+    </div>
+  </section>
+</main>
+{% endblock %}
+{% block extra_js %}<script src="{% static 'core/js/about.js' %}?v=about-dashboard-editable2"></script>{% endblock %}
+

@@ -1,0 +1,22 @@
+[Unit]
+Description=Django Gunicorn daemon for fondation.sdbo.ma
+After=network.target
+
+[Service]
+User=www-data
+Group=www-data
+WorkingDirectory=/var/www/django-fondation
+EnvironmentFile=/var/www/django-fondation/.env
+ExecStart=/var/www/django-fondation/venv/bin/gunicorn \
+          --access-logfile - \
+          --error-logfile - \
+          --workers 3 \
+          --bind 127.0.0.1:8000 \
+          --timeout 120 \
+          config.wsgi:application
+
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

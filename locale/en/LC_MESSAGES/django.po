@@ -1,0 +1,1598 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: django-fondation 1.0\n"
+"Language: en\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "? Pourquoi devenir bénévole"
+msgstr "? Pourquoi devenir bénévole"
+
+msgid "A la une"
+msgstr "A la une"
+
+msgid "A propos"
+msgstr "About"
+
+msgid "About"
+msgstr "About"
+
+msgid "Accepté"
+msgstr "Accepted"
+
+msgid "Accueil"
+msgstr "Home"
+
+msgid "Accueil et orientation"
+msgstr "Accueil et orientation"
+
+msgid "Acquérir une expérience de terrain"
+msgstr "Gain field experience"
+
+msgid "Actif"
+msgstr "Active"
+
+msgid "Action"
+msgstr "Action"
+
+msgid "Action groupée"
+msgstr "Action groupée"
+
+msgid "Action non autorisée."
+msgstr "Action non autorisée."
+
+msgid "Action sociale"
+msgstr "Action sociale"
+
+msgid "Actions"
+msgstr "Actions"
+
+msgid "Actions rapides"
+msgstr "Actions rapides"
+
+msgid "Actions sociales"
+msgstr "Actions sociales"
+
+msgid "Actions terrain, dates, images et réseaux."
+msgstr "Actions terrain, dates, images et réseaux."
+
+msgid "Activités"
+msgstr "Activities"
+
+msgid "Activités culturelles"
+msgstr "Activités culturelles"
+
+msgid "Activités de la Fondation"
+msgstr "Activités de la Fondation"
+
+msgid "Activités par mois"
+msgstr "Activités par mois"
+
+msgid "Activités réalisées"
+msgstr "Activités réalisées"
+
+msgid "Activités récentes"
+msgstr "Activités récentes"
+
+msgid "Activités sportives"
+msgstr "Activités sportives"
+
+msgid "Actualiser"
+msgstr "Actualiser"
+
+msgid "Actualités"
+msgstr "News"
+
+msgid "Actualités & Annonces"
+msgstr "Actualités & Annonces"
+
+msgid "Actualités & annonces"
+msgstr "Actualités & annonces"
+
+msgid "Administrateur"
+msgstr "Administrateur"
+
+msgid "Administration"
+msgstr "Administration"
+
+msgid "Afficher le mot de passe"
+msgstr "Afficher le mot de passe"
+
+msgid "Ajouter"
+msgstr "Ajouter"
+
+msgid "Ajouter activité"
+msgstr "Ajouter activité"
+
+msgid "Ajouter des médias"
+msgstr "Ajouter des médias"
+
+msgid "Ajouter par lien"
+msgstr "Ajouter par lien"
+
+msgid "Ajouter un média"
+msgstr "Ajouter un média"
+
+msgid "Ajouter un paramètre"
+msgstr "Ajouter un paramètre"
+
+msgid "Ajoutez un nouveau contenu et préparez-le pour l’affichage public."
+msgstr "Ajoutez un nouveau contenu et préparez-le pour l’affichage public."
+
+msgid "Anglais"
+msgstr "Anglais"
+
+msgid "Animation"
+msgstr "Animation"
+
+msgid "Animation et encadrement"
+msgstr "Animation et encadrement"
+
+msgid "Annee"
+msgstr "Annee"
+
+msgid "Annonce modifiée avec succès."
+msgstr "Annonce modifiée avec succès."
+
+msgid "Annuler"
+msgstr "Annuler"
+
+msgid "Année"
+msgstr "Année"
+
+msgid "Août"
+msgstr "Août"
+
+msgid "Aperçu Google"
+msgstr "Aperçu Google"
+
+msgid "Aperçu contenu"
+msgstr "Aperçu contenu"
+
+msgid "Aperçu depuis MySQL"
+msgstr "Aperçu depuis MySQL"
+
+msgid "Appliquer"
+msgstr "Appliquer"
+
+msgid "Arabe"
+msgstr "Arabe"
+
+msgid "Archivé"
+msgstr "Archived"
+
+msgid "Articles, annonces, communiqués et concours."
+msgstr "Articles, annonces, communiqués et concours."
+
+msgid "Atelier jeunes"
+msgstr "Atelier jeunes"
+
+msgid "Atelier jeunes Tanger"
+msgstr "Atelier jeunes Tanger"
+
+msgid "Aucun paramètre."
+msgstr "Aucun paramètre."
+
+msgid "Auteur"
+msgstr "Auteur"
+
+msgid "Auteur / Email / Responsable"
+msgstr "Auteur / Email / Responsable"
+
+msgid "Auteur / responsable"
+msgstr "Author / manager"
+
+msgid "Automatique"
+msgstr "Automatique"
+
+msgid "Autre"
+msgstr "Autre"
+
+msgid "Avez-vous déjà participé à des activités bénévoles ?"
+msgstr "Avez-vous déjà participé à des activités bénévoles ?"
+
+msgid "Avr"
+msgstr "Avr"
+
+msgid "Base MySQL"
+msgstr "Base MySQL"
+
+msgid "Benevolat"
+msgstr "Benevolat"
+
+msgid "Boîte"
+msgstr "Boîte"
+
+msgid "Brouillon"
+msgstr "Draft"
+
+msgid "Brouillons et programmés"
+msgstr "Brouillons et programmés"
+
+msgid "Bénéficiaires"
+msgstr "Bénéficiaires"
+
+msgid "Bénévolat"
+msgstr "Volunteering"
+
+msgid "Bénévoles"
+msgstr "Bénévoles"
+
+msgid "Candidature bénévole"
+msgstr "Volunteer application"
+
+msgid "Candidature envoyée avec succès"
+msgstr "Candidature envoyée avec succès"
+
+msgid "Candidatures bénévoles"
+msgstr "Volunteer applications"
+
+msgid "Canonical URL"
+msgstr "Canonical URL"
+
+msgid "Categorie"
+msgstr "Categorie"
+
+msgid "Catégorie"
+msgstr "Catégorie"
+
+msgid "Catégorie / Fonction"
+msgstr "Catégorie / Fonction"
+
+msgid "Catégorie française"
+msgstr "Catégorie française"
+
+msgid "Catégories"
+msgstr "Catégories"
+
+msgid "Ces champs sont enregistrés directement dans MySQL."
+msgstr "Ces champs sont enregistrés directement dans MySQL."
+
+msgid "Ces champs sont les données réelles enregistrées dans MySQL."
+msgstr "Ces champs sont les données réelles enregistrées dans MySQL."
+
+msgid "Cette action est simulée dans le frontend."
+msgstr "Cette action est simulée dans le frontend."
+
+msgid "Changer le mot de passe"
+msgstr "Changer le mot de passe"
+
+msgid "Changer le thème"
+msgstr "Changer le thème"
+
+msgid ""
+"Chaque carte ouvre un formulaire réel connecté à MySQL pour modifier les "
+"titres, introductions, contenus et paramètres SEO des pages publiques."
+msgstr ""
+"Chaque carte ouvre un formulaire réel connecté à MySQL pour modifier les "
+"titres, introductions, contenus et paramètres SEO des pages publiques."
+
+msgid "Chiffres clés"
+msgstr "Chiffres clés"
+
+msgid "Choisissez votre domaine d'engagement"
+msgstr "Choose your engagement area"
+
+msgid "Citoyenneté"
+msgstr "Citoyenneté"
+
+msgid "Clair"
+msgstr "Clair"
+
+msgid "Clé"
+msgstr "Clé"
+
+msgid "Communication"
+msgstr "Communication"
+
+msgid "Compte"
+msgstr "Compte"
+
+msgid "Compétences"
+msgstr "Skills"
+
+msgid "Configuration du site"
+msgstr "Configuration du site"
+
+msgid "Confirmation"
+msgstr "Confirmation"
+
+msgid "Confirmer"
+msgstr "Confirmer"
+
+msgid "Connectez-vous pour gérer le contenu du site"
+msgstr "Connectez-vous pour gérer le contenu du site"
+
+msgid "Connexion"
+msgstr "Connexion"
+
+msgid "Consulter"
+msgstr "Consulter"
+
+msgid "Contact"
+msgstr "Contact"
+
+msgid "Contenu"
+msgstr "Contenu"
+
+msgid "Contenu anglais"
+msgstr "Contenu anglais"
+
+msgid "Contenu arabe"
+msgstr "Contenu arabe"
+
+msgid "Contenu de page"
+msgstr "Page content"
+
+msgid "Contenu du site"
+msgstr "Contenu du site"
+
+msgid "Contenu détaillé"
+msgstr "Detailed content"
+
+msgid "Contenu détaillé / Biographie"
+msgstr "Contenu détaillé / Biographie"
+
+msgid "Contenu détaillé français"
+msgstr "Contenu détaillé français"
+
+msgid "Contenu en attente"
+msgstr "Contenu en attente"
+
+msgid "Contenu enregistré avec succès."
+msgstr "Contenu enregistré avec succès."
+
+msgid "Contenu français"
+msgstr "Contenu français"
+
+msgid "Contenus de pages"
+msgstr "Page contents"
+
+msgid "Contribuer au développement du Grand Tanger"
+msgstr "Contribute to Greater Tangier"
+
+msgid "Corrigez les champs indiqués ci-dessous."
+msgstr "Corrigez les champs indiqués ci-dessous."
+
+msgid "Création"
+msgstr "Création"
+
+msgid "Créer formation"
+msgstr "Créer formation"
+
+msgid "Culture"
+msgstr "Culture"
+
+msgid "Culture Tanger"
+msgstr "Culture Tanger"
+
+msgid "Culturelles"
+msgstr "Culturelles"
+
+msgid "Culturelles 22%"
+msgstr "Culturelles 22%"
+
+msgid "Curriculum vitæ (PDF, DOC, DOCX - Max 5 Mo)"
+msgstr "Curriculum vitæ (PDF, DOC, DOCX - Max 5 Mo)"
+
+msgid "Dashboard"
+msgstr "Dashboard"
+
+msgid ""
+"Dashboard connecté au backend MySQL. Les boutons Enregistrer modifient "
+"réellement le contenu du site."
+msgstr ""
+"Dashboard connecté au backend MySQL. Les boutons Enregistrer modifient "
+"réellement le contenu du site."
+
+msgid "Date"
+msgstr "Date"
+
+msgid "Date de début"
+msgstr "Start date"
+
+msgid "Date de fin"
+msgstr "End date"
+
+msgid "Depuis la base MySQL"
+msgstr "Depuis la base MySQL"
+
+msgid "Dernière connexion"
+msgstr "Dernière connexion"
+
+msgid "Dernière modification"
+msgstr "Dernière modification"
+
+msgid "Dernières candidatures"
+msgstr "Dernières candidatures"
+
+msgid "Description"
+msgstr "Description"
+
+msgid "Description anglaise"
+msgstr "Description anglaise"
+
+msgid "Description arabe"
+msgstr "Description arabe"
+
+msgid "Description courte"
+msgstr "Short description"
+
+msgid "Description courte anglaise"
+msgstr "Description courte anglaise"
+
+msgid "Description courte arabe"
+msgstr "Description courte arabe"
+
+msgid "Description courte française"
+msgstr "Description courte française"
+
+msgid "Design graphique"
+msgstr "Design graphique"
+
+msgid "Devenir Bénévole"
+msgstr "Become a Volunteer"
+
+msgid "Devenir Bénévoles"
+msgstr "Become a Volunteer"
+
+msgid "Devenir bénévole"
+msgstr "Become a Volunteer"
+
+msgid "Disponibilité"
+msgstr "Disponibilité"
+
+msgid "Distribution sociale"
+msgstr "Distribution sociale"
+
+msgid "Domaine souhaité"
+msgstr "Preferred area"
+
+msgid "Duplication simulée"
+msgstr "Duplication simulée"
+
+msgid "Déconnexion"
+msgstr "Déconnexion"
+
+msgid "Déconnexion effectuée."
+msgstr "Déconnexion effectuée."
+
+msgid "Découvrez les photos et moments forts de nos bénévoles."
+msgstr "Découvrez les photos et moments forts de nos bénévoles."
+
+msgid ""
+"Découvrez quelques moments forts des actions réalisées grâce à l'engagement "
+"de nos bénévoles."
+msgstr ""
+"Découvrez quelques moments forts des actions réalisées grâce à l'engagement "
+"de nos bénévoles."
+
+msgid "Découvrir"
+msgstr "Découvrir"
+
+msgid "Découvrir l'activité"
+msgstr "Découvrir l'activité"
+
+msgid "Découvrir la Fondation"
+msgstr "Discover the Foundation"
+
+msgid "Découvrir nos actions"
+msgstr "Discover our actions"
+
+msgid "Décrivez brièvement vos compétences"
+msgstr "Briefly describe your skills"
+
+msgid "Défiler"
+msgstr "Scroll"
+
+msgid "Détails"
+msgstr "Détails"
+
+msgid "Détails %(singular)s"
+msgstr "Détails %(singular)s"
+
+msgid "Développement web"
+msgstr "Développement web"
+
+msgid "Développer de nouvelles compétences"
+msgstr "Develop new skills"
+
+msgid "Editeur"
+msgstr "Editeur"
+
+msgid "Educatives"
+msgstr "Educatives"
+
+msgid "Educatives 36%"
+msgstr "Educatives 36%"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Email *"
+msgstr "Email *"
+
+msgid "Email ou mot de passe incorrect."
+msgstr "Email ou mot de passe incorrect."
+
+msgid "En attente"
+msgstr "Pending"
+
+msgid "En semaine"
+msgstr "En semaine"
+
+msgid "Encadrement"
+msgstr "Encadrement"
+
+msgid "Engagement"
+msgstr "Engagement"
+
+msgid "Enregistrer"
+msgstr "Enregistrer"
+
+msgid "Envoi en cours..."
+msgstr "Envoi en cours..."
+
+msgid "Envoyer ma candidature"
+msgstr "Send my application"
+
+msgid "Equipe"
+msgstr "Equipe"
+
+msgid "Espace Administration"
+msgstr "Espace Administration"
+
+msgid "Exemple : téléphone, email, statistiques, réseaux sociaux."
+msgstr "Exemple : téléphone, email, statistiques, réseaux sociaux."
+
+msgid "Export"
+msgstr "Export"
+
+msgid "Exporter"
+msgstr "Exporter"
+
+msgid "Facebook"
+msgstr "Facebook"
+
+msgid "Fermer"
+msgstr "Fermer"
+
+msgid "Fermer le menu"
+msgstr "Fermer le menu"
+
+msgid "Fiche complète alimentée par la base de données."
+msgstr "Fiche complète alimentée par la base de données."
+
+msgid "Fichier trop volumineux (>5 Mo)"
+msgstr "Fichier trop volumineux (>5 Mo)"
+
+msgid "Filtrer par statut"
+msgstr "Filtrer par statut"
+
+msgid "Filtres appliqués"
+msgstr "Filtres appliqués"
+
+msgid "Filtres avancés"
+msgstr "Filtres avancés"
+
+msgid "Fonction"
+msgstr "Fonction"
+
+msgid "Fondation"
+msgstr "Fondation"
+
+msgid "Fondation Tanger Metropole"
+msgstr "Tangier Metropolitan Foundation"
+
+msgid "Fondation Tanger Métropole"
+msgstr "Tangier Metropolitan Foundation"
+
+msgid "Formateur"
+msgstr "Trainer"
+
+msgid "Formateur anglais"
+msgstr "Formateur anglais"
+
+msgid "Formateur arabe"
+msgstr "Formateur arabe"
+
+msgid "Formateur français"
+msgstr "Formateur français"
+
+msgid "Formation"
+msgstr "Formation"
+
+msgid "Formation et accompagnement"
+msgstr "Formation et accompagnement"
+
+msgid "Formation jeunesse"
+msgstr "Formation jeunesse"
+
+msgid "Formations"
+msgstr "Formations"
+
+msgid "Français"
+msgstr "Français"
+
+msgid "Fév"
+msgstr "Fév"
+
+msgid "Galerie des bénévoles"
+msgstr "Volunteer gallery"
+
+msgid "Gestion de contenu"
+msgstr "Gestion de contenu"
+
+msgid "Gestion de la page À propos"
+msgstr "Gestion de la page À propos"
+
+msgid "Gestion du site"
+msgstr "Gestion du site"
+
+msgid "Gestion globale"
+msgstr "Gestion globale"
+
+msgid "Groupe"
+msgstr "Group"
+
+msgid ""
+"Gérez les informations générales utilisées par le site public et le "
+"dashboard."
+msgstr ""
+"Gérez les informations générales utilisées par le site public et le "
+"dashboard."
+
+msgid "Hero section"
+msgstr "Hero section"
+
+msgid "Heure de début"
+msgstr "Start time"
+
+msgid "Heure de fin"
+msgstr "End time"
+
+msgid "Heures de bénévolat"
+msgstr "Heures de bénévolat"
+
+msgid "Ils partagent leur expérience"
+msgstr "They share their experience"
+
+msgid "Image"
+msgstr "Image"
+
+msgid "Image Open Graph"
+msgstr "Image Open Graph"
+
+msgid "Image Open Graph par lien"
+msgstr "Image Open Graph par lien"
+
+msgid "Image SEO actuelle"
+msgstr "Image SEO actuelle"
+
+msgid "Image actuelle"
+msgstr "Image actuelle"
+
+msgid "Image de couverture"
+msgstr "Cover image"
+
+msgid "Image par lien"
+msgstr "Image par lien"
+
+msgid "Image par lien URL"
+msgstr "Image par lien URL"
+
+msgid "Image principale"
+msgstr "Main image"
+
+msgid "Image principale et liens utilisés sur le site public."
+msgstr "Image principale et liens utilisés sur le site public."
+
+msgid "Image, vidéo, réseaux sociaux, dates et informations d’organisation."
+msgstr "Image, vidéo, réseaux sociaux, dates et informations d’organisation."
+
+msgid "Images"
+msgstr "Images"
+
+msgid "Inactif"
+msgstr "Inactive"
+
+msgid "Inclusion"
+msgstr "Inclusion"
+
+msgid "Informations"
+msgstr "Informations"
+
+msgid "Informations personnelles"
+msgstr "Informations personnelles"
+
+msgid "Informations principales"
+msgstr "Informations principales"
+
+msgid "Innovation"
+msgstr "Innovation"
+
+msgid "Inscription formation"
+msgstr "Training registration"
+
+msgid "Inscriptions"
+msgstr "Inscriptions"
+
+msgid "Inscriptions formations"
+msgstr "Training registrations"
+
+msgid "Instagram"
+msgstr "Instagram"
+
+msgid "J'accepte de recevoir les actualités et les opportunités de bénévolat"
+msgstr "J'accepte de recevoir les actualités et les opportunités de bénévolat"
+
+msgid ""
+"J'accepte que mes informations soient utilisées pour traiter ma candidature "
+"*"
+msgstr ""
+"J'accepte que mes informations soient utilisées pour traiter ma candidature "
+"*"
+
+msgid "Jan"
+msgstr "Jan"
+
+msgid "Juil"
+msgstr "Juil"
+
+msgid "Juillet"
+msgstr "Juillet"
+
+msgid "Juin"
+msgstr "Juin"
+
+msgid "L'après-midi"
+msgstr "L'après-midi"
+
+msgid "La Fondation Tanger Metropole"
+msgstr "Tangier Metropolitan Foundation"
+
+msgid "La Fondation Tanger Métropole"
+msgstr "Tangier Metropolitan Foundation"
+
+msgid "Langue"
+msgstr "Langue"
+
+msgid "Langues"
+msgstr "Langues"
+
+msgid "Le matin"
+msgstr "Le matin"
+
+msgid "Le soir"
+msgstr "Le soir"
+
+msgid "Le week-end"
+msgstr "Le week-end"
+
+msgid ""
+"Les messages de contact sont en lecture seule. Ouvrez le détail pour les "
+"consulter."
+msgstr ""
+"Les messages de contact sont en lecture seule. Ouvrez le détail pour les "
+"consulter."
+
+msgid ""
+"Les modules ci-dessous alimentent les pages publiques depuis la même base de"
+" données."
+msgstr ""
+"Les modules ci-dessous alimentent les pages publiques depuis la même base de"
+" données."
+
+msgid "Lien"
+msgstr "Lien"
+
+msgid "Lien Facebook"
+msgstr "Lien Facebook"
+
+msgid "Lien Instagram"
+msgstr "Lien Instagram"
+
+msgid "Lien YouTube"
+msgstr "Lien YouTube"
+
+msgid "Lien externe"
+msgstr "External link"
+
+msgid "Lieu"
+msgstr "Location"
+
+msgid "Lieu anglais"
+msgstr "Lieu anglais"
+
+msgid "Lieu arabe"
+msgstr "Lieu arabe"
+
+msgid "Lieu français"
+msgstr "Lieu français"
+
+msgid "Lire l'article"
+msgstr "Lire l'article"
+
+msgid "Lire la suite"
+msgstr "Lire la suite"
+
+msgid "Liste"
+msgstr "Liste"
+
+msgid ""
+"Liste, filtres, statuts, actions, pagination et exports pour %(label)s."
+msgstr ""
+"Liste, filtres, statuts, actions, pagination et exports pour %(label)s."
+
+msgid "Logistique"
+msgstr "Logistique"
+
+msgid "Logo"
+msgstr "Logo"
+
+msgid "Logos, liens, ordre et visibilité accueil."
+msgstr "Logos, liens, ordre et visibilité accueil."
+
+msgid "Mai"
+msgstr "Mai"
+
+msgid "Mar"
+msgstr "Mar"
+
+msgid "Medias"
+msgstr "Medias"
+
+msgid "Message de contact"
+msgstr "Contact message"
+
+msgid "Messages"
+msgstr "Messages"
+
+msgid "Messages contact"
+msgstr "Messages contact"
+
+msgid "Messages de contact"
+msgstr "Contact messages"
+
+msgid "Messages récents"
+msgstr "Messages récents"
+
+msgid "Meta description"
+msgstr "Meta description"
+
+msgid "Meta description anglais"
+msgstr "Meta description anglais"
+
+msgid "Meta description arabe"
+msgstr "Meta description arabe"
+
+msgid "Meta description français"
+msgstr "Meta description français"
+
+msgid "Meta title"
+msgstr "Meta title"
+
+msgid "Meta title anglais"
+msgstr "Meta title anglais"
+
+msgid "Meta title arabe"
+msgstr "Meta title arabe"
+
+msgid "Meta title français"
+msgstr "Meta title français"
+
+msgid "Mettre à la une"
+msgstr "Mettre à la une"
+
+msgid "Missions disponibles"
+msgstr "Missions disponibles"
+
+msgid "Modification contenu"
+msgstr "Modification contenu"
+
+msgid "Modifier"
+msgstr "Modifier"
+
+msgid "Modifier %(title)s"
+msgstr "Modifier %(title)s"
+
+msgid ""
+"Modifier les informations principales, le contenu et les paramètres SEO de "
+"la page."
+msgstr ""
+"Modifier les informations principales, le contenu et les paramètres SEO de "
+"la page."
+
+msgid "Modifier toutes les pages du site"
+msgstr "Modifier toutes les pages du site"
+
+msgid "Module"
+msgstr "Module"
+
+msgid "Mois"
+msgstr "Mois"
+
+msgid "Montage vidéo"
+msgstr "Montage vidéo"
+
+msgid "Mot de passe"
+msgstr "Mot de passe"
+
+msgid "Mots-clés"
+msgstr "Mots-clés"
+
+msgid "Mots-clés français"
+msgstr "Mots-clés français"
+
+msgid "Médias"
+msgstr "Media"
+
+msgid "Médias et liens"
+msgstr "Médias et liens"
+
+msgid "Médias et réseaux sociaux"
+msgstr "Médias et réseaux sociaux"
+
+msgid "Médiathèque"
+msgstr "Médiathèque"
+
+msgid "Navigation administrateur"
+msgstr "Navigation administrateur"
+
+msgid "Nom"
+msgstr "Name"
+
+msgid "Nom anglais"
+msgstr "Nom anglais"
+
+msgid "Nom arabe"
+msgstr "Nom arabe"
+
+msgid "Nom complet"
+msgstr "Nom complet"
+
+msgid "Nom complet *"
+msgstr "Nom complet *"
+
+msgid "Nombre de places"
+msgstr "Number of seats"
+
+msgid "Nos Partenaires"
+msgstr "Nos Partenaires"
+
+msgid "Nos bénévoles en action"
+msgstr "Our volunteers in action"
+
+msgid "Nos formations"
+msgstr "Nos formations"
+
+msgid "Nos partenaires"
+msgstr "Nos partenaires"
+
+msgid "Note"
+msgstr "Note"
+
+msgid "Notifications"
+msgstr "Notifications"
+
+msgid "Nouveau mot de passe"
+msgstr "Nouveau mot de passe"
+
+msgid "Ordre"
+msgstr "Ordre"
+
+msgid "Ordre d'affichage"
+msgstr "Display order"
+
+msgid "Ordre d’affichage"
+msgstr "Ordre d’affichage"
+
+msgid "Organisation"
+msgstr "Organisation"
+
+msgid "Organisation d'événements"
+msgstr "Organisation d'événements"
+
+msgid "Ou uploader des images, vidéos ou PDF"
+msgstr "Ou uploader des images, vidéos ou PDF"
+
+msgid "Ou uploader une image"
+msgstr "Ou uploader une image"
+
+msgid "Ou uploader une image SEO"
+msgstr "Ou uploader une image SEO"
+
+msgid "Ouvrir le menu"
+msgstr "Ouvrir le menu"
+
+msgid "PNG, JPG, MP4, PDF - simulation frontend"
+msgstr "PNG, JPG, MP4, PDF - simulation frontend"
+
+msgid "Page modifiée avec succès."
+msgstr "Page modifiée avec succès."
+
+msgid "Page précédente"
+msgstr "Page précédente"
+
+msgid "Page suivante"
+msgstr "Page suivante"
+
+msgid "Pages publiques"
+msgstr "Pages publiques"
+
+msgid "Paramètre du site"
+msgstr "Site setting"
+
+msgid "Paramètre enregistré."
+msgstr "Paramètre enregistré."
+
+msgid "Paramètres"
+msgstr "Paramètres"
+
+msgid "Paramètres du site"
+msgstr "Site settings"
+
+msgid "Paramètres existants"
+msgstr "Paramètres existants"
+
+msgid "Partenaire"
+msgstr "Partner"
+
+msgid "Partenaires"
+msgstr "Partenaires"
+
+msgid "Participants"
+msgstr "Participants"
+
+msgid "Participer à des projets utiles"
+msgstr "Take part in useful projects"
+
+msgid "Photographie"
+msgstr "Photographie"
+
+msgid "Photographie et vidéo"
+msgstr "Photographie et vidéo"
+
+msgid "Pilotage général"
+msgstr "Pilotage général"
+
+msgid "Places"
+msgstr "Places"
+
+msgid "Places occupées"
+msgstr "Occupied seats"
+
+msgid "Pourquoi devenir bénévole ?"
+msgstr "Why become a volunteer?"
+
+msgid "Pourquoi souhaitez-vous rejoindre la Fondation ? *"
+msgstr "Pourquoi souhaitez-vous rejoindre la Fondation ? *"
+
+msgid "Premiers secours"
+msgstr "Premiers secours"
+
+msgid "Profession"
+msgstr "Profession"
+
+msgid "Profil administrateur"
+msgstr "Profil administrateur"
+
+msgid "Profil mis à jour"
+msgstr "Profil mis à jour"
+
+msgid "Programme"
+msgstr "Programme"
+
+msgid "Programmes"
+msgstr "Programmes"
+
+msgid "Programmé"
+msgstr "Scheduled"
+
+msgid "Précisez votre ville"
+msgstr "Précisez votre ville"
+
+msgid "Présentation de la Fondation"
+msgstr "Présentation de la Fondation"
+
+msgid ""
+"Présentation, mission, vision, objectifs, valeurs, historique, équipe et "
+"SEO."
+msgstr ""
+"Présentation, mission, vision, objectifs, valeurs, historique, équipe et "
+"SEO."
+
+msgid "Publication"
+msgstr "Publication"
+
+msgid "Publier actualité"
+msgstr "Publier actualité"
+
+msgid "Publié"
+msgstr "Published"
+
+msgid "Questions fréquentes"
+msgstr "Frequently asked questions"
+
+msgid "Rapport exporté visuellement."
+msgstr "Rapport exporté visuellement."
+
+msgid "Rapports"
+msgstr "Rapports"
+
+msgid "Recherche"
+msgstr "Recherche"
+
+msgid "Recherche globale"
+msgstr "Recherche globale"
+
+msgid "Rechercher"
+msgstr "Rechercher"
+
+msgid "Rechercher dans le tableau"
+msgstr "Rechercher dans le tableau"
+
+msgid "Rechercher une page, un message, une candidature..."
+msgstr "Rechercher une page, un message, une candidature..."
+
+msgid "Refusé"
+msgstr "Rejected"
+
+msgid "Regardez les vidéos de nos activités et actions de terrain."
+msgstr "Regardez les vidéos de nos activités et actions de terrain."
+
+msgid "Reinitialiser"
+msgstr "Reinitialiser"
+
+msgid "Rejoignez notre équipe de bénévoles"
+msgstr "Join our volunteer team"
+
+msgid "Rejoignez-nous"
+msgstr "Join us"
+
+msgid "Rejoindre l'équipe"
+msgstr "Join the team"
+
+msgid ""
+"Remplissez le formulaire ci-dessous pour proposer votre candidature. Notre "
+"équipe vous contactera lorsqu'une mission correspondant à votre profil sera "
+"disponible."
+msgstr ""
+"Remplissez le formulaire ci-dessous pour proposer votre candidature. Notre "
+"équipe vous contactera lorsqu'une mission correspondant à votre profil sera "
+"disponible."
+
+msgid "Rencontrer de nouvelles personnes"
+msgstr "Meet new people"
+
+msgid "Renforcer son engagement citoyen"
+msgstr "Strengthen civic engagement"
+
+msgid "Responsabilité"
+msgstr "Responsabilité"
+
+msgid "Retour"
+msgstr "Retour"
+
+msgid "Retour au site"
+msgstr "Retour au site"
+
+msgid "Retour à l'accueil"
+msgstr "Retour à l'accueil"
+
+msgid "Réduire"
+msgstr "Réduire"
+
+msgid "Réinitialiser"
+msgstr "Réinitialiser"
+
+msgid "Réinitialiser les filtres"
+msgstr "Réinitialiser les filtres"
+
+msgid "Réseaux sociaux"
+msgstr "Réseaux sociaux"
+
+msgid "Rôle"
+msgstr "Rôle"
+
+msgid "SEO"
+msgstr "SEO"
+
+msgid "SEO & statut"
+msgstr "SEO & statut"
+
+msgid "SEO accueil"
+msgstr "SEO accueil"
+
+msgid "Se connecter"
+msgstr "Se connecter"
+
+msgid "Se souvenir de moi"
+msgstr "Se souvenir de moi"
+
+msgid "Sections connectées"
+msgstr "Sections connectées"
+
+msgid "Selon les besoins"
+msgstr "Selon les besoins"
+
+msgid "Sep"
+msgstr "Sep"
+
+msgid "Session sécurisée"
+msgstr "Session sécurisée"
+
+msgid "Sessions, formateurs, places et inscriptions."
+msgstr "Sessions, formateurs, places et inscriptions."
+
+msgid "Slug"
+msgstr "Slug"
+
+msgid "Slug :"
+msgstr "Slug :"
+
+msgid "Sociales"
+msgstr "Sociales"
+
+msgid "Sociales 28%"
+msgstr "Sociales 28%"
+
+msgid "Solidarité"
+msgstr "Solidarité"
+
+msgid "Sombre"
+msgstr "Sombre"
+
+msgid "Sous-titre"
+msgstr "Subtitle"
+
+msgid "Sous-titre anglais"
+msgstr "Sous-titre anglais"
+
+msgid "Sous-titre arabe"
+msgstr "Sous-titre arabe"
+
+msgid "Sous-titre backend v?rifi"
+msgstr "Commitment to education, culture, social action and sport in Tangier"
+
+msgid "Sous-titre backend vérifié"
+msgstr "Commitment to education, culture, social action and sport in Tangier"
+
+msgid "Sous-titre backend v�rifi"
+msgstr "Sous-titre backend v�rifi"
+
+msgid "Sous-titre français"
+msgstr "Sous-titre français"
+
+msgid "Sport"
+msgstr "Sport"
+
+msgid "Sportives"
+msgstr "Sportives"
+
+msgid "Sportives 14%"
+msgstr "Sportives 14%"
+
+msgid "Statistiques animées"
+msgstr "Statistiques animées"
+
+msgid "Statut"
+msgstr "Status"
+
+msgid "Suivez les actions de nos bénévoles"
+msgstr "Suivez les actions de nos bénévoles"
+
+msgid "Suivez nos publications et actualités bénévoles."
+msgstr "Suivez nos publications et actualités bénévoles."
+
+msgid "Suivre sur Facebook"
+msgstr "Suivre sur Facebook"
+
+msgid "Suivre sur Instagram"
+msgstr "Suivre sur Instagram"
+
+msgid "Sujet"
+msgstr "Sujet"
+
+msgid "Super admin"
+msgstr "Super admin"
+
+msgid "Supprimer cet élément ?"
+msgstr "Supprimer cet élément ?"
+
+msgid "Supprimer cette image ?"
+msgstr "Supprimer cette image ?"
+
+msgid "Sélectionner"
+msgstr "Sélectionner"
+
+msgid "Sélectionner un média"
+msgstr "Sélectionner un média"
+
+msgid "Sélectionnez"
+msgstr "Sélectionnez"
+
+msgid "Tableau de bord"
+msgstr "Tableau de bord"
+
+msgid "Temps / note"
+msgstr "Temps / note"
+
+msgid "Temps de lecture"
+msgstr "Temps de lecture"
+
+msgid "Texte alternatif"
+msgstr "Texte alternatif"
+
+msgid "Texte court et clair pour l'affichage public."
+msgstr "Short, clear text for public display."
+
+msgid "Thème"
+msgstr "Thème"
+
+msgid "Titre"
+msgstr "Title"
+
+msgid "Titre anglais"
+msgstr "English title"
+
+msgid "Titre arabe"
+msgstr "Arabic title"
+
+msgid "Titre enregistré actuellement :"
+msgstr "Titre enregistré actuellement :"
+
+msgid "Titre français"
+msgstr "French title"
+
+msgid "Tous"
+msgstr "Tous"
+
+msgid "Tous droits réservés"
+msgstr "Tous droits réservés"
+
+msgid "Tous les mois"
+msgstr "Tous les mois"
+
+msgid "Tous les statuts"
+msgstr "Tous les statuts"
+
+msgid "Tout sélectionner"
+msgstr "Tout sélectionner"
+
+msgid "Toutes"
+msgstr "Toutes"
+
+msgid "Toutes les années"
+msgstr "Toutes les années"
+
+msgid "Toutes les catégories"
+msgstr "Toutes les catégories"
+
+msgid "Type"
+msgstr "Type"
+
+msgid "Type anglais"
+msgstr "Type anglais"
+
+msgid "Type arabe"
+msgstr "Type arabe"
+
+msgid "Type français"
+msgstr "Type français"
+
+msgid "Téléphone"
+msgstr "Téléphone"
+
+msgid "Téléphone *"
+msgstr "Téléphone *"
+
+msgid "Témoignages"
+msgstr "Témoignages"
+
+msgid "URL canonique"
+msgstr "URL canonique"
+
+msgid "Utilisateurs"
+msgstr "Users"
+
+msgid "Valeur"
+msgstr "Value"
+
+msgid "Valeur anglaise"
+msgstr "Valeur anglaise"
+
+msgid "Valeur arabe"
+msgstr "Valeur arabe"
+
+msgid "Valeur française"
+msgstr "Valeur française"
+
+msgid "Vidéo"
+msgstr "Vidéo"
+
+msgid "Vidéo URL"
+msgstr "Vidéo URL"
+
+msgid "Vidéo principale"
+msgstr "Vidéo principale"
+
+msgid "Vidéos de nos actions"
+msgstr "Videos of our actions"
+
+msgid "Ville"
+msgstr "Ville"
+
+msgid "Ville *"
+msgstr "Ville *"
+
+msgid "Voir"
+msgstr "Voir"
+
+msgid "Voir détail"
+msgstr "Voir détail"
+
+msgid "Voir le site"
+msgstr "Voir le site"
+
+msgid "Voir le site public"
+msgstr "Voir le site public"
+
+msgid "Voir messages"
+msgstr "Voir messages"
+
+msgid "Voir notre chaîne"
+msgstr "Voir notre chaîne"
+
+msgid "Voir tout"
+msgstr "Voir tout"
+
+msgid "Voir toutes les activités"
+msgstr "Voir toutes les activités"
+
+msgid "Votre nom complet"
+msgstr "Votre nom complet"
+
+msgid "Vue générale"
+msgstr "Vue générale"
+
+msgid ""
+"Vue synthétique des contenus, demandes et performances de la Fondation "
+"Tanger Métropole."
+msgstr ""
+"Vue synthétique des contenus, demandes et performances de la Fondation "
+"Tanger Métropole."
+
+msgid "YouTube"
+msgstr "YouTube"
+
+msgid "accepte"
+msgstr "accepte"
+
+msgid "actif"
+msgstr "actif"
+
+msgid "activité"
+msgstr "activité"
+
+msgid "archive"
+msgstr "archive"
+
+msgid "article"
+msgstr "article"
+
+msgid "articles"
+msgstr "articles"
+
+msgid "brouillon"
+msgstr "brouillon"
+
+msgid "bénévoles"
+msgstr "bénévoles"
+
+msgid "candidature"
+msgstr "candidature"
+
+msgid "candidature(s) en attente"
+msgstr "candidature(s) en attente"
+
+msgid "candidatures"
+msgstr "candidatures"
+
+msgid "contenu(s) à valider"
+msgstr "contenu(s) à valider"
+
+msgid "depuis MySQL"
+msgstr "depuis MySQL"
+
+msgid "dernière édition"
+msgstr "dernière édition"
+
+msgid "en_attente"
+msgstr "en_attente"
+
+msgid "fichiers"
+msgstr "fichiers"
+
+msgid "formation"
+msgstr "formation"
+
+msgid "inactif"
+msgstr "inactif"
+
+msgid "lien"
+msgstr "lien"
+
+msgid "membre"
+msgstr "membre"
+
+msgid "message"
+msgstr "message"
+
+msgid "message(s) non lu(s)"
+msgstr "message(s) non lu(s)"
+
+msgid "messages"
+msgstr "messages"
+
+msgid "média"
+msgstr "média"
+
+msgid "par lien"
+msgstr "par lien"
+
+msgid "partenaire"
+msgstr "partenaire"
+
+msgid "partenaires"
+msgstr "partenaires"
+
+msgid "programme"
+msgstr "programme"
+
+msgid "publie"
+msgstr "publie"
+
+msgid "publié"
+msgstr "publié"
+
+msgid "refuse"
+msgstr "refuse"
+
+msgid "sessions"
+msgstr "sessions"
+
+msgid "témoignage"
+msgstr "témoignage"
+
+msgid "utilisateur"
+msgstr "utilisateur"
+
+msgid "À la une"
+msgstr "À la une"
+
+msgid "À propos"
+msgstr "About"
+
+msgid "Édition de contenu"
+msgstr "Édition de contenu"
+
+msgid "Élément de contenu"
+msgstr "Content item"
+
+msgid "Élément supprimé avec succès."
+msgstr "Élément supprimé avec succès."
+
+msgid "Éléments de contenu"
+msgstr "Content items"
+
+msgid "Équipe"
+msgstr "Équipe"
+
+msgid "à connecter"
+msgstr "à connecter"
+
+msgid "⭐ À la une"
+msgstr "⭐ À la une"

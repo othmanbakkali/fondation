@@ -1,0 +1,383 @@
+{% extends "dashboard/base_admin.html" %}
+{% load i18n %}
+{% block title %}{{ page_title }}{% endblock %}
+{% block extra_head %}
+<style>
+  .i18n-triplet-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 15px;
+    width: 100%;
+  }
+  .i18n-field-group {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+  }
+  .i18n-field-group h4 {
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #0f172a;
+    border-bottom: 1px solid #f1f5f9;
+    padding-bottom: 8px;
+  }
+  .span-all {
+    grid-column: 1 / -1;
+  }
+  .lang-tag {
+    display: inline-block;
+    padding: 2px 6px;
+    font-size: 11px;
+    font-weight: 700;
+    border-radius: 4px;
+    margin-left: 6px;
+  }
+  .lang-tag.fr { background: #e0f2fe; color: #0369a1; }
+  .lang-tag.ar { background: #fef3c7; color: #b45309; }
+  .lang-tag.en { background: #dcfce7; color: #15803d; }
+</style>
+{% endblock %}
+{% block admin_content %}
+<section class="page-heading">
+  <div>
+    <p class="eyebrow">Pages publiques</p>
+    <h1>{{ page_title }}</h1>
+    <p>Modifier les informations principales, le contenu et les paramètres SEO de la page en Français, Arabe et Anglais.</p>
+  </div>
+  <div class="heading-actions">
+    <a class="btn" href="{% url 'dashboard:site_content' %}"><i class="fas fa-arrow-left"></i> Retour</a>
+    <button class="btn primary" type="submit" form="pageForm" onclick="const f = document.getElementById('pageForm'); if(f.reportValidity()) f.submit();"><i class="fas fa-save"></i> Enregistrer</button>
+  </div>
+</section>
+
+<form id="pageForm" class="editor-layout" method="post" enctype="multipart/form-data">{% csrf_token %}
+
+  {% if page.slug == "a-propos" %}
+  <section class="panel span-all about-input-editor">
+    <div class="about-editor-head">
+      <div>
+        <h2><i class="fas fa-language"></i> Contenu multilingue de la page À propos (Français / العربية / English)</h2>
+        <p>Saisissez le contenu en Français, Arabe et Anglais pour chaque section de la page.</p>
+      </div>
+      <span class="status-badge actif">Support multilingue actif</span>
+    </div>
+
+    <div class="about-editor-section about-mission-photo">
+      <h3>Photo Notre mission</h3>
+      <div class="image-choice">
+        <label>Lien de l'image
+          <input class="admin-field" type="text" name="about_mission_image_url" value="{{ about_mission_image_url }}" placeholder="https://... ou /media/...">
+        </label>
+        <label>Ou uploader une image
+          <input class="admin-field" type="file" name="about_mission_image_upload" accept="image/*">
+        </label>
+        {% if about_mission_image_url %}
+        <div class="current-image-preview"><img src="{{ about_mission_image_url }}" alt="Photo Notre mission"><span>Photo actuelle de Notre mission</span></div>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="about-editor-section">
+      <h3>Textes des sections (Français / العربية / English)</h3>
+      <div class="about-input-grid">
+        {% for item in about_text_fields %}
+        <div class="i18n-field-group">
+          <h4>{{ item.label }}</h4>
+          <div class="i18n-triplet-grid">
+            <label>Français (Principal) <span class="lang-tag fr">FR</span>
+              {% if item.key == "bureau_intro" or item.key == "members_intro" or item.key == "zone_text" or item.key == "cta_text" %}
+              <textarea class="admin-field admin-textarea" name="about_text_{{ item.key }}" rows="3">{{ item.value }}</textarea>
+              {% else %}
+              <input class="admin-field" type="text" name="about_text_{{ item.key }}" value="{{ item.value }}">
+              {% endif %}
+            </label>
+            <label>العربية (Arabic) <span class="lang-tag ar">AR</span>
+              {% if item.key == "bureau_intro" or item.key == "members_intro" or item.key == "zone_text" or item.key == "cta_text" %}
+              <textarea class="admin-field admin-textarea" name="about_text_{{ item.key }}_ar" rows="3" dir="rtl">{{ item.value_ar }}</textarea>
+              {% else %}
+              <input class="admin-field" type="text" name="about_text_{{ item.key }}_ar" value="{{ item.value_ar }}" dir="rtl">
+              {% endif %}
+            </label>
+            <label>English <span class="lang-tag en">EN</span>
+              {% if item.key == "bureau_intro" or item.key == "members_intro" or item.key == "zone_text" or item.key == "cta_text" %}
+              <textarea class="admin-field admin-textarea" name="about_text_{{ item.key }}_en" rows="3">{{ item.value_en }}</textarea>
+              {% else %}
+              <input class="admin-field" type="text" name="about_text_{{ item.key }}_en" value="{{ item.value_en }}">
+              {% endif %}
+            </label>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="about-editor-section">
+      <h3>Cartes de présentation (Multilingue)</h3>
+      <div class="about-repeat-grid">
+        {% for card in about_presentation_cards %}
+        <article class="about-repeat-card i18n-field-group">
+          <label class="span-all">Icône FontAwesome<input class="admin-field" type="text" name="about_card_icon" value="{{ card.icon }}"></label>
+          <div class="i18n-triplet-grid span-all">
+            <label>Titre (FR) <span class="lang-tag fr">FR</span><input class="admin-field" type="text" name="about_card_title" value="{{ card.title }}"></label>
+            <label>Titre (AR) <span class="lang-tag ar">AR</span><input class="admin-field" type="text" name="about_card_title_ar" value="{{ card.title_ar }}" dir="rtl"></label>
+            <label>Titre (EN) <span class="lang-tag en">EN</span><input class="admin-field" type="text" name="about_card_title_en" value="{{ card.title_en }}"></label>
+          </div>
+          <div class="i18n-triplet-grid span-all">
+            <label>Texte (FR) <span class="lang-tag fr">FR</span><textarea class="admin-field admin-textarea" name="about_card_text" rows="3">{{ card.text }}</textarea></label>
+            <label>Texte (AR) <span class="lang-tag ar">AR</span><textarea class="admin-field admin-textarea" name="about_card_text_ar" rows="3" dir="rtl">{{ card.text_ar }}</textarea></label>
+            <label>Texte (EN) <span class="lang-tag en">EN</span><textarea class="admin-field admin-textarea" name="about_card_text_en" rows="3">{{ card.text_en }}</textarea></label>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="about-editor-section">
+      <h3>Points de mission (Multilingue)</h3>
+      <div class="about-input-grid">
+        {% for item in about_mission_features %}
+        <div class="i18n-field-group">
+          <h4>Point de mission {{ forloop.counter }}</h4>
+          <div class="i18n-triplet-grid">
+            <label>Point (FR) <span class="lang-tag fr">FR</span><input class="admin-field" type="text" name="about_mission_feature" value="{{ item.feature|default:item }}"></label>
+            <label>Point (AR) <span class="lang-tag ar">AR</span><input class="admin-field" type="text" name="about_mission_feature_ar" value="{{ item.feature_ar }}" dir="rtl"></label>
+            <label>Point (EN) <span class="lang-tag en">EN</span><input class="admin-field" type="text" name="about_mission_feature_en" value="{{ item.feature_en }}"></label>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="about-editor-section">
+      <h3>Objectifs (Multilingue)</h3>
+      <div class="about-repeat-grid">
+        {% for item in about_objectives %}
+        <article class="about-repeat-card i18n-field-group">
+          <label class="span-all">Icône<input class="admin-field" type="text" name="about_objective_icon" value="{{ item.icon }}"></label>
+          <div class="i18n-triplet-grid span-all">
+            <label>Titre (FR) <span class="lang-tag fr">FR</span><input class="admin-field" type="text" name="about_objective_title" value="{{ item.title }}"></label>
+            <label>Titre (AR) <span class="lang-tag ar">AR</span><input class="admin-field" type="text" name="about_objective_title_ar" value="{{ item.title_ar }}" dir="rtl"></label>
+            <label>Titre (EN) <span class="lang-tag en">EN</span><input class="admin-field" type="text" name="about_objective_title_en" value="{{ item.title_en }}"></label>
+          </div>
+          <div class="i18n-triplet-grid span-all">
+            <label>Texte (FR) <span class="lang-tag fr">FR</span><textarea class="admin-field admin-textarea" name="about_objective_text" rows="3">{{ item.text }}</textarea></label>
+            <label>Texte (AR) <span class="lang-tag ar">AR</span><textarea class="admin-field admin-textarea" name="about_objective_text_ar" rows="3" dir="rtl">{{ item.text_ar }}</textarea></label>
+            <label>Texte (EN) <span class="lang-tag en">EN</span><textarea class="admin-field admin-textarea" name="about_objective_text_en" rows="3">{{ item.text_en }}</textarea></label>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="about-editor-section">
+      <h3>Valeurs (Multilingue)</h3>
+      <div class="about-input-grid">
+        {% for item in about_values %}
+        <article class="about-mini-card i18n-field-group">
+          <label class="span-all">Icône<input class="admin-field" type="text" name="about_value_icon" value="{{ item.icon }}"></label>
+          <div class="i18n-triplet-grid span-all">
+            <label>Valeur (FR) <span class="lang-tag fr">FR</span><input class="admin-field" type="text" name="about_value_title" value="{{ item.title }}"></label>
+            <label>Valeur (AR) <span class="lang-tag ar">AR</span><input class="admin-field" type="text" name="about_value_title_ar" value="{{ item.title_ar }}" dir="rtl"></label>
+            <label>Valeur (EN) <span class="lang-tag en">EN</span><input class="admin-field" type="text" name="about_value_title_en" value="{{ item.title_en }}"></label>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="about-editor-section">
+      <h3>Zone d'intervention (Multilingue)</h3>
+      <div class="about-input-grid">
+        {% for item in about_zone_stats %}
+        <article class="about-mini-card i18n-field-group">
+          <label class="span-all">Icône<input class="admin-field" type="text" name="about_zone_stat_icon" value="{{ item.icon }}"></label>
+          <div class="i18n-triplet-grid span-all">
+            <label>Zone (FR) <span class="lang-tag fr">FR</span><input class="admin-field" type="text" name="about_zone_stat_title" value="{{ item.title }}"></label>
+            <label>Zone (AR) <span class="lang-tag ar">AR</span><input class="admin-field" type="text" name="about_zone_stat_title_ar" value="{{ item.title_ar }}" dir="rtl"></label>
+            <label>Zone (EN) <span class="lang-tag en">EN</span><input class="admin-field" type="text" name="about_zone_stat_title_en" value="{{ item.title_en }}"></label>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  {% elif page.slug == "accueil" %}
+  <section class="panel span-all home-input-editor">
+    <div class="about-editor-head">
+      <div>
+        <h2><i class="fas fa-home"></i> Contenu multilingue de la Page d'accueil (Français / العربية / English)</h2>
+        <p>Modifiez tous les titres, sous-titres, boutons et textes de chaque section de la page d'accueil.</p>
+      </div>
+      <span class="status-badge actif">Connecté à la page d'accueil</span>
+    </div>
+
+    <div class="about-editor-section">
+      <h3>Textes et boutons de la page d'accueil</h3>
+      <div class="about-input-grid">
+        {% for item in home_text_fields %}
+        <div class="i18n-field-group">
+          <h4>{{ item.label }}</h4>
+          <div class="i18n-triplet-grid">
+            <label>Français (Principal) <span class="lang-tag fr">FR</span>
+              {% if "text" in item.key or "intro" in item.key %}
+              <textarea class="admin-field admin-textarea" name="home_text_{{ item.key }}" rows="3">{{ item.value }}</textarea>
+              {% else %}
+              <input class="admin-field" type="text" name="home_text_{{ item.key }}" value="{{ item.value }}">
+              {% endif %}
+            </label>
+            <label>العربية (Arabic) <span class="lang-tag ar">AR</span>
+              {% if "text" in item.key or "intro" in item.key %}
+              <textarea class="admin-field admin-textarea" name="home_text_{{ item.key }}_ar" rows="3" dir="rtl">{{ item.value_ar }}</textarea>
+              {% else %}
+              <input class="admin-field" type="text" name="home_text_{{ item.key }}_ar" value="{{ item.value_ar }}" dir="rtl">
+              {% endif %}
+            </label>
+            <label>English <span class="lang-tag en">EN</span>
+              {% if "text" in item.key or "intro" in item.key %}
+              <textarea class="admin-field admin-textarea" name="home_text_{{ item.key }}_en" rows="3">{{ item.value_en }}</textarea>
+              {% else %}
+              <input class="admin-field" type="text" name="home_text_{{ item.key }}_en" value="{{ item.value_en }}">
+              {% endif %}
+            </label>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+  {% endif %}
+
+  {% if page.slug == "benevolat" %}
+  <section class="panel span-all benevolat-input-editor">
+    <div class="about-editor-head" style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #e2e8f0; padding-bottom:15px; margin-bottom:20px;">
+      <div>
+        <h2 style="margin:0;"><i class="fas fa-question-circle text-blue"></i> Questions fréquentes (FAQ) - Bénévolat</h2>
+        <p style="margin:5px 0 0 0; color:#64748b;">Modifiez les questions et les réponses en Français, Arabe et Anglais.</p>
+      </div>
+      <span class="status-badge actif" style="background:#e0f2fe; color:#0369a1; padding:4px 8px; border-radius:4px; font-size:12px; font-weight:bold;">FAQ Multilingue Active</span>
+    </div>
+
+    <div class="about-editor-section">
+      {% for item in benevolat_faq_fields %}
+      <div class="i18n-field-group" style="border-left: 4px solid #3b82f6; padding-left: 15px; margin-bottom: 25px;">
+        <h4 style="margin-top:0;">Question {{ forloop.counter }}</h4>
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+          <!-- Français -->
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <label style="font-weight:600;">Question (FR) <span class="lang-tag fr">FR</span>
+              <input class="admin-field" type="text" name="faq_q_{{ forloop.counter0 }}" value="{{ item.q }}" required style="width:100%;">
+            </label>
+            <label style="font-weight:600;">Réponse (FR) <span class="lang-tag fr">FR</span>
+              <textarea class="admin-field admin-textarea" name="faq_r_{{ forloop.counter0 }}" rows="3" required style="width:100%;">{{ item.r }}</textarea>
+            </label>
+          </div>
+          <!-- Arabe -->
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <label style="font-weight:600;">السؤال (AR) <span class="lang-tag ar">AR</span>
+              <input class="admin-field" type="text" name="faq_q_{{ forloop.counter0 }}_ar" value="{{ item.q_ar }}" dir="rtl" required style="width:100%;">
+            </label>
+            <label style="font-weight:600;">الجواب (AR) <span class="lang-tag ar">AR</span>
+              <textarea class="admin-field admin-textarea" name="faq_r_{{ forloop.counter0 }}_ar" rows="3" dir="rtl" required style="width:100%;">{{ item.r_ar }}</textarea>
+            </label>
+          </div>
+          <!-- Anglais -->
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <label style="font-weight:600;">Question (EN) <span class="lang-tag en">EN</span>
+              <input class="admin-field" type="text" name="faq_q_{{ forloop.counter0 }}_en" value="{{ item.q_en }}" required style="width:100%;">
+            </label>
+            <label style="font-weight:600;">Answer (EN) <span class="lang-tag en">EN</span>
+              <textarea class="admin-field admin-textarea" name="faq_r_{{ forloop.counter0 }}_en" rows="3" required style="width:100%;">{{ item.r_en }}</textarea>
+            </label>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+
+  <section class="panel editor-main">
+    <h2>Informations principales de la page (Français / العربية / English)</h2>
+    
+    {% if page.slug != "a-propos" %}
+      <div class="image-choice span-all" style="margin-bottom: 20px;">
+        <label>Image de bannière / par lien
+          <input type="text" name="hero_image_url" value="{{ form.hero_image_url.value|default:'' }}" class="admin-field" placeholder="https://... ou /media/...">
+        </label>
+        <label>Ou uploader une image
+          <input class="admin-field" type="file" name="hero_image_url_upload" accept="image/*">
+        </label>
+        {% if form.hero_image_url.value %}
+        <div class="current-image-preview"><img src="{{ form.hero_image_url.value }}" alt="{{ page.title }}"><span>Image actuelle</span></div>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <div class="i18n-field-group span-all">
+      <h4>Titre de la page</h4>
+      <div class="i18n-triplet-grid">
+        <label>Français (Principal) <span class="lang-tag fr">FR</span>
+          <input type="text" name="title" value="{{ form.title.value|default:'' }}" class="admin-field" required>
+        </label>
+        <label>العربية (Arabic) <span class="lang-tag ar">AR</span>
+          <input type="text" name="title_ar" value="{{ form.title_ar.value|default:'' }}" class="admin-field" dir="rtl">
+        </label>
+        <label>English <span class="lang-tag en">EN</span>
+          <input type="text" name="title_en" value="{{ form.title_en.value|default:'' }}" class="admin-field">
+        </label>
+      </div>
+    </div>
+
+    <div class="i18n-field-group span-all">
+      <h4>Sous-titre / Description courte</h4>
+      <div class="i18n-triplet-grid">
+        <label>Français (Principal) <span class="lang-tag fr">FR</span>
+          <input type="text" name="subtitle" value="{{ form.subtitle.value|default:'' }}" class="admin-field">
+        </label>
+        <label>العربية (Arabic) <span class="lang-tag ar">AR</span>
+          <input type="text" name="subtitle_ar" value="{{ form.subtitle_ar.value|default:'' }}" class="admin-field" dir="rtl">
+        </label>
+        <label>English <span class="lang-tag en">EN</span>
+          <input type="text" name="subtitle_en" value="{{ form.subtitle_en.value|default:'' }}" class="admin-field">
+        </label>
+      </div>
+    </div>
+
+    <div class="i18n-field-group span-all">
+      <h4>Contenu principal de la page</h4>
+      <div class="i18n-triplet-grid">
+        <label>Français (Principal) <span class="lang-tag fr">FR</span>
+          <textarea name="content" rows="8" class="admin-field admin-textarea">{{ form.content.value|default:'' }}</textarea>
+        </label>
+        <label>العربية (Arabic) <span class="lang-tag ar">AR</span>
+          <textarea name="content_ar" rows="8" class="admin-field admin-textarea" dir="rtl">{{ form.content_ar.value|default:'' }}</textarea>
+        </label>
+        <label>English <span class="lang-tag en">EN</span>
+          <textarea name="content_en" rows="8" class="admin-field admin-textarea">{{ form.content_en.value|default:'' }}</textarea>
+        </label>
+      </div>
+    </div>
+  </section>
+
+  <aside class="panel editor-side">
+    <h2>SEO &amp; statut (Multilingue)</h2>
+    {% for field in form %}
+      {% if field.name == "og_image_url" %}
+        <div class="image-choice">
+          <label>{{ field.label }} / par lien{{ field }}{% if field.help_text %}<small class="field-help">{{ field.help_text }}</small>{% endif %}{% if field.errors %}<small class="field-error">{{ field.errors|striptags }}</small>{% endif %}</label>
+          <label>Ou uploader une image<input class="admin-field" type="file" name="og_image_url_upload" accept="image/*"></label>
+          {% if field.value %}<div class="current-image-preview"><img src="{{ field.value }}" alt="Open Graph"><span>Image SEO actuelle</span></div>{% endif %}
+        </div>
+      {% elif field.name == 'status' or field.name == 'canonical_url' or 'meta_' in field.name or 'keywords' in field.name %}
+        <label>{{ field.label }}{{ field }}{% if field.help_text %}<small class="field-help">{{ field.help_text }}</small>{% endif %}{% if field.errors %}<small class="field-error">{{ field.errors|striptags }}</small>{% endif %}</label>
+      {% endif %}
+    {% endfor %}
+  </aside>
+</form>
+{% endblock %}

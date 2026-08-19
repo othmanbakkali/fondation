@@ -1,0 +1,213 @@
+{% extends "dashboard/base_admin.html" %}
+{% load %}
+{% block title %}{{ page_title }}{% endblock %}
+{% block admin_content %}
+<section class="page-heading">
+  <div>
+    <p class="eyebrow">Actualités &amp; annonces</p>
+    <h1>{{ page_title }}</h1>
+    {% if object %}
+      <p><strong>Titre enregistré actuellement :</strong> {{ object.title }}</p>
+    {% else %}
+      <p>Créez une actualité qui alimentera la page Actualités et les annonces de l&#x27;accueil.</p>
+    {% endif %}
+  </div>
+  <div class="heading-actions">
+    <a class="btn" href="{{ list_url }}"><i class="fas fa-arrow-left"></i> Retour</a>
+    <button class="btn primary" type="submit" form="contentForm"><i class="fas fa-save"></i> Enregistrer</button>
+  </div>
+</section>
+
+<form id="contentForm" class="editor-layout polished-form" method="post" action="{{ request.path }}" enctype="multipart/form-data">
+  {% csrf_token %}
+  <section class="panel editor-main">
+    {% if form.errors %}<div class="inline-alert error"><i class="fas fa-triangle-exclamation"></i><span>Corrigez les champs indiqués ci-dessous.</span></div>{% endif %}
+
+    <div class="form-section-title">
+      <span><i class="fas fa-newspaper"></i></span>
+      <div><h2>Informations principales</h2><p>Ces champs sont les données réelles enregistrées dans MySQL.</p></div>
+    </div>
+
+    <div class="form-grid two">
+      <label>Titre de l&#x27;annonce
+        <input class="admin-field" type="text" name="title" value="{{ object.title|default:'' }}" required>
+      </label>
+      <label>Slug
+        <input class="admin-field" type="text" name="slug" value="{{ object.slug|default:'' }}">
+      </label>
+      <label>Catégorie
+        <input class="admin-field" type="text" name="category" value="{{ object.category|default:'' }}">
+      </label>
+      <label>Date
+        <input class="admin-field" type="date" name="date" value="{{ object.date|date:'Y-m-d' }}">
+      </label>
+      <label class="span-2">Description courte
+        <textarea class="admin-field admin-textarea" name="summary" rows="3">{{ object.summary|default:'' }}</textarea>
+      </label>
+      <label class="span-2">Contenu détaillé
+        <textarea class="admin-field admin-textarea" name="body" rows="8">{{ object.body|default:'' }}</textarea>
+      </label>
+    </div>
+
+    <div class="form-section-title" style="margin-top: 30px;">
+      <span><i class="fas fa-language"></i></span>
+      <div><h2>Traductions de l'actualité</h2><p>Traductions en Arabe, Anglais et Français pour le site multilingue.</p></div>
+    </div>
+
+    <div class="form-grid two">
+      <!-- Arabe -->
+      <div class="span-2" style="border-left: 4px solid #EF4444; padding-left: 15px; margin-bottom: 20px;">
+        <h3 style="margin: 0 0 10px 0; color: #EF4444;"><i class="fas fa-globe"></i> Arabe (AR)</h3>
+        <div class="form-grid two">
+          <label>Titre (Arabe)
+            <input class="admin-field" type="text" name="title_ar" value="{{ object.title_ar|default:'' }}">
+          </label>
+          <label>Catégorie (Arabe)
+            <input class="admin-field" type="text" name="category_ar" value="{{ object.category_ar|default:'' }}">
+          </label>
+          <label>Lieu (Arabe)
+            <input class="admin-field" type="text" name="location_ar" value="{{ object.location_ar|default:'' }}">
+          </label>
+          <label class="span-2">Description courte (Arabe)
+            <textarea class="admin-field admin-textarea" name="summary_ar" rows="2">{{ object.summary_ar|default:'' }}</textarea>
+          </label>
+          <label class="span-2">Contenu détaillé (Arabe)
+            <textarea class="admin-field admin-textarea" name="body_ar" rows="5">{{ object.body_ar|default:'' }}</textarea>
+          </label>
+        </div>
+      </div>
+
+      <!-- Anglais -->
+      <div class="span-2" style="border-left: 4px solid #3B82F6; padding-left: 15px; margin-bottom: 20px;">
+        <h3 style="margin: 0 0 10px 0; color: #3B82F6;"><i class="fas fa-globe"></i> Anglais (EN)</h3>
+        <div class="form-grid two">
+          <label>Titre (Anglais)
+            <input class="admin-field" type="text" name="title_en" value="{{ object.title_en|default:'' }}">
+          </label>
+          <label>Catégorie (Anglais)
+            <input class="admin-field" type="text" name="category_en" value="{{ object.category_en|default:'' }}">
+          </label>
+          <label>Lieu (Anglais)
+            <input class="admin-field" type="text" name="location_en" value="{{ object.location_en|default:'' }}">
+          </label>
+          <label class="span-2">Description courte (Anglais)
+            <textarea class="admin-field admin-textarea" name="summary_en" rows="2">{{ object.summary_en|default:'' }}</textarea>
+          </label>
+          <label class="span-2">Contenu détaillé (Anglais)
+            <textarea class="admin-field admin-textarea" name="body_en" rows="5">{{ object.body_en|default:'' }}</textarea>
+          </label>
+        </div>
+      </div>
+
+      <!-- Français -->
+      <div class="span-2" style="border-left: 4px solid #10B981; padding-left: 15px; margin-bottom: 20px;">
+        <h3 style="margin: 0 0 10px 0; color: #10B981;"><i class="fas fa-globe"></i> Français (FR)</h3>
+        <div class="form-grid two">
+          <label>Titre (Français)
+            <input class="admin-field" type="text" name="title_fr" value="{{ object.title_fr|default:'' }}">
+          </label>
+          <label>Catégorie (Français)
+            <input class="admin-field" type="text" name="category_fr" value="{{ object.category_fr|default:'' }}">
+          </label>
+          <label>Lieu (Français)
+            <input class="admin-field" type="text" name="location_fr" value="{{ object.location_fr|default:'' }}">
+          </label>
+          <label class="span-2">Description courte (Français)
+            <textarea class="admin-field admin-textarea" name="summary_fr" rows="2">{{ object.summary_fr|default:'' }}</textarea>
+          </label>
+          <label class="span-2">Contenu détaillé (Français)
+            <textarea class="admin-field admin-textarea" name="body_fr" rows="5">{{ object.body_fr|default:'' }}</textarea>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section-title">
+      <span><i class="fas fa-image"></i></span>
+      <div><h2>Médias et réseaux sociaux</h2><p>Image principale et liens utilisés sur le site public.</p></div>
+    </div>
+    <div class="form-grid two">
+      <div class="image-choice span-2">
+        <label>Image par lien URL
+          <input class="admin-field" type="text" name="image_url" value="{{ object.image_url|default:'' }}" placeholder="https://... ou /media/...">
+        </label>
+        <label>Ou uploader une image
+          <input class="admin-field" type="file" name="image_url_upload" accept="image/*">
+        </label>
+        {% if object.image_url %}
+        <div class="current-image-preview">
+          <img src="{{ object.image_url }}" alt="{{ object.title }}">
+          <span>Image actuelle</span>
+        </div>
+        {% endif %}
+      </div>
+      <label>Vidéo URL
+        <input class="admin-field" type="url" name="video_url" value="{{ object.video_url|default:'' }}">
+      </label>
+      <label>Auteur
+        <input class="admin-field" type="text" name="author" value="{{ object.author|default:'' }}">
+      </label>
+      <label>Facebook
+        <input class="admin-field" type="url" name="facebook_url" value="{{ object.facebook_url|default:'' }}">
+      </label>
+      <label>Instagram
+        <input class="admin-field" type="url" name="instagram_url" value="{{ object.instagram_url|default:'' }}">
+      </label>
+      <label>YouTube
+        <input class="admin-field" type="url" name="youtube_url" value="{{ object.youtube_url|default:'' }}">
+      </label>
+      <label>Lieu
+        <input class="admin-field" type="text" name="location" value="{{ object.location|default:'' }}">
+      </label>
+    </div>
+  </section>
+
+  <aside class="panel editor-side publish-card">
+    <h2>Publication</h2>
+    <label>Statut
+      <select class="admin-field" name="status">
+        <option value="publie" {% if object.status == "publie" %}selected{% endif %}>Publié</option>
+        <option value="brouillon" {% if object.status == "brouillon" %}selected{% endif %}>Brouillon</option>
+        <option value="programme" {% if object.status == "programme" %}selected{% endif %}>Programmé</option>
+        <option value="archive" {% if object.status == "archive" %}selected{% endif %}>Archivé</option>
+      </select>
+    </label>
+    <label>Ordre d'affichage
+      <input class="admin-field" type="number" name="order" value="{{ object.order|default:1 }}">
+    </label>
+    <label>Temps de lecture
+      <input class="admin-field" type="number" name="reading_time" value="{{ object.reading_time|default:3 }}">
+    </label>
+    <label class="switch-row"><span>Mettre à la une</span><span class="switch"><input type="checkbox" name="featured" {% if object.featured %}checked{% endif %}><span></span></span></label>
+
+    <div class="form-divider"></div>
+    <h2>SEO</h2>
+    <label>Meta title
+      <input class="admin-field" type="text" name="meta_title" value="{{ object.meta_title|default:'' }}">
+    </label>
+    <label>Meta description
+      <textarea class="admin-field admin-textarea" name="meta_description" rows="3">{{ object.meta_description|default:'' }}</textarea>
+    </label>
+    <label>Mots-clés
+      <input class="admin-field" type="text" name="keywords" value="{{ object.keywords|default:'' }}">
+    </label>
+    <label>URL canonique
+      <input class="admin-field" type="url" name="canonical_url" value="{{ object.canonical_url|default:'' }}">
+    </label>
+    <div class="image-choice">
+      <label>Image Open Graph par lien
+        <input class="admin-field" type="text" name="og_image_url" value="{{ object.og_image_url|default:'' }}" placeholder="https://... ou /media/...">
+      </label>
+      <label>Ou uploader une image SEO
+        <input class="admin-field" type="file" name="og_image_url_upload" accept="image/*">
+      </label>
+      {% if object.og_image_url %}<div class="current-image-preview"><img src="{{ object.og_image_url }}" alt="Open Graph"><span>Image SEO actuelle</span></div>{% endif %}
+    </div>
+
+    <div class="side-actions">
+      <button type="submit" class="btn primary"><i class="fas fa-save"></i> Enregistrer</button>
+      {% if object %}<a class="btn" href="{% url 'dashboard:news_detail' object.pk %}"><i class="fas fa-eye"></i> Voir détail</a>{% endif %}
+    </div>
+  </aside>
+</form>
+{% endblock %}

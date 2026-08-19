@@ -1,0 +1,521 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ brand_name }}{% if current_language == 'fr' %} | Engagement & Développement{% elif current_language == 'en' %} | Engagement & Development{% else %} | التزام وتنمية{% endif %}{% endblock %}
+{% block extra_head %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="{% if current_language == 'ar' %}{{ brand_name }} - التزام بالتربية والثقافة والعمل الاجتماعي والرياضة بطنجة.{% elif current_language == 'en' %}{{ brand_name }} - Commitment to education, culture, social action and sport in Tangier.{% else %}{{ brand_name }} - Engagement pour l'éducation, la culture, le social et le sport à Tanger.{% endif %}">
+  <meta name="theme-color" content="#062B4F">
+  <meta name="keywords" content="Fondation, Tanger, Métropole, éducation, culture, social, sport, bénévolat, Maroc">
+  <meta name="author" content="{{ brand_name }}">
+  <meta name="robots" content="index, follow">
+{% endblock %}
+{% block extra_css %}
+<style>
+  /* Partner Modal Styles */
+  .partner-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .partner-modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .partner-modal-container {
+    background: #ffffff;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 500px;
+    padding: 30px;
+    position: relative;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    transform: scale(0.9) translateY(20px);
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+  }
+  .partner-modal-overlay.active .partner-modal-container {
+    transform: scale(1) translateY(0);
+  }
+  .partner-modal-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: #64748b;
+    cursor: pointer;
+    transition: color 0.2s;
+    line-height: 1;
+  }
+  .partner-modal-close:hover {
+    color: #0f172a;
+  }
+  .partner-modal-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #f1f5f9;
+    padding-bottom: 18px;
+  }
+  .partner-modal-logo-container {
+    width: 80px;
+    height: 80px;
+    background: #f8fafc;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .partner-modal-logo-container img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+  }
+  .partner-modal-logo-container span {
+    font-size: 24px;
+    font-weight: 700;
+    color: #062B4F;
+  }
+  .partner-modal-titles {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .partner-modal-titles h3 {
+    margin: 0;
+    font-size: 19px;
+    color: #062B4F;
+    font-weight: 700;
+  }
+  .partner-modal-type-badge {
+    align-self: flex-start;
+    background: #e0f2fe;
+    color: #0369a1;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 9999px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .partner-modal-date {
+    font-size: 12px;
+    color: #64748b;
+  }
+  .partner-modal-body {
+    font-size: 15px;
+    color: #334155;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    max-height: 180px;
+    overflow-y: auto;
+    padding-right: 5px;
+    white-space: pre-line;
+  }
+  .partner-modal-body::-webkit-scrollbar {
+    width: 5px;
+  }
+  .partner-modal-body::-webkit-scrollbar-track {
+    background: #f1f5f9;
+  }
+  .partner-modal-body::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 3px;
+  }
+  .partner-modal-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    flex-wrap: wrap;
+    border-top: 1px solid #f1f5f9;
+    padding-top: 18px;
+  }
+  .partner-modal-btn.site-btn {
+    background: #062B4F;
+    color: #ffffff;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .partner-modal-btn.site-btn:hover {
+    background: #0b457b;
+    transform: translateY(-1px);
+  }
+  .partner-modal-socials {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .partner-modal-socials a {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #f1f5f9;
+    color: #475569;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+    text-decoration: none;
+  }
+  .partner-modal-socials a:hover {
+    transform: translateY(-2px);
+    color: #ffffff;
+  }
+  .partner-modal-socials a.fb:hover { background: #1877f2; }
+  .partner-modal-socials a.ig:hover { background: #e1306c; }
+  .partner-modal-socials a.yt:hover { background: #ff0000; }
+  .partner-modal-socials a.ln:hover { background: #0a66c2; }
+  .partner-modal-socials a.tw:hover { background: #000000; }
+  .partner-modal-socials a.tk:hover { background: #010101; }
+
+  .partner-logo {
+    cursor: pointer;
+    transition: transform 0.22s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.22s ease;
+  }
+  .partner-logo:hover {
+    transform: scale(1.06);
+    box-shadow: 0 8px 16px rgba(6, 43, 79, 0.08);
+  }
+</style>
+{% endblock %}
+{% block content %}
+<main>
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+      <div class="hero-video-wrapper">
+        <video id="heroVideo" autoplay muted loop playsinline class="hero-video" poster="{% static 'core/images/hero-fallback.jpg' %}" preload="auto">
+          <source src="{% static 'core/videos/vfon.mp4' %}" type="video/mp4">
+        </video>
+      </div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content container">
+        <h1 class="hero-title">{{ page_content.title }}</h1>
+        <p class="hero-subtitle">{{ page_content.subtitle }}</p>
+        <div class="hero-buttons">
+          <a href="{% url 'core:about' %}" class="btn btn-outline-light">{{ home_texts.hero_btn1|default:ui.discover_foundation }}</a>
+          <a href="{% url 'core:benevolat' %}" class="btn btn-primary">{{ home_texts.hero_btn2|default:ui.become_volunteer }}</a>
+        </div>
+        <div class="scroll-indicator">
+          <span>{{ home_texts.hero_scroll|default:ui.scroll }}</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Annonces -->
+    <section class="annonces-section" id="annonces">
+      <div class="container">
+        <h2 class="section-title">{{ home_texts.annonces_title|default:ui.announcements }}</h2>
+        <div class="slider" id="annonceSlider">
+          <div class="slides-track" id="slidesTrack">
+            {% for item in announcements %}
+            <div class="slide"><div class="slide-card"><div class="slide-img"><img src="{{ item.image_url }}" alt="{{ item.title }}" loading="lazy"></div><div class="slide-content"><span class="badge nouveau">{{ item.category|default:"Annonce" }}</span><h3>{{ item.title }}</h3><p>{{ item.summary }}</p><span class="date"><i class="far fa-calendar-alt"></i> {{ item.date|date:"d F Y" }}</span><a href="{% url 'core:actualites' %}" class="btn btn-sm btn-outline">{{ ui.read_more }}</a></div></div></div>
+            {% empty %}
+            <div class="slide"><div class="slide-card"><div class="slide-content"><span class="badge nouveau">Info</span><h3>{{ ui.no_announcement }}</h3><p>{{ ui.add_news_dashboard }}</p></div></div></div>
+            {% endfor %}
+        </div>
+          <button class="slider-btn prev" id="prevSlide" aria-label="Précédent"><i class="fas fa-chevron-left"></i></button>
+          <button class="slider-btn next" id="nextSlide" aria-label="Suivant"><i class="fas fa-chevron-right"></i></button>
+          <div class="slider-dots" id="sliderDots"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Statistiques -->
+    <section class="stats-section" id="stats">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-item reveal"><i class="fas fa-users"></i><div class="stat-number" data-target="{{ beneficiaries_count }}">0</div><h4>{{ home_texts.stats_beneficiaries_label|default:ui.beneficiaries }}</h4><p>{{ home_texts.stats_beneficiaries_sub|default:ui.direct_indirect }}</p></div>
+          <div class="stat-item reveal"><i class="fas fa-project-diagram"></i><div class="stat-number" data-target="{{ programs_count }}">0</div><h4>{{ home_texts.stats_programs_label|default:ui.programs }}</h4><p>{{ home_texts.stats_programs_sub|default:ui.published }}</p></div>
+          <div class="stat-item reveal"><i class="fas fa-chalkboard-teacher"></i><div class="stat-number" data-target="{{ formations_count }}">0</div><h4>{{ home_texts.stats_formations_label|default:ui.formations }}</h4><p>{{ home_texts.stats_formations_sub|default:ui.formations_published }}</p></div>
+          <div class="stat-item reveal"><i class="fas fa-handshake"></i><div class="stat-number" data-target="{{ partners_count }}">0</div><h4>{{ home_texts.stats_partners_label|default:ui.partners }}</h4><p>{{ home_texts.stats_partners_sub|default:ui.active }}</p></div>
+          <div class="stat-item reveal"><i class="fas fa-heart"></i><div class="stat-number" data-target="{{ volunteers_count }}">0</div><h4>{{ home_texts.stats_volunteers_label|default:ui.volunteers }}</h4><p>{{ home_texts.stats_volunteers_sub|default:ui.applications }}</p></div>
+          <div class="stat-item reveal"><i class="fas fa-calendar-alt"></i><div class="stat-number" data-target="{{ years_count }}">0</div><h4>{{ home_texts.stats_years_label|default:ui.years }}</h4><p>{{ home_texts.stats_years_sub|default:ui.experience }}</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Domaines -->
+    <section class="domaines-section" id="domaines">
+      <div class="container">
+        <h2 class="section-title">{{ home_texts.domains_title|default:ui.domains }}</h2>
+        <div class="domaines-grid">
+          {% for item in programs %}
+          <div class="domaine-card reveal"><div class="card-icon"><i class="fas fa-layer-group"></i></div><h3>{{ item.title }}</h3><p>{{ item.summary }}</p><a href="{% url 'core:programme' %}" class="btn btn-sm btn-primary">{{ home_texts.domains_btn|default:ui.discover }}</a></div>
+          {% empty %}
+          <div class="empty-state"><p>{{ ui.no_program }}</p></div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Activités -->
+    <section class="activites-section" id="programme">
+      <div class="container">
+        <h2 class="section-title">{{ home_texts.activities_title|default:ui.foundation_activities }}</h2>
+        <div class="activites-grid" id="activitesGrid"></div>
+        <div class="center-btn"><a href="{% url 'core:programme' %}" class="btn btn-primary">{{ home_texts.activities_btn|default:ui.all_activities }}</a></div>
+      </div>
+    </section>
+
+    <!-- Section Partners -->
+    <section class="partenaires-section" id="partenaires">
+      <div class="container">
+        <h2 class="section-title">{{ home_texts.partners_title|default:ui.our_partners }}</h2>
+        <div class="partners-carousel" id="partnersCarousel">
+          <div class="carousel-track" id="carouselTrack">
+            {% for partner in partners %}
+            <div class="partner-logo" 
+                 data-name="{{ partner.name }}" 
+                 data-type="{{ partner.partner_type|default:'' }}"
+                 data-desc="{{ partner.description|default:'' }}"
+                 data-logo="{{ partner.logo_url|default:'' }}"
+                 data-initials="{{ partner.initials }}"
+                 data-start-date="{% if partner.start_date %}{{ partner.start_date|date:'Y-m-d' }}{% endif %}"
+                 data-url="{{ partner.url|default:'' }}"
+                 data-facebook="{{ partner.facebook_url|default:'' }}"
+                 data-instagram="{{ partner.instagram_url|default:'' }}"
+                 data-youtube="{{ partner.youtube_url|default:'' }}"
+                 data-linkedin="{{ partner.linkedin_url|default:'' }}"
+                 data-twitter="{{ partner.twitter_url|default:'' }}"
+                 data-tiktok="{{ partner.tiktok_url|default:'' }}">
+              {% if partner.logo_url %}
+                <img src="{{ partner.logo_url }}" alt="{{ partner.name }}" loading="lazy">
+              {% else %}
+                <span>{{ partner.initials }}</span>
+              {% endif %}
+            </div>
+            {% empty %}
+            <div class="partner-logo"><span>FTM</span></div>
+            {% endfor %}
+            {% for partner in partners %}
+            <div class="partner-logo" aria-hidden="true"
+                 data-name="{{ partner.name }}" 
+                 data-type="{{ partner.partner_type|default:'' }}"
+                 data-desc="{{ partner.description|default:'' }}"
+                 data-logo="{{ partner.logo_url|default:'' }}"
+                 data-initials="{{ partner.initials }}"
+                 data-start-date="{% if partner.start_date %}{{ partner.start_date|date:'Y-m-d' }}{% endif %}"
+                 data-url="{{ partner.url|default:'' }}"
+                 data-facebook="{{ partner.facebook_url|default:'' }}"
+                 data-instagram="{{ partner.instagram_url|default:'' }}"
+                 data-youtube="{{ partner.youtube_url|default:'' }}"
+                 data-linkedin="{{ partner.linkedin_url|default:'' }}"
+                 data-twitter="{{ partner.twitter_url|default:'' }}"
+                 data-tiktok="{{ partner.tiktok_url|default:'' }}">
+              {% if partner.logo_url %}
+                <img src="{{ partner.logo_url }}" alt="{{ partner.name }}" loading="lazy">
+              {% else %}
+                <span>{{ partner.initials }}</span>
+              {% endif %}
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Bénévolat -->
+    <section class="benevolat-contact" id="benevolat">
+      <div class="container">
+        <div class="benevolat-wrapper" style="display: block;">
+          <div class="benevolat-text" style="max-width: 800px; margin: 0 auto; text-align: center; display: flex; flex-direction: column; align-items: center;">
+            <h2>{{ home_texts.benevolat_title|default:ui.become_volunteer }}</h2>
+            <p>{{ home_texts.benevolat_text|default:ui.volunteer_intro }}</p>
+            <ul style="list-style: none; margin: 20px 0 30px; padding: 0; display: flex; flex-direction: column; gap: 10px; align-items: flex-start;">
+              <li style="display: flex; align-items: center; gap: 10px; color: rgba(255,255,255,0.9);"><i class="fas fa-check-circle" style="color: var(--accent-gold);"></i> {{ home_texts.benevolat_point1|default:ui.mission_1 }}</li>
+              <li style="display: flex; align-items: center; gap: 10px; color: rgba(255,255,255,0.9);"><i class="fas fa-check-circle" style="color: var(--accent-gold);"></i> {{ home_texts.benevolat_point2|default:ui.mission_2 }}</li>
+              <li style="display: flex; align-items: center; gap: 10px; color: rgba(255,255,255,0.9);"><i class="fas fa-check-circle" style="color: var(--accent-gold);"></i> {{ home_texts.benevolat_point3|default:ui.mission_3 }}</li>
+            </ul>
+            <a href="{% url 'core:benevolat' %}" class="btn btn-primary">{{ home_texts.benevolat_btn|default:ui.register_now }}</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Partner Detail Modal -->
+  <div class="partner-modal-overlay" id="partnerModal">
+    <div class="partner-modal-container">
+      <button class="partner-modal-close" id="closePartnerModal" aria-label="Fermer">&times;</button>
+      <div class="partner-modal-content">
+        <div class="partner-modal-header">
+          <div class="partner-modal-logo-container" id="modalPartnerLogo"></div>
+          <div class="partner-modal-titles">
+            <h3 id="modalPartnerName">Nom du Partenaire</h3>
+            <span class="partner-modal-type-badge" id="modalPartnerType">Type</span>
+            <span class="partner-modal-date" id="modalPartnerDate"></span>
+          </div>
+        </div>
+        <div class="partner-modal-body" id="modalPartnerDesc"></div>
+        <div class="partner-modal-footer">
+          <a href="#" target="_blank" class="partner-modal-btn site-btn" id="modalPartnerUrl">
+            <i class="fas fa-globe"></i> Visiter le site
+          </a>
+          <div class="partner-modal-socials" id="modalPartnerSocials"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {{ activities|json_script:"home-activities-data" }}
+  <script>window.FTM_HOME_ACTIVITIES = JSON.parse(document.getElementById('home-activities-data').textContent);</script>
+{% endblock %}
+{% block extra_js %}
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const heroVideo = document.getElementById('heroVideo');
+      if (heroVideo) {
+        heroVideo.muted = true;
+        function playVideo() {
+          heroVideo.play().catch(() => {
+            document.body.addEventListener('click', () => heroVideo.play(), { once: true });
+            document.body.addEventListener('touchstart', () => heroVideo.play(), { once: true });
+          });
+        }
+        playVideo();
+        setInterval(() => { if (heroVideo.paused) playVideo(); }, 2000);
+      }
+
+      // Partner Modal Interactive Logic
+      const partnerLogos = document.querySelectorAll('.partner-logo[data-name]');
+      const modal = document.getElementById('partnerModal');
+      const closeBtn = document.getElementById('closePartnerModal');
+      
+      const modalLogo = document.getElementById('modalPartnerLogo');
+      const modalName = document.getElementById('modalPartnerName');
+      const modalType = document.getElementById('modalPartnerType');
+      const modalDate = document.getElementById('modalPartnerDate');
+      const modalDesc = document.getElementById('modalPartnerDesc');
+      const modalUrl = document.getElementById('modalPartnerUrl');
+      const modalSocials = document.getElementById('modalPartnerSocials');
+
+      partnerLogos.forEach(logo => {
+        logo.addEventListener('click', () => {
+          const name = logo.dataset.name;
+          const type = logo.dataset.type;
+          const desc = logo.dataset.desc;
+          const logoUrl = logo.dataset.logo;
+          const initials = logo.dataset.initials;
+          const startDate = logo.dataset.startDate;
+          const url = logo.dataset.url;
+          const facebook = logo.dataset.facebook;
+          const instagram = logo.dataset.instagram;
+          const youtube = logo.dataset.youtube;
+          const linkedin = logo.dataset.linkedin;
+          const twitter = logo.dataset.twitter;
+          const tiktok = logo.dataset.tiktok;
+
+          // Set logo content
+          if (logoUrl) {
+            modalLogo.innerHTML = `<img src="${logoUrl}" alt="${name}">`;
+          } else {
+            modalLogo.innerHTML = `<span>${initials || ''}</span>`;
+          }
+
+          // Set name, type, description
+          modalName.textContent = name;
+          if (type) {
+            modalType.textContent = type;
+            modalType.style.display = '';
+          } else {
+            modalType.style.display = 'none';
+          }
+
+          // Set partnership start date
+          if (startDate) {
+            const dateParts = startDate.split('-');
+            if (dateParts.length === 3) {
+              const months = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
+              const mIdx = parseInt(dateParts[1], 10) - 1;
+              modalDate.textContent = `Partenaire depuis : ${months[mIdx]} ${dateParts[0]}`;
+            } else {
+              modalDate.textContent = `Partenaire depuis : ${startDate}`;
+            }
+            modalDate.style.display = '';
+          } else {
+            modalDate.style.display = 'none';
+          }
+
+          // Set description
+          modalDesc.textContent = desc || "Aucune description supplémentaire disponible pour ce partenaire.";
+
+          // Set official website button
+          if (url) {
+            modalUrl.href = url;
+            modalUrl.style.display = '';
+          } else {
+            modalUrl.style.display = 'none';
+          }
+
+          // Build social links
+          modalSocials.innerHTML = '';
+          if (facebook) {
+            modalSocials.innerHTML += `<a href="${facebook}" target="_blank" class="fb" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>`;
+          }
+          if (instagram) {
+            modalSocials.innerHTML += `<a href="${instagram}" target="_blank" class="ig" aria-label="Instagram"><i class="fab fa-instagram"></i></a>`;
+          }
+          if (youtube) {
+            modalSocials.innerHTML += `<a href="${youtube}" target="_blank" class="yt" aria-label="YouTube"><i class="fab fa-youtube"></i></a>`;
+          }
+          if (linkedin) {
+            modalSocials.innerHTML += `<a href="${linkedin}" target="_blank" class="ln" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>`;
+          }
+          if (twitter) {
+            modalSocials.innerHTML += `<a href="${twitter}" target="_blank" class="tw" aria-label="Twitter"><i class="fab fa-twitter"></i></a>`;
+          }
+          if (tiktok) {
+            modalSocials.innerHTML += `<a href="${tiktok}" target="_blank" class="tk" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>`;
+          }
+
+          // Open modal
+          modal.classList.add('active');
+        });
+      });
+
+      // Close modal events
+      if (closeBtn) {
+        closeBtn.addEventListener('click', () => modal.classList.remove('active'));
+      }
+      window.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          modal.classList.remove('active');
+        }
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+          modal.classList.remove('active');
+        }
+      });
+    });
+  </script>
+{% endblock %}

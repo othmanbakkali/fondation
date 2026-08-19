@@ -1,0 +1,77 @@
+{% extends "dashboard/base_admin.html" %}
+{% load i18n %}
+{% block title %}{{ page_title }}{% endblock %}
+{% block admin_content %}
+<section class="page-heading">
+  <div>
+    <p class="eyebrow">Utilisateurs</p>
+    <h1>{{ page_title }}</h1>
+    <p>Gérer les comptes utilisateurs qui accèdent à l'administration du site.</p>
+  </div>
+  <div class="heading-actions">
+    <a class="btn" href="{{ list_url }}"><i class="fas fa-arrow-left"></i> Retour</a>
+    <button class="btn primary" type="submit" form="userForm"><i class="fas fa-save"></i> Enregistrer</button>
+  </div>
+</section>
+
+<form id="userForm" class="editor-layout polished-form" method="post" action="{{ request.path }}">
+  {% csrf_token %}
+  <section class="panel editor-main">
+    <div class="form-section-title" style="display:flex; gap:10px; align-items:center; border-bottom:1px solid #e2e8f0; padding-bottom:15px; margin-bottom:20px;">
+      <span><i class="fas fa-user-shield" style="font-size:24px; color:#3b82f6;"></i></span>
+      <div>
+        <h2 style="margin:0;">Informations du compte</h2>
+        <p style="margin:5px 0 0 0; color:#64748b;">Remplissez les informations de connexion et de contact.</p>
+      </div>
+    </div>
+
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+      <label style="font-weight:600;">Prénom
+        <input class="admin-field" type="text" name="first_name" value="{{ object.first_name|default:'' }}" required style="width:100%;">
+      </label>
+      
+      <label style="font-weight:600;">Nom
+        <input class="admin-field" type="text" name="last_name" value="{{ object.last_name|default:'' }}" required style="width:100%;">
+      </label>
+
+      <label style="font-weight:600;">Email (Sert d'identifiant de connexion)
+        <input class="admin-field" type="email" name="email" value="{{ object.email|default:'' }}" required style="width:100%;">
+      </label>
+
+      <label style="font-weight:600;">Numéro de téléphone
+        <input class="admin-field" type="tel" name="phone" value="{{ phone|default:'' }}" style="width:100%;">
+      </label>
+
+      <label style="font-weight:600;">Mot de passe {% if object %}(Laisser vide pour ne pas modifier){% endif %}
+        <input class="admin-field" type="password" name="password" {% if not object %}required{% endif %} style="width:100%;">
+      </label>
+    </div>
+  </section>
+
+  <aside class="panel editor-side">
+    <div class="form-section-title" style="display:flex; gap:10px; align-items:center; border-bottom:1px solid #e2e8f0; padding-bottom:15px; margin-bottom:20px;">
+      <span><i class="fas fa-toggle-on" style="font-size:20px; color:#10b981;"></i></span>
+      <h2 style="margin:0;">Statut &amp; Rôle</h2>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:15px;">
+      <label style="font-weight:600;">Statut du compte
+        <select class="admin-field" name="status" style="width:100%;">
+          <option value="actif" {% if object.is_active or not object %}selected{% endif %}>Actif (Accès autorisé)</option>
+          <option value="inactif" {% if object and not object.is_active %}selected{% endif %}>Inactif (Accès bloqué)</option>
+        </select>
+      </label>
+
+      <label style="font-weight:600;">Rôle
+        <select class="admin-field" name="role" style="width:100%;">
+          <option value="admin" {% if object.is_staff or not object %}selected{% endif %}>Administrateur</option>
+        </select>
+      </label>
+    </div>
+
+    <div style="margin-top: 30px;">
+      <button type="submit" class="btn primary" style="width:100%; display:flex; justify-content:center; align-items:center; gap:8px;"><i class="fas fa-save"></i> Enregistrer</button>
+    </div>
+  </aside>
+</form>
+{% endblock %}

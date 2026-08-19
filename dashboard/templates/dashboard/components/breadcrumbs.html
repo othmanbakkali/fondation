@@ -1,0 +1,4 @@
+{% load %}
+<div class="admin-breadcrumbs" aria-label="Fil d'Ariane">
+  <span>Administration</span><i class="fas fa-chevron-right"></i><strong>{% block breadcrumb_title %}{% firstof page_title _("Tableau de bord") %}{% endblock %}</strong>
+</div>

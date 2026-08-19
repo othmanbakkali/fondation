@@ -1,0 +1,318 @@
+{% extends "dashboard/base_admin.html" %}
+{% load i18n %}
+{% block title %}{{ page_title }}{% endblock %}
+{% block extra_head %}
+<style>
+  .i18n-triplet-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 15px;
+    width: 100%;
+  }
+  .i18n-field-group {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+  }
+  .i18n-field-group h4 {
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #0f172a;
+    border-bottom: 1px solid #f1f5f9;
+    padding-bottom: 8px;
+  }
+  .span-all {
+    grid-column: 1 / -1;
+  }
+  .lang-tag {
+    display: inline-block;
+    padding: 2px 6px;
+    font-size: 11px;
+    font-weight: 700;
+    border-radius: 4px;
+    margin-left: 6px;
+  }
+  .lang-tag.fr { background: #e0f2fe; color: #0369a1; }
+  .lang-tag.ar { background: #fef3c7; color: #b45309; }
+  .lang-tag.en { background: #dcfce7; color: #15803d; }
+</style>
+{% endblock %}
+{% block admin_content %}
+<section class="page-heading">
+  <div>
+    <p class="eyebrow">Édition de contenu</p>
+    <h1>{{ page_title }}</h1>
+    {% if object %}
+      <p><strong>Titre enregistré actuellement :</strong> {{ object.title }}</p>
+    {% else %}
+      <p>Ajoutez un nouveau contenu et préparez-le pour l’affichage public.</p>
+    {% endif %}
+  </div>
+  <div class="heading-actions">
+    <a class="btn" href="{{ list_url }}"><i class="fas fa-arrow-left"></i> Retour</a>
+    <button class="btn primary" type="submit" form="contentForm"><i class="fas fa-save"></i> Enregistrer</button>
+  </div>
+</section>
+
+<form id="contentForm" class="editor-layout polished-form" method="post" action="{{ request.path }}" enctype="multipart/form-data">
+  {% csrf_token %}
+  <section class="panel editor-main">
+    <div class="form-section-title">
+      <span><i class="fas fa-pen-nib"></i></span>
+      <div><h2>Informations principales (Multilingue)</h2><p>Ces champs supportent le Français, l'Arabe et l'Anglais.</p></div>
+    </div>
+
+    <div class="form-grid two">
+      <div class="i18n-field-group span-2">
+        <h4>{% if module.url == 'team' %}Nom &amp; Prénom{% else %}Titre{% endif %}</h4>
+        <div class="i18n-triplet-grid">
+          <label>Français <span class="lang-tag fr">FR</span>
+            <input class="admin-field" type="text" name="title" value="{{ object.title|default:'' }}" required>
+          </label>
+          <label>العربية (Arabic) <span class="lang-tag ar">AR</span>
+            <input class="admin-field" type="text" name="title_ar" value="{{ object.title_ar|default:'' }}" dir="rtl">
+          </label>
+          <label>English <span class="lang-tag en">EN</span>
+            <input class="admin-field" type="text" name="title_en" value="{{ object.title_en|default:'' }}">
+          </label>
+        </div>
+      </div>
+
+      {% if module.url != 'media' %}
+      <div class="i18n-field-group span-2">
+        <h4>Catégorie / Fonction</h4>
+        <div class="i18n-triplet-grid">
+          <label>Français <span class="lang-tag fr">FR</span>
+            <input class="admin-field" type="text" name="category" value="{{ object.category|default:'' }}">
+          </label>
+          <label>العربية (Arabic) <span class="lang-tag ar">AR</span>
+            <input class="admin-field" type="text" name="category_ar" value="{{ object.category_ar|default:'' }}" dir="rtl">
+          </label>
+          <label>English <span class="lang-tag en">EN</span>
+            <input class="admin-field" type="text" name="category_en" value="{{ object.category_en|default:'' }}">
+          </label>
+        </div>
+      </div>
+      {% endif %}
+
+      {% if module.url != 'team' and module.url != 'media' %}
+      <label>Slug (ne pas traduire)
+        <input class="admin-field" type="text" name="slug" value="{{ object.slug|default:'' }}">
+      </label>
+      {% endif %}
+      {% if module.url != 'media' %}
+      <label>{% if module.url == 'team' %}Adresse Email (ex: contact@fondation.ma){% else %}Auteur / Email / Responsable (ne pas traduire){% endif %}
+        <input class="admin-field" type="text" name="author" value="{{ object.author|default:'' }}">
+      </label>
+      {% endif %}
+
+      <div class="i18n-field-group span-2">
+        <h4>Description courte</h4>
+        <div class="i18n-triplet-grid">
+          <label>Français <span class="lang-tag fr">FR</span>
+            <textarea class="admin-field admin-textarea" name="summary" rows="3">{{ object.summary|default:'' }}</textarea>
+          </label>
+          <label>العربية (Arabic) <span class="lang-tag ar">AR</span>
+            <textarea class="admin-field admin-textarea" name="summary_ar" rows="3" dir="rtl">{{ object.summary_ar|default:'' }}</textarea>
+          </label>
+          <label>English <span class="lang-tag en">EN</span>
+            <textarea class="admin-field admin-textarea" name="summary_en" rows="3">{{ object.summary_en|default:'' }}</textarea>
+          </label>
+        </div>
+      </div>
+
+      {% if module.url != 'media' %}
+      <div class="i18n-field-group span-2">
+        <h4>Contenu détaillé / Biographie</h4>
+        <div class="i18n-triplet-grid">
+          <label>Français <span class="lang-tag fr">FR</span>
+            <textarea class="admin-field admin-textarea" name="body" rows="8">{{ object.body|default:'' }}</textarea>
+          </label>
+          <label>العربية (Arabic) <span class="lang-tag ar">AR</span>
+            <textarea class="admin-field admin-textarea" name="body_ar" rows="8" dir="rtl">{{ object.body_ar|default:'' }}</textarea>
+          </label>
+          <label>English <span class="lang-tag en">EN</span>
+            <textarea class="admin-field admin-textarea" name="body_en" rows="8">{{ object.body_en|default:'' }}</textarea>
+          </label>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+
+    <div class="form-section-title">
+      <span><i class="fas fa-photo-film"></i></span>
+      <div><h2>Médias et liens (Multilingue)</h2><p>Image, vidéo, dates, lieu et informations d’organisation.</p></div>
+    </div>
+
+    <div class="form-grid two">
+      <div class="image-choice span-2">
+        <label>Image par lien
+          <input class="admin-field" type="text" name="image_url" value="{{ object.image_url|default:'' }}" placeholder="https://... ou /media/...">
+        </label>
+        <label>Ou uploader une image
+          <input class="admin-field" type="file" name="image_url_upload" accept="image/*">
+        </label>
+        {% if object.image_url %}<div class="current-image-preview"><img src="{{ object.image_url }}" alt="{{ object.title }}"><span>Image actuelle</span></div>{% endif %}
+      </div>
+      {% if module.url != 'team' %}
+      <label>Vidéo URL
+        <input class="admin-field" type="url" name="video_url" value="{{ object.video_url|default:'' }}">
+      </label>
+      {% endif %}
+      <label>Facebook
+        <input class="admin-field" type="url" name="facebook_url" value="{{ object.facebook_url|default:'' }}">
+      </label>
+      <label>Instagram
+        <input class="admin-field" type="url" name="instagram_url" value="{{ object.instagram_url|default:'' }}">
+      </label>
+      <label>YouTube
+        <input class="admin-field" type="url" name="youtube_url" value="{{ object.youtube_url|default:'' }}">
+      </label>
+      <label>LinkedIn
+        <input class="admin-field" type="url" name="linkedin_url" value="{{ object.linkedin_url|default:'' }}">
+      </label>
+      <label>Twitter / X
+        <input class="admin-field" type="url" name="twitter_url" value="{{ object.twitter_url|default:'' }}">
+      </label>
+      <label>TikTok
+        <input class="admin-field" type="url" name="tiktok_url" value="{{ object.tiktok_url|default:'' }}">
+      </label>
+
+      {% if module.url != 'team' and module.url != 'media' %}
+      <div class="i18n-field-group span-2">
+        <h4>Lieu</h4>
+        <div class="i18n-triplet-grid">
+          <label>Français <span class="lang-tag fr">FR</span>
+            <input class="admin-field" type="text" name="location" value="{{ object.location|default:'' }}">
+          </label>
+          <label>العربية (Arabic) <span class="lang-tag ar">AR</span>
+            <input class="admin-field" type="text" name="location_ar" value="{{ object.location_ar|default:'' }}" dir="rtl">
+          </label>
+          <label>English <span class="lang-tag en">EN</span>
+            <input class="admin-field" type="text" name="location_en" value="{{ object.location_en|default:'' }}">
+          </label>
+        </div>
+      </div>
+
+      <div class="i18n-field-group span-2">
+        <h4>Formateur</h4>
+        <div class="i18n-triplet-grid">
+          <label>Français <span class="lang-tag fr">FR</span>
+            <input class="admin-field" type="text" name="instructor_name" value="{{ object.instructor_name|default:'' }}">
+          </label>
+          <label>العربية (Arabic) <span class="lang-tag ar">AR</span>
+            <input class="admin-field" type="text" name="instructor_name_ar" value="{{ object.instructor_name_ar|default:'' }}" dir="rtl">
+          </label>
+          <label>English <span class="lang-tag en">EN</span>
+            <input class="admin-field" type="text" name="instructor_name_en" value="{{ object.instructor_name_en|default:'' }}">
+          </label>
+        </div>
+      </div>
+      {% endif %}
+
+      {% if module.url != 'team' %}
+      <label>Date
+        <input class="admin-field" type="date" name="date" value="{{ object.date|date:'Y-m-d' }}">
+      </label>
+      {% endif %}
+
+      {% if module.url != 'team' and module.url != 'media' %}
+      <label>Date de début
+        <input class="admin-field" type="date" name="start_date" value="{{ object.start_date|date:'Y-m-d' }}">
+      </label>
+      <label>Date de fin
+        <input class="admin-field" type="date" name="end_date" value="{{ object.end_date|date:'Y-m-d' }}">
+      </label>
+      <label>Heure de début
+        <input class="admin-field" type="time" name="start_time" value="{{ object.start_time|time:'H:i' }}">
+      </label>
+      <label>Heure de fin
+        <input class="admin-field" type="time" name="end_time" value="{{ object.end_time|time:'H:i' }}">
+      </label>
+      <label>Nombre de places
+        <input class="admin-field" type="number" name="total_seats" value="{{ object.total_seats|default:0 }}">
+      </label>
+      <label>Places occupées
+        <input class="admin-field" type="number" name="registered_seats" value="{{ object.registered_seats|default:0 }}">
+      </label>
+      <label>Participants
+        <input class="admin-field" type="number" name="participants" value="{{ object.participants|default:0 }}">
+      </label>
+      <label>Rapports
+        <input class="admin-field" type="number" name="reports_count" value="{{ object.reports_count|default:0 }}">
+      </label>
+      {% endif %}
+    </div>
+  </section>
+
+  <aside class="panel editor-side publish-card">
+    <h2>Publication</h2>
+    <label>Statut
+      <select class="admin-field" name="status">
+        <option value="publie" {% if object.status == "publie" %}selected{% endif %}>Publié</option>
+        <option value="brouillon" {% if object.status == "brouillon" %}selected{% endif %}>Brouillon</option>
+        <option value="programme" {% if object.status == "programme" %}selected{% endif %}>Programmé</option>
+        <option value="archive" {% if object.status == "archive" %}selected{% endif %}>Archivé</option>
+        <option value="actif" {% if object.status == "actif" %}selected{% endif %}>Actif</option>
+        <option value="inactif" {% if object.status == "inactif" %}selected{% endif %}>Inactif</option>
+      </select>
+    </label>
+    <label>Ordre d’affichage
+      <input class="admin-field" type="number" name="order" value="{{ object.order|default:1 }}">
+    </label>
+    {% if module.url != 'team' and module.url != 'media' %}
+    <label>Temps / note
+      <input class="admin-field" type="number" name="reading_time" value="{{ object.reading_time|default:3 }}">
+    </label>
+    <label class="switch-row"><span>Mettre à la une</span><span class="switch"><input type="checkbox" name="featured" {% if object.featured %}checked{% endif %}><span></span></span></label>
+    {% endif %}
+
+    {% if module.url != 'team' and module.url != 'media' %}
+    <div class="form-divider"></div>
+    <h2>SEO (Multilingue)</h2>
+    <div class="i18n-field-group">
+      <h4>Meta title</h4>
+      <label>FR <span class="lang-tag fr">FR</span><input class="admin-field" type="text" name="meta_title" value="{{ object.meta_title|default:'' }}"></label>
+      <label>AR <span class="lang-tag ar">AR</span><input class="admin-field" type="text" name="meta_title_ar" value="{{ object.meta_title_ar|default:'' }}" dir="rtl"></label>
+      <label>EN <span class="lang-tag en">EN</span><input class="admin-field" type="text" name="meta_title_en" value="{{ object.meta_title_en|default:'' }}"></label>
+    </div>
+
+    <div class="i18n-field-group">
+      <h4>Meta description</h4>
+      <label>FR <span class="lang-tag fr">FR</span><textarea class="admin-field admin-textarea" name="meta_description" rows="3">{{ object.meta_description|default:'' }}</textarea></label>
+      <label>AR <span class="lang-tag ar">AR</span><textarea class="admin-field admin-textarea" name="meta_description_ar" rows="3" dir="rtl">{{ object.meta_description_ar|default:'' }}</textarea></label>
+      <label>EN <span class="lang-tag en">EN</span><textarea class="admin-field admin-textarea" name="meta_description_en" rows="3">{{ object.meta_description_en|default:'' }}</textarea></label>
+    </div>
+
+    <div class="i18n-field-group">
+      <h4>Mots-clés</h4>
+      <label>FR <span class="lang-tag fr">FR</span><input class="admin-field" type="text" name="keywords" value="{{ object.keywords|default:'' }}"></label>
+      <label>AR <span class="lang-tag ar">AR</span><input class="admin-field" type="text" name="keywords_ar" value="{{ object.keywords_ar|default:'' }}" dir="rtl"></label>
+      <label>EN <span class="lang-tag en">EN</span><input class="admin-field" type="text" name="keywords_en" value="{{ object.keywords_en|default:'' }}"></label>
+    </div>
+
+    <label>URL canonique
+      <input class="admin-field" type="url" name="canonical_url" value="{{ object.canonical_url|default:'' }}">
+    </label>
+    <div class="image-choice">
+      <label>Image Open Graph par lien
+        <input class="admin-field" type="text" name="og_image_url" value="{{ object.og_image_url|default:'' }}" placeholder="https://... ou /media/...">
+      </label>
+      <label>Ou uploader une image SEO
+        <input class="admin-field" type="file" name="og_image_url_upload" accept="image/*">
+      </label>
+      {% if object.og_image_url %}<div class="current-image-preview"><img src="{{ object.og_image_url }}" alt="Open Graph"><span>Image SEO actuelle</span></div>{% endif %}
+    </div>
+    {% endif %}
+    <div class="side-actions">
+      <button type="submit" class="btn primary"><i class="fas fa-save"></i> Enregistrer</button>
+      {% if detail_url %}<a class="btn" href="{{ detail_url }}"><i class="fas fa-eye"></i> Voir détail</a>{% endif %}
+    </div>
+  </section>
+</form>
+{% endblock %}

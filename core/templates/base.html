@@ -1,0 +1,100 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="{{ current_language|default:'fr' }}" dir="{{ text_direction|default:'ltr' }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#062B4F">
+  
+  <title>{% block title %}{{ page_content.meta_title|default:page_content.title }}{% endblock %} - {{ brand_name|default:"Fondation Tanger Métropole" }}</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="{% block meta_description %}{{ page_content.meta_description|default:'' }}{% endblock %}">
+  <meta name="keywords" content="{% block meta_keywords %}{{ page_content.keywords|default:'' }}{% endblock %}">
+  <meta name="robots" content="index, follow">
+  
+  <!-- Canonical URL -->
+  {% if page_content.canonical_url %}
+  <link rel="canonical" href="{{ page_content.canonical_url }}">
+  {% endif %}
+  
+  <!-- Open Graph / Facebook / LinkedIn -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{% block og_title %}{{ page_content.meta_title|default:page_content.title }}{% endblock %}">
+  <meta property="og:description" content="{% block og_description %}{{ page_content.meta_description|default:'' }}{% endblock %}">
+  {% if page_content.og_image_url %}
+  <meta property="og:image" content="{{ page_content.og_image_url }}">
+  {% endif %}
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{% block twitter_title %}{{ page_content.meta_title|default:page_content.title }}{% endblock %}">
+  <meta name="twitter:description" content="{% block twitter_description %}{{ page_content.meta_description|default:'' }}{% endblock %}">
+  {% if page_content.og_image_url %}
+  <meta name="twitter:image" content="{{ page_content.og_image_url }}">
+  {% endif %}
+
+  {% block extra_head %}{% endblock %}
+  <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'core/css/responsive.css' %}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:wght@500;600;700&family=Noto+Kufi+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  {% block extra_css %}{% endblock %}
+</head>
+<body>
+  {% include "components/sidebar.html" %}
+  {% include "components/navbar.html" %}
+
+  {% block content %}
+  {% endblock %}
+
+  {% include "components/footer.html" %}
+
+  <script id="ui-translations" type="application/json">
+    {
+      "current_language": "{{ current_language }}",
+      "text_direction": "{{ text_direction }}",
+      "ui": {
+        "register": "{{ ui.register|escapejs }}",
+        "location": "{{ ui.location|escapejs }}",
+        "participants": "{{ ui.participants|escapejs }}",
+        "no_report": "{{ ui.no_report|escapejs }}",
+        "one_report": "{{ ui.one_report|escapejs }}",
+        "reports_available": "{{ ui.reports_available|escapejs }}",
+        "full_name_label": "{{ ui.full_name_label|escapejs }}",
+        "birth_date_label": "{{ ui.birth_date_label|escapejs }}",
+        "email_label": "{{ ui.email_label|escapejs }}",
+        "phone_label": "{{ ui.phone_label|escapejs }}",
+        "city_label": "{{ ui.city_label|escapejs }}",
+        "study_level_label": "{{ ui.study_level_label|escapejs }}",
+        "motivation_label": "{{ ui.motivation_label|escapejs }}",
+        "accept_terms": "{{ ui.accept_terms|escapejs }}",
+        "confirm_registration": "{{ ui.confirm_registration|escapejs }}",
+        "link_copied": "{{ ui.link_copied|escapejs }}",
+        "no_results_title": "{{ ui.no_results_title|escapejs }}",
+        "no_results_desc": "{{ ui.no_results_desc|escapejs }}",
+        "reset_filters": "{{ ui.reset_filters|escapejs }}",
+        "category_label": "{{ ui.category_label|escapejs }}",
+        "year_label": "{{ ui.year_label|escapejs }}",
+        "month_label": "{{ ui.month_label|escapejs }}",
+        "search_placeholder": "{{ ui.search_placeholder|escapejs }}",
+        "all_categories": "{{ ui.all_categories|escapejs }}",
+        "all_years": "{{ ui.all_years|escapejs }}",
+        "all_months": "{{ ui.all_months|escapejs }}",
+        "sport": "{{ ui.sport|escapejs }}",
+        "culture": "{{ ui.culture|escapejs }}",
+        "education": "{{ ui.education|escapejs }}",
+        "social": "{{ ui.social|escapejs }}",
+        "read_more": "{{ ui.read_more|escapejs }}"
+      }
+    }
+  </script>
+  <script>
+    window.FTM_LANG = JSON.parse(document.getElementById('ui-translations').textContent);
+  </script>
+  <script src="{% static 'core/js/main.js' %}"></script>
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,55 @@
+{% load %}
+<div class="table-toolbar">
+  <label class="table-search"><i class="fas fa-search"></i><input type="search" data-table-search placeholder="Rechercher dans le tableau" aria-label="Rechercher"></label>
+  <select data-table-filter aria-label="Filtrer par statut">
+    <option value="">Tous les statuts</option>
+    <option>publie</option>
+    <option>brouillon</option>
+    <option>programme</option>
+    <option>archive</option>
+    <option>actif</option>
+    <option>inactif</option>
+    <option>en_attente</option>
+    <option>accepte</option>
+    <option>refuse</option>
+  </select>
+  <button class="btn ghost" data-bulk-action><i class="fas fa-layer-group"></i> Action groupée</button>
+</div>
+<div class="table-wrap">
+  <table class="admin-table" data-admin-table>
+    <thead><tr><th><input type="checkbox" data-select-all aria-label="Tout sélectionner"></th><th>Image</th>{% for col in columns %}<th data-sort>{{ col }}</th>{% endfor %}<th>Actions</th></tr></thead>
+    <tbody>
+    {% if table_items %}
+      {% for item in table_items %}
+      <tr>
+        <td><input type="checkbox" class="row-check" aria-label="Sélectionner"></td>
+        <td><img class="thumb" src="{{ item.image }}" alt="Aperçu contenu"></td>
+        {% for cell in item.cells %}<td>{% if forloop.last %}<span class="status-badge status-{{ cell|slugify }}">{{ cell }}</span>{% else %}{{ cell }}{% endif %}</td>{% endfor %}
+        <td class="actions-cell">
+          <a class="icon-btn" href="{{ item.detail_url }}" aria-label="Consulter"><i class="fas fa-eye"></i></a>
+          {% if not item.read_only %}
+            {% if item.edit_url %}
+            <a class="icon-btn" href="{{ item.edit_url }}" aria-label="Modifier"><i class="fas fa-edit"></i></a>
+            {% endif %}
+            {% if item.duplicate_url %}
+            <a class="icon-btn" href="{{ item.duplicate_url }}" aria-label="Dupliquer" data-confirm-submit="Dupliquer cet élément ?"><i class="fas fa-copy"></i></a>
+            {% endif %}
+            <form method="post" action="{{ item.delete_url }}" class="inline-delete-form">{% csrf_token %}<button class="icon-btn danger" type="submit" data-confirm-submit="Supprimer cet élément ?"><i class="fas fa-trash"></i></button></form>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    {% else %}
+      {% for row in rows %}
+      <tr>
+        <td><input type="checkbox" class="row-check" aria-label="Sélectionner"></td>
+        <td><img class="thumb" src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=120&h=80&fit=crop&auto=format" alt="Aperçu contenu"></td>
+        {% for cell in row %}<td>{% if forloop.last %}<span class="status-badge status-{{ cell|slugify }}">{{ cell }}</span>{% else %}{{ cell }}{% endif %}</td>{% endfor %}
+        <td class="actions-cell"><button class="icon-btn" data-detail><i class="fas fa-eye"></i></button><button class="icon-btn" data-toast="Action en cours..."><i class="fas fa-copy"></i></button><button class="icon-btn danger" data-confirm="Voulez-vous supprimer cet élément ?"><i class="fas fa-trash"></i></button></td>
+      </tr>
+      {% endfor %}
+    {% endif %}
+    </tbody>
+  </table>
+</div>
+{% include "dashboard/components/pagination.html" %}

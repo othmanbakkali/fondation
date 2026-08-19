@@ -1,0 +1,62 @@
+{% extends "dashboard/base_admin.html" %}
+{% load i18n %}
+{% block title %}Modifier le paramètre{% endblock %}
+{% block admin_content %}
+<section class="page-heading">
+  <div>
+    <p class="eyebrow">Configuration du site</p>
+    <h1>Modifier le paramètre : {{ setting.key }}</h1>
+    <p>Modifiez la clé, le groupe de classement ou les valeurs traduites du paramètre.</p>
+  </div>
+  <a class="btn" href="{% url 'dashboard:settings' %}"><i class="fas fa-arrow-left"></i> Retour aux paramètres</a>
+</section>
+
+<section class="settings-grid">
+  <article class="panel settings-card span-2">
+    <div class="form-section-title">
+      <span><i class="fas fa-edit"></i></span>
+      <div>
+        <h2>Formulaire d'édition</h2>
+        <p>Toutes les modifications sont enregistrées instantanément et appliquées sur le site.</p>
+      </div>
+    </div>
+    
+    <form method="post" class="form-grid" enctype="multipart/form-data" style="margin-top: 20px;">{% csrf_token %}
+      {% for field in form %}
+        {% if field.name == "value" %}
+          <div class="image-choice span-2">
+            <label>{{ field.label }} / lien</label>
+            {{ field }}
+            {% if field.errors %}<small class="field-error">{{ field.errors|striptags }}</small>{% endif %}
+            
+            <label style="margin-top: 10px;">Ou uploader une nouvelle image
+              <input class="admin-field" type="file" name="value_upload" accept="image/*">
+            </label>
+            {% if setting.value %}
+            <div class="current-image-preview" style="margin-top: 15px;">
+              {% if "http" in setting.value or "/media/" in setting.value %}
+              <img src="{{ setting.value }}" alt="Valeur actuelle" style="max-height: 120px; border-radius: 6px;">
+              {% endif %}
+              <span>Valeur actuelle : {{ setting.value }}</span>
+            </div>
+            {% endif %}
+          </div>
+        {% elif field.name == "value_fr" or field.name == "value_ar" or field.name == "value_en" %}
+          <div class="i18n-field span-2">
+            <label>{{ field.label }} {% if "ar" in field.name %}<span class="lang-tag ar">AR</span>{% elif "en" in field.name %}<span class="lang-tag en">EN</span>{% else %}<span class="lang-tag fr">FR</span>{% endif %}</label>
+            {{ field }}
+            {% if field.errors %}<small class="field-error">{{ field.errors|striptags }}</small>{% endif %}
+          </div>
+        {% else %}
+          <label class="span-2">{{ field.label }} {{ field }}{% if field.errors %}<small class="field-error">{{ field.errors|striptags }}</small>{% endif %}</label>
+        {% endif %}
+      {% endfor %}
+      
+      <div class="side-actions span-2" style="margin-top: 20px; display: flex; gap: 10px;">
+        <button class="btn primary" type="submit"><i class="fas fa-save"></i> Enregistrer les modifications</button>
+        <a class="btn" href="{% url 'dashboard:settings' %}">Annuler</a>
+      </div>
+    </form>
+  </article>
+</section>
+{% endblock %}

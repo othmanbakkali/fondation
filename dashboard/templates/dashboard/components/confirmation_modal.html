@@ -1,0 +1,21 @@
+{% load %}
+<div class="modal-overlay" id="confirmationModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-card">
+    <button class="modal-close" data-close-modal aria-label="Fermer"><i class="fas fa-times"></i></button>
+    <div class="modal-icon"><i class="fas fa-triangle-exclamation"></i></div>
+    <h2 id="modalTitle">Confirmer l&#x27;action</h2>
+    <p id="modalMessage">Êtes-vous sûr de vouloir effectuer cette action ?</p>
+    <div class="modal-actions"><button class="btn ghost" data-close-modal>Annuler</button><button class="btn danger" data-confirm-action>Confirmer</button></div>
+  </div>
+</div>
+<div class="modal-overlay" id="mediaModal" role="dialog" aria-modal="true">
+  <div class="modal-card modal-wide">
+    <button class="modal-close" data-close-media aria-label="Fermer"><i class="fas fa-times"></i></button>
+    <h2>Sélectionner un média</h2>
+    <div class="media-picker-grid">
+      <button><img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400&h=260&fit=crop" alt="Formation jeunesse"><span>Formation jeunesse</span></button>
+      <button><img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=400&h=260&fit=crop" alt="Action sociale"><span>Action sociale</span></button>
+      <button><img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=400&h=260&fit=crop" alt="Culture Tanger"><span>Culture Tanger</span></button>
+    </div>
+  </div>
+</div>

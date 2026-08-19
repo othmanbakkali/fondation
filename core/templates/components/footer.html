@@ -1,0 +1,38 @@
+{% load static %}
+<footer class="footer" id="footer">
+  <div class="container footer-grid">
+    <div class="footer-about">
+      <h4>{{ ui.about }}</h4>
+      <p>{% if settings.footer_description %}{{ settings.footer_description }}{% elif current_language == "ar" %}تعمل مؤسسة طنجة الكبرى من أجل التنمية الإنسانية والثقافية والاجتماعية بمدينة طنجة الكبرى.{% elif current_language == "en" %}Tangier Metropolitan Foundation supports human, cultural and social development across Greater Tangier.{% else %}La Fondation Tanger Métropole œuvre pour le développement humain, culturel et social de la ville du Détroit.{% endif %}</p>
+    </div>
+    <div class="footer-links">
+      <h4>{{ ui.quick_links }}</h4>
+      <ul>
+        <li><a href="{% url 'core:about' %}">{{ ui.about }}</a></li>
+        <li><a href="{% url 'core:programme' %}">{{ ui.programme }}</a></li>
+        <li><a href="{% url 'core:benevolat' %}">{{ ui.volunteering }}</a></li>
+        <li><a href="{% url 'core:contact' %}">{{ ui.contact }}</a></li>
+      </ul>
+    </div>
+    <div class="footer-coord">
+      <h4>{{ ui.coordinates }}</h4>
+      <p><i class="fas fa-map-marker-alt"></i> {{ settings.address|default:"23 Rue de la Liberté, Tanger 90000" }}</p>
+      <p><i class="fas fa-phone"></i> {{ settings.phone|default:"+212 5 39 94 00 00" }}</p>
+      <p><i class="fas fa-envelope"></i> {{ settings.email|default:"contact@tangermetropole.ma" }}</p>
+      <p><i class="far fa-clock"></i> {{ settings.hours|default:"Lun-Ven 9h-17h" }}</p>
+    </div>
+    <div class="footer-social">
+      <h4>{{ ui.social_networks }}</h4>
+      <div class="social-icons">
+        <a href="{{ settings.facebook_url|default:'#' }}" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="{{ settings.instagram_url|default:'#' }}" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="{{ settings.linkedin_url|default:'#' }}" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="{{ settings.youtube_url|default:'#' }}" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        {% if settings.whatsapp_url %}
+        <a href="{{ settings.whatsapp_url }}" target="_blank" aria-label="WhatsApp" style="background:#25d366;"><i class="fab fa-whatsapp"></i></a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom"><p>&copy; 2026 {{ brand_name }} - {{ ui.all_rights }}</p></div>
+</footer>

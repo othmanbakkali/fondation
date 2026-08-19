@@ -1,0 +1,43 @@
+{% load static %}
+<header class="navbar" id="navbar">
+  <div class="container nav-container">
+    <a href="{% url 'core:home' %}" class="logo" aria-label="{{ brand_name }} - About">
+      <img src="{% static 'core/images/fonlogo.png' %}" alt="{{ brand_name }}" class="logo-img">
+    </a>
+
+    <nav class="nav-menu" id="navMenu">
+      <ul class="nav-list">
+        <li><a href="{% url 'core:about' %}" class="nav-link">{{ ui.about }}</a></li>
+        <li class="nav-item dropdown">
+          <a href="{% url 'core:programme' %}" class="nav-link dropdown-toggle" id="dropdownProgramme" aria-haspopup="true" aria-expanded="false">
+            {{ ui.programme }} <i class="fas fa-chevron-down dropdown-arrow"></i>
+          </a>
+          <ul class="dropdown-menu" id="dropdownMenu" aria-labelledby="dropdownProgramme">
+            <li><a href="{% url 'core:activites' %}" class="dropdown-link"><i class="fas fa-calendar-alt"></i> {{ ui.activities }}</a></li>
+            <li><a href="{% url 'core:actualites' %}" class="dropdown-link"><i class="fas fa-newspaper"></i> {{ ui.news }}</a></li>
+            <li><a href="{% url 'core:formations' %}" class="dropdown-link"><i class="fas fa-graduation-cap"></i> {{ ui.formations }}</a></li>
+            <li><a href="{% url 'core:medias' %}" class="dropdown-link"><i class="fas fa-photo-video"></i> {{ ui.media }}</a></li>
+          </ul>
+        </li>
+        <li><a href="{% url 'core:benevolat' %}" class="nav-link">{{ ui.volunteering }}</a></li>
+        <li><a href="{% url 'core:contact' %}" class="nav-link">{{ ui.contact }}</a></li>
+      </ul>
+      <a href="{% url 'core:benevolat' %}" class="btn btn-primary nav-cta">{{ ui.join_us|default:"Rejoignez-nous" }}</a>
+      
+      <!-- Language Switcher -->
+      <form action="{% url 'set_language' %}" method="post" id="langSwitcherForm" style="display: inline-block; margin-left: 15px; vertical-align: middle;">
+        {% csrf_token %}
+        <input name="next" type="hidden" value="{{ request.path }}">
+        <select name="language" onchange="this.form.submit()" class="lang-select" style="padding: 6px 12px; border-radius: 6px; border: 1px solid #cbd5e1; background: #ffffff; color: #062B4F; font-size: 13px; font-weight: 600; cursor: pointer; outline: none; transition: border-color 0.2s;">
+          <option value="fr" {% if current_language == "fr" %}selected{% endif %}>FR</option>
+          <option value="ar" {% if current_language == "ar" %}selected{% endif %}>AR</option>
+          <option value="en" {% if current_language == "en" %}selected{% endif %}>EN</option>
+        </select>
+      </form>
+    </nav>
+
+    <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+  </div>
+</header>

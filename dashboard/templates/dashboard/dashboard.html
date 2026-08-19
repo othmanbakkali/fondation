@@ -1,0 +1,20 @@
+{% extends "dashboard/base_admin.html" %}
+{% load %}
+{% block title %}Tableau de bord{% endblock %}
+{% block admin_content %}
+<section class="page-heading">
+  <div><p class="eyebrow">Pilotage général</p><h1>Tableau de bord</h1><p>Vue synthétique des contenus, demandes et performances de la Fondation Tanger Métropole.</p></div>
+  <div class="heading-actions"><a class="btn" href="{% url 'dashboard:media_list' %}"><i class="fas fa-photo-video"></i> Médiathèque</a><button class="btn primary" onclick="window.print()"><i class="fas fa-file-export"></i> Exporter</button></div>
+</section>
+<section class="stats-grid">
+  {% for stat in stats %}<article class="stat-card"><span style="--c:{{ stat.color }}"><i class="fas {{ stat.icon }}"></i></span><div><strong>{{ stat.value }}</strong><p>{{ stat.label }}</p><small>{{ stat.change }}</small></div></article>{% endfor %}
+</section>
+<section class="dashboard-grid">
+  <article class="panel span-2"><div class="panel-head"><h2>Activités par mois</h2><span>2026</span></div><div class="bar-chart">{% for bar in monthly_activity %}<div style="--h:{{ bar.height }}%"><span>{{ bar.value }}</span><label>{{ bar.month }}</label></div>{% endfor %}</div></article>
+  <article class="panel"><div class="panel-head"><h2>Catégories</h2></div><div class="donut-card"><div class="donut" style="background: {{ donut_gradient }}"></div><ul><li><span class="dot blue"></span>Éducatives {{ categories_percentages.education }}%</li><li><span class="dot green"></span>Sociales {{ categories_percentages.social }}%</li><li><span class="dot gold"></span>Culturelles {{ categories_percentages.culture }}%</li><li><span class="dot red"></span>Sportives {{ categories_percentages.sport }}%</li></ul></div></article>
+  <article class="panel"><div class="panel-head"><h2>Actions rapides</h2></div><div class="quick-grid">{% for action in quick_actions %}<a href="{{ action.url }}"><i class="fas {{ action.icon }}"></i><span>{{ action.label }}</span></a>{% endfor %}</div></article>
+  <article class="panel"><div class="panel-head"><h2>Dernières candidatures</h2><a href="{% url 'dashboard:volunteer_list' %}">Voir tout</a></div>{% for item in volunteers %}<div class="activity-line"><img src="https://ui-avatars.com/api/?name={{ item.0|urlencode }}&background=0B5EA8&color=fff" alt="{{ item.0 }}"><div><strong>{{ item.0 }}</strong><small>{{ item.1 }} - {{ item.2 }}</small></div><span class="status-badge status-en-attente">En attente</span></div>{% endfor %}</article>
+  <article class="panel"><div class="panel-head"><h2>Messages récents</h2><a href="{% url 'dashboard:contact_messages' %}">Boîte</a></div>{% for item in messages %}<div class="message-preview"><strong>{{ item.0 }}</strong><p>{{ item.2 }}</p><small>{{ item.3 }}</small></div>{% endfor %}</article>
+  <article class="panel span-2"><div class="panel-head"><h2>Contenu en attente</h2></div>{% include "dashboard/components/data_table.html" with rows=pending columns=pending_columns compact=True %}</article>
+</section>
+{% endblock %}

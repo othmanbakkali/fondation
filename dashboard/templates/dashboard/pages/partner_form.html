@@ -1,0 +1,202 @@
+{% extends "dashboard/base_admin.html" %}
+{% load i18n %}
+{% block title %}{{ page_title }}{% endblock %}
+{% block extra_head %}
+<style>
+  .i18n-triplet-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 15px;
+    width: 100%;
+  }
+  .i18n-field-group {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+  }
+  .i18n-field-group h4 {
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #0f172a;
+    border-bottom: 1px solid #f1f5f9;
+    padding-bottom: 8px;
+  }
+  .span-all {
+    grid-column: 1 / -1;
+  }
+  .lang-tag {
+    display: inline-block;
+    padding: 2px 6px;
+    font-size: 11px;
+    font-weight: 700;
+    border-radius: 4px;
+    margin-left: 6px;
+  }
+  .lang-tag.fr { background: #e0f2fe; color: #0369a1; }
+  .lang-tag.ar { background: #fef3c7; color: #b45309; }
+  .lang-tag.en { background: #dcfce7; color: #15803d; }
+</style>
+{% endblock %}
+{% block admin_content %}
+<section class="page-heading">
+  <div>
+    <p class="eyebrow">Partenaires</p>
+    <h1>{{ page_title }}</h1>
+    <p>Ajoutez ou modifiez les informations du partenaire en Français, Arabe et Anglais.</p>
+  </div>
+  <div class="heading-actions">
+    <a class="btn" href="{{ list_url }}"><i class="fas fa-arrow-left"></i> Retour</a>
+    <button class="btn primary" type="submit" form="partnerForm" onclick="const f = document.getElementById('partnerForm'); if(f.reportValidity()) f.submit();"><i class="fas fa-save"></i> Enregistrer</button>
+  </div>
+</section>
+
+<form id="partnerForm" class="editor-layout polished-form" method="post" action="{{ request.path }}" enctype="multipart/form-data">
+  {% csrf_token %}
+  
+  {% if form.errors %}
+  <div class="inline-alert error span-all" style="margin-bottom: 20px; background: #fee2e2; border: 1px solid #fecaca; color: #991b1b; padding: 15px; border-radius: 8px;">
+    <strong>Veuillez corriger les erreurs suivantes :</strong>
+    <ul style="margin: 5px 0 0 20px; padding: 0;">
+      {% for field, errors in form.errors.items %}
+      <li><strong>{{ field }}</strong>: {{ errors|join:", " }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+  
+  <section class="panel editor-main">
+    <div class="form-section-title">
+      <span><i class="fas fa-handshake"></i></span>
+      <div><h2>Informations principales (Multilingue)</h2><p>Ces champs supportent le Français, l'Arabe et l'Anglais.</p></div>
+    </div>
+
+    <!-- Name triplet -->
+    <div class="i18n-field-group span-all">
+      <h4>Nom du partenaire *</h4>
+      <div class="i18n-triplet-grid">
+        <label>Français (Principal) <span class="lang-tag fr">FR</span>
+          <input class="admin-field" type="text" name="name" value="{{ object.name|default:'' }}" required>
+        </label>
+        <label>العربية (Arabic) <span class="lang-tag ar">AR</span>
+          <input class="admin-field" type="text" name="name_ar" value="{{ object.name_ar|default:'' }}" dir="rtl">
+        </label>
+        <label>English <span class="lang-tag en">EN</span>
+          <input class="admin-field" type="text" name="name_en" value="{{ object.name_en|default:'' }}">
+        </label>
+      </div>
+    </div>
+
+    <!-- Partner Type triplet -->
+    <div class="i18n-field-group span-all">
+      <h4>Type de partenaire</h4>
+      <div class="i18n-triplet-grid">
+        <label>Français (Principal) <span class="lang-tag fr">FR</span>
+          <input class="admin-field" type="text" name="partner_type" value="{{ object.partner_type|default:'' }}" placeholder="Ex: Institutionnel, Associatif...">
+        </label>
+        <label>العربية (Arabic) <span class="lang-tag ar">AR</span>
+          <input class="admin-field" type="text" name="partner_type_ar" value="{{ object.partner_type_ar|default:'' }}" dir="rtl">
+        </label>
+        <label>English <span class="lang-tag en">EN</span>
+          <input class="admin-field" type="text" name="partner_type_en" value="{{ object.partner_type_en|default:'' }}">
+        </label>
+      </div>
+    </div>
+
+    <!-- Description triplet -->
+    <div class="i18n-field-group span-all">
+      <h4>Description</h4>
+      <div class="i18n-triplet-grid">
+        <label>Français (Principal) <span class="lang-tag fr">FR</span>
+          <textarea class="admin-field admin-textarea" name="description" rows="5">{{ object.description|default:'' }}</textarea>
+        </label>
+        <label>العربية (Arabic) <span class="lang-tag ar">AR</span>
+          <textarea class="admin-field admin-textarea" name="description_ar" rows="5" dir="rtl">{{ object.description_ar|default:'' }}</textarea>
+        </label>
+        <label>English <span class="lang-tag en">EN</span>
+          <textarea class="admin-field admin-textarea" name="description_en" rows="5">{{ object.description_en|default:'' }}</textarea>
+        </label>
+      </div>
+    </div>
+
+    <div class="form-section-title">
+      <span><i class="fas fa-link"></i></span>
+      <div><h2>Logo, Dates et Liens externes</h2><p>Spécifiez le logo, le lien de site et les réseaux sociaux.</p></div>
+    </div>
+
+    <div class="form-grid two">
+      <!-- Logo URL + Upload -->
+      <div class="image-choice span-2">
+        <label>Logo par URL
+          <input class="admin-field" type="text" name="logo_url" value="{{ object.logo_url|default:'' }}" placeholder="https://... ou /media/...">
+        </label>
+        <label>Ou uploader une image de logo
+          <input class="admin-field" type="file" name="logo_url_upload" accept="image/*">
+        </label>
+        {% if object.logo_url %}
+        <div class="current-image-preview"><img src="{{ object.logo_url }}" alt="{{ object.name }}" style="max-height:80px;"><span>Logo actuel</span></div>
+        {% endif %}
+      </div>
+
+      <!-- Date de commencement -->
+      <label>Date de commencement du partenariat
+        <input class="admin-field" type="date" name="start_date" value="{{ object.start_date|date:'Y-m-d' }}">
+      </label>
+
+      <!-- Site web -->
+      <label>Lien du site web officiel
+        <input class="admin-field" type="url" name="url" value="{{ object.url|default:'' }}" placeholder="https://...">
+      </label>
+
+      <!-- Réseaux sociaux -->
+      <label>Lien Facebook
+        <input class="admin-field" type="url" name="facebook_url" value="{{ object.facebook_url|default:'' }}" placeholder="https://facebook.com/...">
+      </label>
+      <label>Lien Instagram
+        <input class="admin-field" type="url" name="instagram_url" value="{{ object.instagram_url|default:'' }}" placeholder="https://instagram.com/...">
+      </label>
+      <label>Lien YouTube
+        <input class="admin-field" type="url" name="youtube_url" value="{{ object.youtube_url|default:'' }}" placeholder="https://youtube.com/...">
+      </label>
+      <label>Lien LinkedIn
+        <input class="admin-field" type="url" name="linkedin_url" value="{{ object.linkedin_url|default:'' }}" placeholder="https://linkedin.com/in/...">
+      </label>
+      <label>Lien Twitter / X
+        <input class="admin-field" type="url" name="twitter_url" value="{{ object.twitter_url|default:'' }}" placeholder="https://x.com/...">
+      </label>
+      <label>Lien TikTok
+        <input class="admin-field" type="url" name="tiktok_url" value="{{ object.tiktok_url|default:'' }}" placeholder="https://tiktok.com/@...">
+      </label>
+    </div>
+  </section>
+
+  <aside class="panel editor-side publish-card">
+    <h2>Publication</h2>
+    <label>Statut
+      <select class="admin-field" name="status">
+        <option value="actif" {% if object.status == "actif" %}selected{% endif %}>Actif</option>
+        <option value="inactif" {% if object.status == "inactif" %}selected{% endif %}>Inactif</option>
+        <option value="archive" {% if object.status == "archive" %}selected{% endif %}>Archivé</option>
+      </select>
+    </label>
+    <label>Ordre d'affichage
+      <input class="admin-field" type="number" name="order" value="{{ object.order|default:1 }}">
+    </label>
+    <label class="switch-row">
+      <span>Afficher sur la page d'accueil</span>
+      <span class="switch">
+        <input type="checkbox" name="featured_home" {% if object.featured_home %}checked{% endif %}>
+        <span></span>
+      </span>
+    </label>
+
+    <div class="side-actions" style="margin-top: 30px;">
+      <button type="submit" class="btn primary"><i class="fas fa-save"></i> Enregistrer</button>
+    </div>
+  </aside>
+</form>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% load static %}
+<div class="floating-sidebar" id="floatingSidebar">
+  <a href="{{ settings.facebook_url|default:'#' }}" aria-label="Facebook" class="sidebar-icon"><i class="fab fa-facebook-f"></i><span class="tooltip">Facebook</span></a>
+  <a href="{{ settings.instagram_url|default:'#' }}" aria-label="Instagram" class="sidebar-icon"><i class="fab fa-instagram"></i><span class="tooltip">Instagram</span></a>
+  <a href="{{ settings.linkedin_url|default:'#' }}" aria-label="LinkedIn" class="sidebar-icon"><i class="fab fa-linkedin-in"></i><span class="tooltip">LinkedIn</span></a>
+  <a href="{{ settings.youtube_url|default:'#' }}" aria-label="YouTube" class="sidebar-icon"><i class="fab fa-youtube"></i><span class="tooltip">YouTube</span></a>
+  <a href="{{ settings.whatsapp_url|default:'#' }}" aria-label="WhatsApp" class="sidebar-icon"><i class="fab fa-whatsapp"></i><span class="tooltip">WhatsApp</span></a>
+  <button id="backToTop" class="sidebar-icon back-to-top" aria-label="{{ ui.back_top }}"><i class="fas fa-chevron-up"></i><span class="tooltip">{{ ui.back_top }}</span></button>
+</div>

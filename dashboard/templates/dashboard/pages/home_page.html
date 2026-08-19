@@ -1,0 +1,377 @@
+{% extends "dashboard/base_admin.html" %}
+{% load i18n %}
+{% block title %}Gestion accueil{% endblock %}
+{% block extra_head %}
+<style>
+  .i18n-triplet-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 15px;
+    width: 100%;
+  }
+  .i18n-field-group {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+  }
+  .i18n-field-group h4 {
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #0f172a;
+    border-bottom: 1px solid #f1f5f9;
+    padding-bottom: 8px;
+  }
+  .span-all {
+    grid-column: 1 / -1;
+  }
+  .lang-tag {
+    display: inline-block;
+    padding: 2px 6px;
+    font-size: 11px;
+    font-weight: 700;
+    border-radius: 4px;
+    margin-left: 6px;
+  }
+  .lang-tag.fr { background: #e0f2fe; color: #0369a1; }
+  .lang-tag.ar { background: #fef3c7; color: #b45309; }
+  .lang-tag.en { background: #dcfce7; color: #15803d; }
+  .stat-badge {
+    background: #f1f5f9;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    color: #475569;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .partner-full-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+    width: 100%;
+    margin-top: 15px;
+  }
+</style>
+{% endblock %}
+{% block admin_content %}
+<section class="page-heading">
+  <div>
+    <p class="eyebrow">Page publique</p>
+    <h1>Gestion complète de la page d'accueil</h1>
+    <p>Modifiez le hero, la vidéo principale, les annonces, les statistiques, les domaines, les activités récentes, les partenaires et le SEO de la page d'accueil.</p>
+  </div>
+  <div class="heading-actions">
+    <a class="btn" href="{% url 'core:home' %}" target="_blank"><i class="fas fa-external-link-alt"></i> Voir la page</a>
+  </div>
+</section>
+
+<section class="module-tabs" data-tabs>
+  <button class="active" data-tab-button="hero">Hero</button>
+  <button data-tab-button="annonces">Actualités & Annonces</button>
+  <button data-tab-button="stats">Statistiques</button>
+  <button data-tab-button="domaines">Domaines</button>
+  <button data-tab-button="activites">Activités récentes</button>
+  <button data-tab-button="partenaires">Nos Partenaires</button>
+  <button data-tab-button="seo">SEO</button>
+</section>
+
+<!-- TAB: HERO -->
+<section class="panel" data-tab-panel="hero">
+  <form method="post" enctype="multipart/form-data" action="{% url 'dashboard:home_page' %}">
+    {% csrf_token %}
+    <input type="hidden" name="action" value="update_hero">
+    
+    <h2><i class="fas fa-video text-blue"></i> Section d'accueil (Hero)</h2>
+    
+    <div class="image-choice span-all" style="margin-bottom: 20px;">
+      <label>Image ou vidéo de couverture / par lien
+        <input type="text" name="hero_image_url" value="{{ home_page.hero_image_url|default:'' }}" class="admin-field" placeholder="https://... ou /media/...">
+      </label>
+      <label>Ou uploader une image
+        <input class="admin-field" type="file" name="hero_image_upload" accept="image/*">
+      </label>
+      {% if home_page.hero_image_url %}
+      <div class="current-image-preview"><img src="{{ home_page.hero_image_url }}" alt="Hero banner" style="max-height:120px;"><span>Couverture actuelle</span></div>
+      {% endif %}
+    </div>
+
+    <div class="i18n-field-group">
+      <h4>Titre principal</h4>
+      <div class="i18n-triplet-grid">
+        <label>Français <span class="lang-tag fr">FR</span>
+          <input type="text" name="title" value="{{ home_page.title_fr|default:home_page.title|default:'' }}" class="admin-field" required>
+        </label>
+        <label>العربية <span class="lang-tag ar">AR</span>
+          <input type="text" name="title_ar" value="{{ home_page.title_ar|default:'' }}" class="admin-field" dir="rtl">
+        </label>
+        <label>English <span class="lang-tag en">EN</span>
+          <input type="text" name="title_en" value="{{ home_page.title_en|default:'' }}" class="admin-field">
+        </label>
+      </div>
+    </div>
+
+    <div class="i18n-field-group">
+      <h4>Sous-titre / Description courte</h4>
+      <div class="i18n-triplet-grid">
+        <label>Français <span class="lang-tag fr">FR</span>
+          <input type="text" name="subtitle" value="{{ home_page.subtitle_fr|default:home_page.subtitle|default:'' }}" class="admin-field">
+        </label>
+        <label>العربية <span class="lang-tag ar">AR</span>
+          <input type="text" name="subtitle_ar" value="{{ home_page.subtitle_ar|default:'' }}" class="admin-field" dir="rtl">
+        </label>
+        <label>English <span class="lang-tag en">EN</span>
+          <input type="text" name="subtitle_en" value="{{ home_page.subtitle_en|default:'' }}" class="admin-field">
+        </label>
+      </div>
+    </div>
+
+    <div class="i18n-field-group">
+      <h4>Bouton 1 (Découvrir)</h4>
+      <div class="i18n-triplet-grid">
+        <label>Label (FR) <span class="lang-tag fr">FR</span>
+          <input type="text" name="hero_btn1" value="{{ home_texts.hero_btn1|default:'' }}" class="admin-field">
+        </label>
+        <label>Label (AR) <span class="lang-tag ar">AR</span>
+          <input type="text" name="hero_btn1_ar" value="{{ home_texts.hero_btn1_ar|default:'' }}" class="admin-field" dir="rtl">
+        </label>
+        <label>Label (EN) <span class="lang-tag en">EN</span>
+          <input type="text" name="hero_btn1_en" value="{{ home_texts.hero_btn1_en|default:'' }}" class="admin-field">
+        </label>
+      </div>
+    </div>
+
+    <div class="i18n-field-group">
+      <h4>Bouton 2 (Bénévolat)</h4>
+      <div class="i18n-triplet-grid">
+        <label>Label (FR) <span class="lang-tag fr">FR</span>
+          <input type="text" name="hero_btn2" value="{{ home_texts.hero_btn2|default:'' }}" class="admin-field">
+        </label>
+        <label>Label (AR) <span class="lang-tag ar">AR</span>
+          <input type="text" name="hero_btn2_ar" value="{{ home_texts.hero_btn2_ar|default:'' }}" class="admin-field" dir="rtl">
+        </label>
+        <label>Label (EN) <span class="lang-tag en">EN</span>
+          <input type="text" name="hero_btn2_en" value="{{ home_texts.hero_btn2_en|default:'' }}" class="admin-field">
+        </label>
+      </div>
+    </div>
+
+    <div class="i18n-field-group">
+      <h4>Texte de défilement (Scroll)</h4>
+      <div class="i18n-triplet-grid">
+        <label>Label (FR) <span class="lang-tag fr">FR</span>
+          <input type="text" name="hero_scroll" value="{{ home_texts.hero_scroll|default:'' }}" class="admin-field">
+        </label>
+        <label>Label (AR) <span class="lang-tag ar">AR</span>
+          <input type="text" name="hero_scroll_ar" value="{{ home_texts.hero_scroll_ar|default:'' }}" class="admin-field" dir="rtl">
+        </label>
+        <label>Label (EN) <span class="lang-tag en">EN</span>
+          <input type="text" name="hero_scroll_en" value="{{ home_texts.hero_scroll_en|default:'' }}" class="admin-field">
+        </label>
+      </div>
+    </div>
+
+    <button type="submit" class="btn primary"><i class="fas fa-save"></i> Enregistrer la section Hero</button>
+  </form>
+</section>
+
+<!-- TAB: ANNONCES -->
+<section class="panel hidden" data-tab-panel="annonces">
+  <div class="panel-head">
+    <div><h2><i class="fas fa-newspaper"></i> Actualités & Annonces</h2><p>Ajoutez, modifiez, programmez ou supprimez les annonces affichées dans l'accueil.</p></div>
+    <a class="btn primary" href="{% url 'dashboard:news_add' %}"><i class="fas fa-plus"></i> Ajouter une annonce</a>
+  </div>
+  <div class="announcement-inline-list">
+    {% for item in home_announcements %}
+    <form class="announcement-edit-card" method="post" action="{% url 'dashboard:home_announcement_update' item.pk %}" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="announcement-thumb">
+        <img src="{{ item.image_url }}" alt="{{ item.title }}">
+        <span class="status-badge status-{{ item.status }}">{{ item.status }}</span>
+      </div>
+      <div class="announcement-fields">
+        <label>Titre<input name="title" value="{{ item.title }}"></label>
+        <label>Catégorie<input name="category" value="{{ item.category }}"></label>
+        <label>Date<input type="date" name="date" value="{{ item.date|date:'Y-m-d' }}"></label>
+        <label>Ordre<input type="number" name="order" value="{{ item.order }}"></label>
+        <div class="image-choice span-2">
+          <label>Image URL<input name="image_url" value="{{ item.image_url }}"></label>
+          <label>Upload image<input type="file" name="image_upload" accept="image/*"></label>
+        </div>
+        <label class="span-2">Description<textarea name="summary" rows="3">{{ item.summary }}</textarea></label>
+        <label>Statut<select name="status">
+          <option value="publie" {% if item.status == "publie" %}selected{% endif %}>Publié</option>
+          <option value="brouillon" {% if item.status == "brouillon" %}selected{% endif %}>Brouillon</option>
+          <option value="programme" {% if item.status == "programme" %}selected{% endif %}>Programmé</option>
+          <option value="archive" {% if item.status == "archive" %}selected{% endif %}>Archivé</option>
+        </select></label>
+        <div class="announcement-actions">
+          <a class="icon-btn" href="{% url 'dashboard:news_detail' item.pk %}" aria-label="Consulter"><i class="fas fa-eye"></i></a>
+          <a class="icon-btn" href="{% url 'dashboard:news_edit' item.pk %}" aria-label="Ouvrir la page modification complète"><i class="fas fa-pen-to-square"></i></a>
+          <button class="btn primary" type="submit"><i class="fas fa-save"></i> Enregistrer</button>
+          <button class="icon-btn danger" type="submit" form="delete-announcement-{{ item.pk }}" data-confirm-submit="Supprimer cette annonce ?"><i class="fas fa-trash"></i></button>
+        </div>
+      </div>
+    </form>
+    <form id="delete-announcement-{{ item.pk }}" method="post" action="{% url 'dashboard:module_delete' 'news' item.pk %}">{% csrf_token %}</form>
+    {% empty %}
+    <div class="empty-state panel"><i class="fas fa-newspaper"></i><h3>Aucune annonce</h3><p>Ajoutez une actualité pour l'afficher ici.</p></div>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- TAB: STATISTIQUES -->
+<section class="panel hidden" data-tab-panel="stats">
+  <form method="post" action="{% url 'dashboard:home_page' %}">
+    {% csrf_token %}
+    <input type="hidden" name="action" value="update_stats">
+
+    <h2><i class="fas fa-chart-line text-blue"></i> Statistiques dynamiques (Accueil &amp; Bénévolat)</h2>
+    <p style="margin-bottom: 20px; color: #64748b;">Les statistiques de Bénéficiaires, Formations, Programmes, Partenaires et Bénévoles sont calculées automatiquement et en temps réel à partir de la base de données. Vous pouvez modifier ici le nombre d'années d'expérience.</p>
+
+    <div class="form-grid two" style="margin-bottom: 20px;">
+      <label>Années d'expérience (Modifiable)<input type="number" name="stats_annees" value="{{ years_count }}" class="admin-field"></label>
+      <label>Bénéficiaires (Calculé en temps réel)<span class="stat-badge"><i class="fas fa-users"></i> {{ beneficiaries_count }}</span></label>
+      <label>Programmes (Calculé en temps réel)<span class="stat-badge"><i class="fas fa-project-diagram"></i> {{ programs_count }}</span></label>
+      <label>Formations (Calculé en temps réel)<span class="stat-badge"><i class="fas fa-chalkboard-teacher"></i> {{ formations_count }}</span></label>
+      <label>Partenaires (Calculé en temps réel)<span class="stat-badge"><i class="fas fa-handshake"></i> {{ partners_count }}</span></label>
+      <label>Bénévoles (Calculé en temps réel)<span class="stat-badge"><i class="fas fa-heart"></i> {{ volunteers_count }}</span></label>
+    </div>
+
+    <button type="submit" class="btn primary"><i class="fas fa-save"></i> Enregistrer les statistiques</button>
+  </form>
+</section>
+
+<!-- TAB: DOMAINES -->
+<section class="panel hidden" data-tab-panel="domaines">
+  <div class="panel-head">
+    <h2><i class="fas fa-layer-group"></i> Domaines d'intervention (Programmes)</h2>
+    <a class="btn primary" href="{% url 'dashboard:program_add' %}"><i class="fas fa-plus"></i> Ajouter un domaine</a>
+  </div>
+  <div class="editable-card-grid">
+    {% for item in home_domains %}
+    <article>
+      <i class="fas fa-layer-group"></i>
+      <h3>{{ item.title }}</h3>
+      <p>{{ item.summary|truncatewords:20 }}</p>
+      <div class="row-actions">
+        <a class="btn" href="{% url 'dashboard:program_edit' item.pk %}">Modifier</a>
+        <form method="post" action="{% url 'dashboard:module_delete' 'program' item.pk %}" class="inline-delete-form">{% csrf_token %}<button class="btn danger" type="submit" data-confirm-submit="Supprimer ce domaine d'intervention ?">Supprimer</button></form>
+      </div>
+    </article>
+    {% empty %}
+    <div class="empty-state panel"><i class="fas fa-layer-group"></i><h3>Aucun domaine d'intervention</h3><p>Créez un programme d'accompagnement pour l'afficher ici.</p></div>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- TAB: ACTIVITES RECENTES -->
+<section class="panel hidden" data-tab-panel="activites">
+  <div class="panel-head"><h2><i class="fas fa-calendar-alt"></i> Activités récentes affichées</h2><a class="btn" href="{% url 'dashboard:activity_list' %}">Gérer toutes les activités</a></div>
+  {% include "dashboard/components/data_table.html" with table_items=activity_table_items columns=activity_columns %}
+</section>
+
+<!-- TAB: PARTENAIRES -->
+<section class="panel hidden" data-tab-panel="partenaires">
+  <div class="panel-head">
+    <div><h2><i class="fas fa-handshake"></i> Nos Partenaires</h2><p>Contrôlez les partenaires, logos et liens affichés sur l'accueil.</p></div>
+    <a class="btn primary" href="{% url 'dashboard:partner_add' %}"><i class="fas fa-plus"></i> Ajouter un partenaire</a>
+  </div>
+  <div class="partner-full-grid">
+    {% for item in home_partners %}
+    <div class="partner-admin-card" style="margin-bottom: 0;">
+      <div class="partner-logo-preview">{% if item.logo_url %}<img src="{{ item.logo_url }}" alt="{{ item.name }}" style="max-height: 40px;">{% else %}{{ item.initials }}{% endif %}</div>
+      <strong>{{ item.name }}</strong>
+      <small>{{ item.partner_type }} · ordre {{ item.order }}</small>
+      <span class="status-badge status-{{ item.status }}">{{ item.status }}</span>
+      <div class="row-actions">
+        <a class="icon-btn" href="{% url 'dashboard:partner_edit' item.pk %}" aria-label="Modifier"><i class="fas fa-edit"></i></a>
+        <form method="post" action="{% url 'dashboard:module_delete' 'partner' item.pk %}" class="inline-delete-form">{% csrf_token %}<button class="icon-btn danger" type="submit" data-confirm-submit="Supprimer ce partenaire ?"><i class="fas fa-trash"></i></button></form>
+      </div>
+    </div>
+    {% empty %}
+    <div class="empty-state panel"><i class="fas fa-handshake"></i><h3>Aucun partenaire</h3><p>Créez un partenaire pour l'afficher ici.</p></div>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- TAB: SEO -->
+<section class="panel hidden" data-tab-panel="seo">
+  <form method="post" enctype="multipart/form-data" action="{% url 'dashboard:home_page' %}">
+    {% csrf_token %}
+    <input type="hidden" name="action" value="update_seo">
+
+    <h2><i class="fas fa-globe-africa text-blue"></i> SEO &amp; Métadonnées de l'accueil</h2>
+    
+    <div class="image-choice span-all" style="margin-bottom: 20px;">
+      <label>Image de partage SEO (Open Graph / og:image) / par lien
+        <input type="text" name="og_image_url" value="{{ home_page.og_image_url|default:'' }}" class="admin-field" placeholder="https://... ou /media/...">
+      </label>
+      <label>Ou uploader une image
+        <input class="admin-field" type="file" name="og_image_url_upload" accept="image/*">
+      </label>
+      {% if home_page.og_image_url %}
+      <div class="current-image-preview"><img src="{{ home_page.og_image_url }}" alt="Open Graph SEO" style="max-height:120px;"><span>Image SEO actuelle</span></div>
+      {% endif %}
+    </div>
+
+    <div class="i18n-field-group">
+      <h4>Balise titre (Meta Title)</h4>
+      <div class="i18n-triplet-grid">
+        <label>Français <span class="lang-tag fr">FR</span>
+          <input type="text" name="meta_title" value="{{ home_page.meta_title_fr|default:home_page.meta_title|default:'' }}" class="admin-field">
+        </label>
+        <label>العربية <span class="lang-tag ar">AR</span>
+          <input type="text" name="meta_title_ar" value="{{ home_page.meta_title_ar|default:'' }}" class="admin-field" dir="rtl">
+        </label>
+        <label>English <span class="lang-tag en">EN</span>
+          <input type="text" name="meta_title_en" value="{{ home_page.meta_title_en|default:'' }}" class="admin-field">
+        </label>
+      </div>
+    </div>
+
+    <div class="i18n-field-group">
+      <h4>Méta-description (Meta Description)</h4>
+      <div class="i18n-triplet-grid">
+        <label>Français <span class="lang-tag fr">FR</span>
+          <textarea name="meta_description" rows="3" class="admin-field admin-textarea">{{ home_page.meta_description_fr|default:home_page.meta_description|default:'' }}</textarea>
+        </label>
+        <label>العربية <span class="lang-tag ar">AR</span>
+          <textarea name="meta_description_ar" rows="3" class="admin-field admin-textarea" dir="rtl">{{ home_page.meta_description_ar|default:'' }}</textarea>
+        </label>
+        <label>English <span class="lang-tag en">EN</span>
+          <textarea name="meta_description_en" rows="3" class="admin-field admin-textarea">{{ home_page.meta_description_en|default:'' }}</textarea>
+        </label>
+      </div>
+    </div>
+
+    <div class="i18n-field-group">
+      <h4>Mots-clés (Keywords)</h4>
+      <div class="i18n-triplet-grid">
+        <label>Français <span class="lang-tag fr">FR</span>
+          <input type="text" name="keywords" value="{{ home_page.keywords_fr|default:home_page.keywords|default:'' }}" class="admin-field">
+        </label>
+        <label>العربية <span class="lang-tag ar">AR</span>
+          <input type="text" name="keywords_ar" value="{{ home_page.keywords_ar|default:'' }}" class="admin-field" dir="rtl">
+        </label>
+        <label>English <span class="lang-tag en">EN</span>
+          <input type="text" name="keywords_en" value="{{ home_page.keywords_en|default:'' }}" class="admin-field">
+        </label>
+      </div>
+    </div>
+
+    <div class="i18n-field-group">
+      <h4>URL canonique</h4>
+      <input type="text" name="canonical_url" value="{{ home_page.canonical_url|default:'' }}" class="admin-field" placeholder="https://www.tangermetropole.ma/">
+    </div>
+
+    <button type="submit" class="btn primary"><i class="fas fa-save"></i> Enregistrer les paramètres SEO</button>
+  </form>
+</section>
+{% endblock %}

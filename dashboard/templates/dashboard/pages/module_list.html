@@ -1,0 +1,11 @@
+{% extends "dashboard/base_admin.html" %}
+{% load %}
+{% block title %}{{ module.label }}{% endblock %}
+{% block admin_content %}
+<section class="page-heading"><div><p class="eyebrow">Gestion de contenu</p><h1>{{ module.label }}</h1><p>{{ intro }}</p></div><div class="heading-actions"><a class="btn" href="{{ detail_url }}"><i class="fas fa-eye"></i> Détails</a>{% if not is_contact_module %}<a class="btn primary" href="{{ add_url }}"><i class="fas fa-plus"></i> Ajouter</a>{% endif %}</div></section>
+<section class="module-tabs" data-tabs><button class="active" data-tab-button="list">Liste</button><button data-tab-button="filters">Filtres avancés</button><button data-tab-button="seo">SEO</button><button data-tab-button="media">Images</button></section>
+<section class="panel" data-tab-panel="list">{% include "dashboard/components/data_table.html" with table_items=table_items columns=columns %}</section>
+<section class="panel hidden" data-tab-panel="filters"><div class="filter-grid"><label>Recherche<input type="search" value=""></label><label>Catégorie<select><option>Toutes</option><option>Sportives</option><option>Culturelles</option><option>Educatives</option><option>Sociales</option></select></label><label>Année<select><option>2026</option><option>2025</option></select></label><label>Mois<select><option>Tous</option><option>Juillet</option><option>Août</option></select></label><label>Statut<select><option>Tous</option><option>publie</option><option>brouillon</option><option>archive</option></select></label><button class="btn primary" data-toast="Filtres appliqués">Appliquer</button></div></section>
+<section class="panel hidden" data-tab-panel="seo">{% include "dashboard/components/seo_fields.html" %}</section>
+<section class="panel hidden" data-tab-panel="media">{% include "dashboard/components/media_manager.html" %}</section>
+{% endblock %}

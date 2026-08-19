@@ -1,0 +1,228 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Activités - {{ brand_name }}{% endblock %}
+{% block extra_head %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Découvrez les activités sportives, culturelles, éducatives et sociales organisées par la {{ brand_name }}.">
+  <meta name="theme-color" content="#062B4F">
+  <meta name="keywords" content="Fondation, Tanger, Métropole, activités, sport, culture, éducation, social, Maroc">
+  <meta name="author" content="{{ brand_name }}">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.tangermetropole.ma/activites.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Activités de la {{ brand_name }}",
+    "description": "Découvrez les activités sportives, culturelles, éducatives et sociales organisées par la {{ brand_name }}.",
+    "url": "https://www.tangermetropole.ma/activites.html"
+  }
+  </script>
+{% endblock %}
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'core/css/activites.css' %}">
+{% endblock %}
+{% block content %}
+<main>
+    {% csrf_token %}
+    <!-- Bannière -->
+    <section class="page-hero" id="pageHero">
+      <div class="page-hero-overlay"></div>
+      <div class="container page-hero-content">
+        <div class="hero-decoration"><i class="fas fa-calendar-check"></i></div>
+        <nav class="breadcrumb" aria-label="Fil d'Ariane">
+          <a href="{% url 'core:home' %}"><i class="fas fa-home"></i> {{ ui.home }}</a>
+          <span class="breadcrumb-separator">/</span>
+          <span class="breadcrumb-current">{{ ui.activities }}</span>
+        </nav>
+        <h1 class="page-hero-title">{{ page_content.title|default:brand_name }}</h1>
+        <p class="page-hero-subtitle">{{ page_content.subtitle|default:"Contenu géré depuis le dashboard." }}</p>
+      </div>
+    </section>
+
+    <!-- Introduction -->
+    <section class="intro-section">
+      <div class="container">
+        <p class="intro-text">
+          {% if current_language == 'ar' %}
+            تنظم مؤسسة طنجة الكبرى بانتظام أنشطة رياضية وثقافية وتعليمية واجتماعية من أجل تعزيز الإدماج وتطوير المهارات والإبداع والمشاركة المواطنة.
+          {% elif current_language == 'en' %}
+            {{ brand_name }} regularly organizes sports, cultural, educational and social activities to promote inclusion, skill development, creativity and civic participation.
+          {% else %}
+            {{ brand_name }} organise régulièrement des activités sportives, culturelles, éducatives et sociales afin de favoriser l'inclusion, le développement des compétences, la créativité et la participation citoyenne.
+          {% endif %}
+        </p>
+        <div class="counter-badge" aria-live="polite">
+          <i class="fas fa-list-ol"></i>
+          <span id="totalCount">18</span> 
+          {% if current_language == 'ar' %}أنشطة متاحة{% elif current_language == 'en' %}activities available{% else %}activités disponibles{% endif %}
+        </div>
+      </div>
+    </section>
+
+    <!-- Filtres -->
+    <section class="filtres-section" id="filtres">
+      <div class="container">
+        <div class="filtres-wrapper">
+          <div class="filtre-group">
+            <label for="filterCategory"><i class="fas fa-tag"></i> {{ ui.category_label }}</label>
+            <select id="filterCategory" aria-label="{{ ui.category_label }}">
+              <option value="all">{{ ui.all_categories }}</option>
+              <option value="sport">🏃 {{ ui.sport }}</option>
+              <option value="culture">🎭 {{ ui.culture }}</option>
+              <option value="education">📚 {{ ui.education }}</option>
+              <option value="social">🤝 {{ ui.social }}</option>
+            </select>
+          </div>
+          <div class="filtre-group">
+            <label for="filterYear"><i class="fas fa-calendar"></i> {{ ui.year_label }}</label>
+            <select id="filterYear" aria-label="{{ ui.year_label }}">
+              <option value="all">{{ ui.all_years }}</option>
+            </select>
+          </div>
+          <div class="filtre-group">
+            <label for="filterMonth"><i class="fas fa-calendar-alt"></i> {{ ui.month_label }}</label>
+            <select id="filterMonth" aria-label="{{ ui.month_label }}">
+              <option value="all">{{ ui.all_months }}</option>
+              <option value="01">{% if current_language == 'ar' %}يناير{% elif current_language == 'en' %}January{% else %}Janvier{% endif %}</option>
+              <option value="02">{% if current_language == 'ar' %}فبراير{% elif current_language == 'en' %}February{% else %}Février{% endif %}</option>
+              <option value="03">{% if current_language == 'ar' %}مارس{% elif current_language == 'en' %}March{% else %}Mars{% endif %}</option>
+              <option value="04">{% if current_language == 'ar' %}أبريل{% elif current_language == 'en' %}April{% else %}Avril{% endif %}</option>
+              <option value="05">{% if current_language == 'ar' %}ماي{% elif current_language == 'en' %}May{% else %}Mai{% endif %}</option>
+              <option value="06">{% if current_language == 'ar' %}يونيو{% elif current_language == 'en' %}June{% else %}Juin{% endif %}</option>
+              <option value="07">{% if current_language == 'ar' %}يوليوز{% elif current_language == 'en' %}July{% else %}Juillet{% endif %}</option>
+              <option value="08">{% if current_language == 'ar' %}غشت{% elif current_language == 'en' %}August{% else %}Août{% endif %}</option>
+              <option value="09">{% if current_language == 'ar' %}شتنبر{% elif current_language == 'en' %}September{% else %}Septembre{% endif %}</option>
+              <option value="10">{% if current_language == 'ar' %}أكتوبر{% elif current_language == 'en' %}October{% else %}Octobre{% endif %}</option>
+              <option value="11">{% if current_language == 'ar' %}نونبر{% elif current_language == 'en' %}November{% else %}Novembre{% endif %}</option>
+              <option value="12">{% if current_language == 'ar' %}دجنبر{% elif current_language == 'en' %}December{% else %}Décembre{% endif %}</option>
+            </select>
+          </div>
+          <div class="filtre-group search-group">
+            <label for="searchInput"><i class="fas fa-search"></i> {% if current_language == 'ar' %}البحث{% elif current_language == 'en' %}Search{% else %}Recherche{% endif %}</label>
+            <input type="text" id="searchInput" placeholder="{{ ui.search_placeholder }}" aria-label="{{ ui.search_placeholder }}">
+          </div>
+          <div class="filtre-group reset-group">
+            <button id="resetFilters" class="btn btn-outline"><i class="fas fa-redo"></i> {{ ui.reset_filters }}</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Activités -->
+    <section class="activites-liste-section" id="activites-liste">
+      <div class="container">
+        <h2 class="section-title">Dernières activités</h2>
+        <p class="section-intro">Consultez les dernières actions réalisées par la {{ brand_name }}.</p>
+        <div class="activites-grid" id="activitesGrid"></div>
+        <div class="no-results" id="noResults" style="display:none;">
+          <i class="fas fa-search"></i>
+          <h3>{{ ui.no_results_title }}</h3>
+          <p>{{ ui.no_results_desc }}</p>
+          <button class="btn btn-primary" onclick="document.getElementById('resetFilters').click()">{{ ui.reset_filters }}</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Réseaux sociaux -->
+    <section class="social-section" id="social">
+      <div class="container">
+        <h2 class="section-title">
+          {% if current_language == 'ar' %}
+            تابعوا أنشطتنا على شبكات التواصل الاجتماعي
+          {% elif current_language == 'en' %}
+            Follow our activities on social media
+          {% else %}
+            Suivez nos activités sur les réseaux sociaux
+          {% endif %}
+        </h2>
+        <p class="section-intro">
+          {% if current_language == 'ar' %}
+            شاهد الفيديوهات، الصور وآخر مستجدات {{ brand_name }} على حساباتنا الرسمية.
+          {% elif current_language == 'en' %}
+            Find videos, photos and the latest updates of the {{ brand_name }} on our official platforms.
+          {% else %}
+            Retrouvez les vidéos, les photos et les dernières actualités de la {{ brand_name }} sur nos plateformes officielles.
+          {% endif %}
+        </p>
+        <div class="social-cards">
+          <div class="social-card youtube">
+            <i class="fab fa-youtube"></i>
+            <h3>YouTube</h3>
+            <p>
+              {% if current_language == 'ar' %}
+                شاهد فيديوهات أنشطتنا، فعالياتنا وبرامجنا.
+              {% elif current_language == 'en' %}
+                Discover videos of our activities, events and programs.
+              {% else %}
+                Découvrez les vidéos de nos activités, événements et programmes.
+              {% endif %}
+            </p>
+            <a href="{{ settings.youtube_url|default:'#' }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-light">
+              {% if current_language == 'ar' %}زيارة قناتنا على يوتيوب{% elif current_language == 'en' %}Watch on YouTube{% else %}Voir notre chaîne YouTube{% endif %}
+            </a>
+          </div>
+          <div class="social-card instagram">
+            <i class="fab fa-instagram"></i>
+            <h3>Instagram</h3>
+            <p>
+              {% if current_language == 'ar' %}
+                تابعوا الصور والقصص واللحظات البارزة من أنشطتنا.
+              {% elif current_language == 'en' %}
+                Follow photos, stories and highlights of our activities.
+              {% else %}
+                Suivez les photos, les stories et les moments forts de nos activités.
+              {% endif %}
+            </p>
+            <a href="{{ settings.instagram_url|default:'#' }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-light">
+              {% if current_language == 'ar' %}متابعتنا على إنستغرام{% elif current_language == 'en' %}Follow on Instagram{% else %}Suivre sur Instagram{% endif %}
+            </a>
+          </div>
+          <div class="social-card facebook">
+            <i class="fab fa-facebook-f"></i>
+            <h3>Facebook</h3>
+            <p>
+              {% if current_language == 'ar' %}
+                اطلعوا على آخر أخبارنا ومنشوراتنا وفعالياتنا على فيسبوك.
+              {% elif current_language == 'en' %}
+                Consult our news, publications and events on Facebook.
+              {% else %}
+                Consultez nos actualités, publications et événements sur Facebook.
+              {% endif %}
+            </p>
+            <a href="{{ settings.facebook_url|default:'#' }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-light">
+              {% if current_language == 'ar' %}متابعتنا على فيسبوك{% elif current_language == 'en' %}Follow on Facebook{% else %}Suivre sur Facebook{% endif %}
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Modals -->
+    <div id="modalOverlay" class="modal-overlay" aria-hidden="true" role="dialog">
+      <div class="modal-container">
+        <button id="modalClose" class="modal-close" aria-label="{% if current_language == 'ar' %}إغلاق{% elif current_language == 'en' %}Close{% else %}Fermer{% endif %}"><i class="fas fa-times"></i></button>
+        <div id="modalBody" class="modal-body"></div>
+      </div>
+    </div>
+
+    <div id="inscriptionModal" class="modal-overlay" aria-hidden="true" role="dialog">
+      <div class="modal-container">
+        <button id="inscriptionModalClose" class="modal-close" aria-label="{% if current_language == 'ar' %}إغلاق{% elif current_language == 'en' %}Close{% else %}Fermer{% endif %}"><i class="fas fa-times"></i></button>
+        <div id="inscriptionModalBody" class="modal-body"></div>
+      </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toastNotification" class="toast-notification">
+      <i class="fas fa-check-circle"></i>
+      <span id="toastMsg">{{ ui.link_copied }}</span>
+    </div>
+  </main>
+{% endblock %}
+{% block extra_js %}
+  {{ activities_json|json_script:"activities-data" }}
+  <script>window.FTM_ACTIVITIES_DATA = JSON.parse(document.getElementById('activities-data').textContent);</script>
+  <script src="{% static 'core/js/activites.js' %}?v={% now 'U' %}"></script>
+{% endblock %}

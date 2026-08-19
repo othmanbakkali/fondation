@@ -1,0 +1,155 @@
+{% extends "dashboard/base_admin.html" %}
+{% load %}
+{% block title %}{{ page_title }}{% endblock %}
+{% block admin_content %}
+<section class="page-heading">
+  <div><p class="eyebrow">Aperçu depuis MySQL</p><h1>{{ page_title }}</h1><p>Fiche complète alimentée par la base de données.</p></div>
+  <div class="heading-actions"><a class="btn" href="{{ list_url }}"><i class="fas fa-arrow-left"></i> Retour</a>{% if not is_contact_detail and not is_registration %}<a class="btn primary" href="{{ edit_url }}"><i class="fas fa-edit"></i> Modifier</a>{% endif %}</div>
+</section>
+{% if is_registration %}
+<section class="detail-grid">
+  <article class="panel detail-hero">
+    {% if detail_image %}<img src="{{ detail_image }}" alt="{{ detail_title }}">{% endif %}
+    <div>
+      <span class="status-badge status-{{ object.status }}">
+        {% if object.status == 'en_attente' %}En attente{% elif object.status == 'accepte' %}Accepté{% elif object.status == 'refuse' %}Refusé{% else %}{{ object.status }}{% endif %}
+      </span>
+      {% if module.url == 'volunteer' %}
+      <h2>Candidat : {{ object.name }}</h2>
+      <p>Candidature pour : <strong>Bénévolat</strong></p>
+      {% else %}
+      <h2>Candidat : {{ object.name }}</h2>
+      <p>Inscription pour : <strong>{{ detail_title }}</strong></p>
+      {% endif %}
+    </div>
+  </article>
+  <aside class="panel">
+    <h2>Informations Candidat</h2>
+    <dl class="info-list" style="display: grid; grid-template-columns: 120px 1fr; gap: 12px; margin: 0; padding: 0; font-size: 14px; line-height: 1.5;">
+      <dt style="color: var(--muted); font-weight: 500;">Email</dt>
+      <dd style="word-break: break-all; margin: 0;"><a href="mailto:{{ object.email }}" style="color: #4cc9f0; text-decoration: none;">{{ object.email }}</a></dd>
+      <dt style="color: var(--muted); font-weight: 500;">Téléphone</dt>
+      <dd style="margin: 0;"><a href="tel:{{ object.phone }}" style="color: #4cc9f0; text-decoration: none;">{{ object.phone }}</a></dd>
+      <dt style="color: var(--muted); font-weight: 500;">Ville</dt>
+      <dd style="margin: 0; text-transform: capitalize;">{{ object.city|default:"-" }}</dd>
+      <dt style="color: var(--muted); font-weight: 500;">Date de demande</dt>
+      <dd style="margin: 0;">{{ object.created_at|date:"d F Y H:i" }}</dd>
+      {% if module.url == 'volunteer' %}
+      <dt style="color: var(--muted); font-weight: 500;">Compétences</dt>
+      <dd style="margin: 0;">{{ object.skills|default:"-" }}</dd>
+      <dt style="color: var(--muted); font-weight: 500;">Disponibilités</dt>
+      <dd style="margin: 0;">{{ object.availability|default:"-" }}</dd>
+      <dt style="color: var(--muted); font-weight: 500;">Domaines souhaités</dt>
+      <dd style="margin: 0;">{{ object.desired_fields|default:"-" }}</dd>
+      {% if object.cv_url %}
+      <dt style="color: var(--muted); font-weight: 500;">Curriculum vitæ</dt>
+      <dd style="margin: 0;"><a href="{{ object.cv_url }}" target="_blank" style="color: #4cc9f0; text-decoration: underline; font-weight: bold;"><i class="fas fa-file-download"></i> Consulter / Télécharger</a></dd>
+      {% endif %}
+      {% endif %}
+    </dl>
+  </aside>
+</section>
+
+{% if module.url == 'volunteer' %}
+{% if object.skills_description %}
+<section class="panel" style="margin-top: 20px;">
+  <h2>Détails des compétences</h2>
+  <div class="prose" style="background: rgba(255,255,255,0.03); padding: 15px; border-radius: 8px; line-height: 1.6; font-size: 14px; border: 1px solid rgba(255,255,255,0.05);">
+    {{ object.skills_description|linebreaks }}
+  </div>
+</section>
+{% endif %}
+
+<section class="panel" style="margin-top: 20px;">
+  <h2>Message de motivation</h2>
+  <div class="prose" style="background: rgba(255,255,255,0.03); padding: 20px; border-radius: 12px; line-height: 1.6; font-size: 15px; border: 1px solid rgba(255,255,255,0.08);">
+    {{ object.motivation|linebreaks }}
+  </div>
+</section>
+
+{% if object.experience %}
+<section class="panel" style="margin-top: 20px;">
+  <h2>Expérience dans le bénévolat</h2>
+  <div class="prose" style="background: rgba(255,255,255,0.03); padding: 15px; border-radius: 8px; line-height: 1.6; font-size: 14px; border: 1px solid rgba(255,255,255,0.05);">
+    {{ object.experience|linebreaks }}
+  </div>
+</section>
+{% endif %}
+{% endif %}
+
+<section class="panel" style="margin-top: 20px;">
+  <h2>{% if module.url == 'volunteer' %}Décision de candidature{% else %}Décision d'inscription{% endif %}</h2>
+  <p>{% if module.url == 'volunteer' %}Veuillez choisir d'accepter ou refuser ce candidat.{% else %}Veuillez choisir de valider ou refuser cette demande d'inscription.{% endif %}</p>
+  <form method="post" action="{% url 'dashboard:update_registration_status' key=module.url pk=object.pk %}" style="display: flex; gap: 15px; align-items: center; margin-top: 15px;">
+    {% csrf_token %}
+    <button type="submit" name="status" value="accepte" class="btn success" style="background-color: #2ec4b6; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 8px; font-weight: bold;">
+      <i class="fas fa-check-circle"></i> {% if module.url == 'volunteer' %}Accepter le candidat{% else %}Accepter l'inscription{% endif %}
+    </button>
+    <button type="submit" name="status" value="refuse" class="btn danger" style="background-color: #e71d36; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 8px; font-weight: bold;">
+      <i class="fas fa-times-circle"></i> {% if module.url == 'volunteer' %}Refuser le candidat{% else %}Refuser l'inscription{% endif %}
+    </button>
+  </form>
+</section>
+{% else %}
+  {% if is_contact_detail %}
+  <section class="detail-grid">
+    <article class="panel detail-hero">
+      <div>
+        <span class="status-badge status-{{ object.status }}">
+          {% if object.status == 'non_lu' %}Non lu{% else %}Lu{% endif %}
+        </span>
+        <h2>Expéditeur : {{ object.name }}</h2>
+        <p>Sujet : <strong>{{ object.subject }}</strong></p>
+      </div>
+    </article>
+    <aside class="panel">
+      <h2>Coordonnées & Infos</h2>
+      <dl class="info-list" style="display: grid; grid-template-columns: 120px 1fr; gap: 12px; margin: 0; padding: 0; font-size: 14px; line-height: 1.5;">
+        <dt style="color: var(--muted); font-weight: 500;">Email</dt>
+        <dd style="word-break: break-all; margin: 0;"><a href="mailto:{{ object.email }}" style="color: #4cc9f0; text-decoration: none;">{{ object.email }}</a></dd>
+        <dt style="color: var(--muted); font-weight: 500;">Téléphone</dt>
+        <dd style="margin: 0;">
+          {% if object.phone %}
+          <a href="tel:{{ object.phone }}" style="color: #4cc9f0; text-decoration: none;">{{ object.phone }}</a>
+          {% else %}
+          -
+          {% endif %}
+        </dd>
+        <dt style="color: var(--muted); font-weight: 500;">Ville</dt>
+        <dd style="margin: 0; text-transform: capitalize;">{{ object.city|default:"-" }}</dd>
+        <dt style="color: var(--muted); font-weight: 500;">Date de réception</dt>
+        <dd style="margin: 0;">{{ object.created_at|date:"d F Y H:i" }}</dd>
+        {% if object.attachment_url %}
+        <dt style="color: var(--muted); font-weight: 500;">Pièce jointe</dt>
+        <dd style="margin: 0;"><a href="{{ object.attachment_url }}" target="_blank" style="color: #4cc9f0; text-decoration: underline; font-weight: bold;"><i class="fas fa-paperclip"></i> Consulter / Télécharger</a></dd>
+        {% endif %}
+      </dl>
+    </aside>
+  </section>
+
+  <section class="panel" style="margin-top: 20px;">
+    <h2>Contenu du message</h2>
+    <div class="prose" style="background: rgba(255,255,255,0.03); padding: 20px; border-radius: 12px; line-height: 1.6; font-size: 15px; border: 1px solid rgba(255,255,255,0.08);">
+      {{ object.message|linebreaks }}
+    </div>
+  </section>
+  {% else %}
+  <section class="detail-grid">
+    <article class="panel detail-hero">
+      {% if detail_image %}<img src="{{ detail_image }}" alt="{{ detail_title }}">{% endif %}
+      <div><span class="status-badge status-{{ object.status }}">{{ object.status }}</span><h2>{{ detail_title }}</h2><p>{{ detail_summary }}</p></div>
+    </article>
+    <aside class="panel">
+      <h2>Informations</h2>
+      <dl class="info-list">
+        <dt>Catégorie</dt><dd>{{ detail_category|default:"-" }}</dd>
+        <dt>Date</dt><dd>{{ detail_date|default:"-" }}</dd>
+        <dt>Lieu</dt><dd>{{ detail_location|default:"-" }}</dd>
+        <dt>Dernière modification</dt><dd>{{ object.updated_at|default:object.created_at }}</dd>
+      </dl>
+    </aside>
+  </section>
+  <section class="panel"><h2>Contenu</h2><div class="prose">{{ detail_body|linebreaks }}</div></section>
+  {% endif %}
+{% endif %}
+{% endblock %}

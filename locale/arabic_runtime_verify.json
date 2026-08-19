@@ -1,0 +1,80 @@
+{
+  "request_language_override": "ar",
+  "page_results": {
+    "/": {
+      "status": 200,
+      "html_ar": true,
+      "rtl": true,
+      "has_tableau_de_bord": false,
+      "has_connexion": false,
+      "has_enregistrer": false
+    },
+    "/about/": {
+      "status": 200,
+      "html_ar": true,
+      "rtl": true,
+      "has_tableau_de_bord": false,
+      "has_connexion": false,
+      "has_enregistrer": false
+    },
+    "/activites/": {
+      "status": 200,
+      "html_ar": true,
+      "rtl": true,
+      "has_tableau_de_bord": false,
+      "has_connexion": false,
+      "has_enregistrer": false
+    },
+    "/actualites/": {
+      "status": 200,
+      "html_ar": true,
+      "rtl": true,
+      "has_tableau_de_bord": false,
+      "has_connexion": false,
+      "has_enregistrer": false
+    },
+    "/formations/": {
+      "status": 200,
+      "html_ar": true,
+      "rtl": true,
+      "has_tableau_de_bord": false,
+      "has_connexion": false,
+      "has_enregistrer": false
+    },
+    "/medias/": {
+      "status": 200,
+      "html_ar": true,
+      "rtl": true,
+      "has_tableau_de_bord": false,
+      "has_connexion": false,
+      "has_enregistrer": false
+    },
+    "/benevolat/": {
+      "status": 200,
+      "html_ar": true,
+      "rtl": true,
+      "has_tableau_de_bord": false,
+      "has_connexion": false,
+      "has_enregistrer": false
+    },
+    "/contact/": {
+      "status": 200,
+      "html_ar": true,
+      "rtl": true,
+      "has_tableau_de_bord": false,
+      "has_connexion": false,
+      "has_enregistrer": false
+    },
+    "/dashboard/login/": {
+      "status": 200,
+      "html_ar": true,
+      "rtl": true,
+      "has_tableau_de_bord": false,
+      "has_connexion": false,
+      "has_enregistrer": false
+    }
+  },
+  "empty_msgstr": [],
+  "fuzzy_entries": [],
+  "static_remaining_core_terms": []
+}

@@ -1,0 +1,36 @@
+{% load static %}
+<aside class="admin-sidebar" id="adminSidebar" aria-label="Navigation administrateur">
+  <div class="sidebar-header">
+    <a href="{% url 'dashboard:home' %}" class="sidebar-brand" aria-label="Tableau de bord">
+      <img src="{% static 'dashboard/images/fonlogo.png' %}" alt="{{ brand_name }}" class="brand-logo">
+      <span class="brand-copy"><strong>FTM Admin</strong><small>{{ brand_name }}</small></span>
+    </a>
+    <button class="icon-btn sidebar-close" id="sidebarClose" aria-label="Fermer le menu"><i class="fas fa-times"></i></button>
+  </div>
+  <nav class="sidebar-nav">
+    <a class="sidebar-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}" href="{% url 'dashboard:home' %}"><i class="fas fa-th-large"></i><span>Vue générale</span></a>
+    <div class="sidebar-section">Gestion du site</div>
+    <a class="sidebar-link {% if request.resolver_match.url_name == 'home_page' %}active{% endif %}" href="{% url 'dashboard:home_page' %}"><i class="fas fa-home"></i><span>Page d'accueil</span></a>
+    <a class="sidebar-link {% if request.resolver_match.url_name == 'site_content' %}active{% endif %}" href="{% url 'dashboard:site_content' %}"><i class="fas fa-pen-to-square"></i><span>Contenu du site</span></a>
+    <a class="sidebar-link {% if request.resolver_match.url_name == 'about' or request.resolver_match.url_name == 'about_edit' %}active{% endif %}" href="{% url 'dashboard:about' %}"><i class="fas fa-info-circle"></i><span>About</span></a>
+    {% include "dashboard/components/sidebar_group.html" with label="Programmes" icon="fa-project-diagram" list_url="dashboard:program_list" add_url="dashboard:program_add" active_prefix="program" %}
+    {% include "dashboard/components/sidebar_group.html" with label="Activités" icon="fa-calendar-alt" list_url="dashboard:activity_list" add_url="dashboard:activity_add" active_prefix="activity" %}
+    {% include "dashboard/components/sidebar_group.html" with label="Actualités" icon="fa-newspaper" list_url="dashboard:news_list" add_url="dashboard:news_add" active_prefix="news" %}
+    {% include "dashboard/components/sidebar_group.html" with label="Formations" icon="fa-graduation-cap" list_url="dashboard:formation_list" add_url="dashboard:formation_add" active_prefix="formation" %}
+    <a class="sidebar-link {% if request.resolver_match.url_name == 'registration_list' or 'registration' in request.resolver_match.url_name and 'activity_registration' not in request.resolver_match.url_name %}active{% endif %}" href="{% url 'dashboard:registration_list' %}"><i class="fas fa-user-check"></i><span>Inscriptions Formations</span></a>
+    <a class="sidebar-link {% if 'activity_registration' in request.resolver_match.url_name %}active{% endif %}" href="{% url 'dashboard:activity_registration_list' %}"><i class="fas fa-calendar-check"></i><span>Inscriptions Activités</span></a>
+    <a class="sidebar-link {% if 'media' in request.resolver_match.url_name %}active{% endif %}" href="{% url 'dashboard:media_list' %}"><i class="fas fa-photo-video"></i><span>Médias</span></a>
+    <a class="sidebar-link {% if 'volunteer' in request.resolver_match.url_name %}active{% endif %}" href="{% url 'dashboard:volunteer_list' %}"><i class="fas fa-hands-helping"></i><span>Bénévolat</span>{% if dashboard_pending_volunteers_count > 0 %}<span class="sidebar-badge">{{ dashboard_pending_volunteers_count }}</span>{% endif %}</a>
+    <a class="sidebar-link {% if 'contact' in request.resolver_match.url_name %}active{% endif %}" href="{% url 'dashboard:contact_messages' %}"><i class="fas fa-comments"></i><span>Messages contact</span>{% if dashboard_unread_messages_count > 0 %}<span class="sidebar-badge danger">{{ dashboard_unread_messages_count }}</span>{% endif %}</a>
+    <div class="sidebar-section">Organisation</div>
+    <a class="sidebar-link {% if 'partner' in request.resolver_match.url_name %}active{% endif %}" href="{% url 'dashboard:partner_list' %}"><i class="fas fa-handshake"></i><span>Partenaires</span></a>
+    <a class="sidebar-link {% if 'team' in request.resolver_match.url_name %}active{% endif %}" href="{% url 'dashboard:team_list' %}"><i class="fas fa-users"></i><span>Équipe</span></a>
+    <a class="sidebar-link {% if 'testimonial' in request.resolver_match.url_name %}active{% endif %}" href="{% url 'dashboard:testimonial_list' %}"><i class="fas fa-quote-right"></i><span>Témoignages</span></a>
+    <div class="sidebar-section">Administration</div>
+    <a class="sidebar-link {% if 'user' in request.resolver_match.url_name %}active{% endif %}" href="{% url 'dashboard:user_list' %}"><i class="fas fa-user-shield"></i><span>Utilisateurs</span></a>
+    <a class="sidebar-link {% if request.resolver_match.url_name == 'settings' %}active{% endif %}" href="{% url 'dashboard:settings' %}"><i class="fas fa-cog"></i><span>Paramètres</span></a>
+  </nav>
+  <div class="sidebar-footer">
+    <button class="collapse-btn" id="sidebarCollapse"><i class="fas fa-chevron-left"></i><span>Réduire</span></button>
+  </div>
+</aside>

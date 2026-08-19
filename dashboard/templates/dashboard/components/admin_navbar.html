@@ -1,0 +1,35 @@
+<header class="admin-topbar">
+  <button class="icon-btn mobile-menu" id="hamburgerAdmin" aria-label="Ouvrir le menu"><i class="fas fa-bars"></i></button>
+  <div class="topbar-search">
+    <i class="fas fa-search"></i>
+    <input id="globalSearch" type="search" aria-label="Recherche globale" placeholder="Rechercher une page, un message, une candidature...">
+    <div class="global-results" id="globalResults"></div>
+  </div>
+  <div class="topbar-actions">
+    <a class="icon-btn" href="{% url 'core:home' %}" target="_blank" aria-label="Voir le site public"><i class="fas fa-external-link-alt"></i></a>
+    <button class="icon-btn" id="themeToggle" aria-label="Changer le thème"><i class="fas fa-moon"></i></button>
+    <div class="notification-menu">
+      <button class="icon-btn" id="notificationToggle" aria-label="Notifications"><i class="fas fa-bell"></i><span class="notif-count" data-notification-count>{{ dashboard_notification_total }}</span></button>
+      <div class="notification-dropdown">
+        <div class="dropdown-head"><strong>Notifications</strong><button data-refresh-notifications>Actualiser</button></div>
+        <a href="{% url 'dashboard:contact_messages' %}"><i class="fas fa-envelope text-blue"></i><span><strong data-notification-messages>{{ dashboard_unread_messages_count }}</strong> message(s) non lu(s)<small>Depuis la base MySQL</small></span></a>
+        <a href="{% url 'dashboard:volunteer_list' %}"><i class="fas fa-user-plus text-green"></i><span><strong data-notification-volunteers>{{ dashboard_pending_volunteers_count }}</strong> candidature(s) en attente<small>Bénévolat</small></span></a>
+        <a href="{% url 'dashboard:news_list' %}"><i class="fas fa-clock text-gold"></i><span><strong data-notification-content>{{ dashboard_pending_content_count }}</strong> contenu(s) à valider<small>Brouillons et programmés</small></span></a>
+        <a href="{% url 'dashboard:registration_list' %}"><i class="fas fa-user-check text-blue"></i><span><strong>{{ dashboard_pending_formations_registrations_count }}</strong> inscription(s) formation en attente<small>Formations</small></span></a>
+        <a href="{% url 'dashboard:activity_registration_list' %}"><i class="fas fa-calendar-check text-purple" style="color: #a855f7;"></i><span><strong>{{ dashboard_pending_activities_registrations_count }}</strong> inscription(s) activité en attente<small>Activités</small></span></a>
+        {% for message in dashboard_latest_unread_messages %}
+        <a href="{% url 'dashboard:contact_detail' message.pk %}"><i class="fas fa-envelope-open-text text-blue"></i><span>{{ message.name }}<small>{{ message.subject|default:"Messages contact" }}</small></span></a>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="admin-user-menu">
+      <button class="user-chip" type="button"><img src="https://ui-avatars.com/api/?name=Admin+FTM&size=80&background=062B4F&color=fff" alt="Admin FTM"><span>{{ request.user.get_full_name|default:request.user.username }}<small>Administrateur</small></span><i class="fas fa-chevron-down"></i></button>
+      <div class="user-dropdown">
+        <a href="{% url 'dashboard:profile' %}"><i class="fas fa-user"></i> Profil administrateur</a>
+        <a href="{% url 'dashboard:settings' %}"><i class="fas fa-cog"></i> Paramètres</a>
+        <a href="{% url 'dashboard:logout' %}"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+      </div>
+    </div>
+  </div>
+</header>
+

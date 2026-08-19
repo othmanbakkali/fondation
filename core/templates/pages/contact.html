@@ -1,0 +1,212 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Contact - {{ brand_name }}{% endblock %}
+{% block extra_head %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Contactez la {{ brand_name }} - Téléphone, email, adresse et formulaire de contact.">
+  <meta name="theme-color" content="#062B4F">
+  <meta name="keywords" content="Fondation, Tanger, Métropole, contact, téléphone, email, adresse, Maroc">
+  <meta name="author" content="{{ brand_name }}">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.tangermetropole.ma/contact.html">
+  <meta property="og:title" content="Contact - {{ brand_name }}">
+  <meta property="og:description" content="Contactez la {{ brand_name }} par téléphone, email ou formulaire.">
+  <meta property="og:type" content="website">
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Organization",
+    "name":"{{ brand_name }}",
+    "url":"https://www.tangermetropole.ma",
+    "logo":"assets/images/logo.png",
+    "contactPoint":{"@type":"ContactPoint","telephone":"+212600000000","contactType":"customer service"},
+    "address":{"@type":"PostalAddress","streetAddress":"23 Rue de la Liberté","addressLocality":"Tanger","postalCode":"90000","addressCountry":"MA"}
+  }
+  </script>
+{% endblock %}
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'core/css/contact.css' %}">
+{% endblock %}
+{% block content %}
+<main>
+    <!-- Bannière -->
+    <section class="page-hero">
+      <div class="page-hero-overlay"></div>
+      <div class="container page-hero-content">
+        <div class="hero-decoration"><i class="fas fa-envelope"></i></div>
+        <nav class="breadcrumb" aria-label="Fil d'Ariane">
+          <a href="{% url 'core:home' %}"><i class="fas fa-home"></i> {{ ui.home }}</a>
+          <span class="breadcrumb-separator">/</span>
+          <span class="breadcrumb-current">{{ ui.contact }}</span>
+        </nav>
+        <h1 class="page-hero-title">{{ page_content.title|default:brand_name }}</h1>
+        <p class="page-hero-subtitle">{{ page_content.subtitle|default:"Contenu géré depuis le dashboard." }}</p>
+      </div>
+    </section>
+
+    <!-- Introduction -->
+    <section class="intro-section">
+      <div class="container">
+        <p class="intro-text">{{ page_content.content|linebreaksbr }}</p>
+        <div class="intro-buttons">
+          <a href="#formulaire" class="btn btn-primary">{% if current_language == 'ar' %}إرسال رسالة{% elif current_language == 'en' %}Send a message{% else %}Envoyer un message{% endif %}</a>
+          <a href="#localisation" class="btn btn-outline">{% if current_language == 'ar' %}شاهد موقعنا{% elif current_language == 'en' %}See our location{% else %}Voir notre localisation{% endif %}</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cartes coordonnées -->
+    <section class="coords-section">
+      <div class="container">
+        <div class="coords-grid">
+          <div class="coord-card reveal">
+            <div class="coord-icon"><i class="fas fa-phone-alt"></i></div>
+            <h3>{% if current_language == 'ar' %}الهاتف{% elif current_language == 'en' %}Phone{% else %}Téléphone{% endif %}</h3>
+            <a href="tel:{{ settings.phone|default:'+212539940000' }}" class="coord-value">{{ settings.phone|default:'+212 5 39 94 00 00' }}</a>
+            {% if settings.whatsapp_url %}
+            <a href="{{ settings.whatsapp_url }}" target="_blank" class="coord-link" style="margin-top: 10px; display: inline-block; color: #25d366;"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            {% endif %}
+            <p>{% if current_language == 'ar' %}اتصل بنا للحصول على أي معلومات أو لطلب التعاون.{% elif current_language == 'en' %}Call us for any information or collaboration request.{% else %}Appelez-nous pour toute demande d'information ou de collaboration.{% endif %}</p>
+          </div>
+          <div class="coord-card reveal">
+            <div class="coord-icon"><i class="fas fa-envelope"></i></div>
+            <h3>{% if current_language == 'ar' %}البريد الإلكتروني{% elif current_language == 'en' %}Email address{% else %}Adresse e-mail{% endif %}</h3>
+            <a href="mailto:{{ settings.email|default:'contact@tangermetropole.ma' }}" class="coord-value">{{ settings.email|default:'contact@tangermetropole.ma' }}</a>
+            <p>{% if current_language == 'ar' %}أرسل لنا طلبك وسيرد عليك فريقنا في أقرب وقت ممكن.{% elif current_language == 'en' %}Send us your request and our team will answer you as soon as possible.{% else %}Envoyez-nous votre demande et notre équipe vous répondra dans les meilleurs délais.{% endif %}</p>
+          </div>
+          <div class="coord-card reveal">
+            <div class="coord-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <h3>{% if current_language == 'ar' %}العنوان{% elif current_language == 'en' %}Our address{% else %}Notre adresse{% endif %}</h3>
+            <span class="coord-value">{{ settings.address|default:'23 Rue de la Liberté, Tanger 90000' }}</span>
+            <a href="{{ settings.map_link|default:'https://maps.google.com/?q=Tanger,Maroc' }}" target="_blank" rel="noopener" class="coord-link">{% if current_language == 'ar' %}الحصول على الاتجاهات{% elif current_language == 'en' %}Get directions{% else %}Obtenir l'itinéraire{% endif %} <i class="fas fa-external-link-alt"></i></a>
+          </div>
+          <div class="coord-card reveal">
+            <div class="coord-icon"><i class="far fa-clock"></i></div>
+            <h3>{% if current_language == 'ar' %}أوقات العمل{% elif current_language == 'en' %}Opening hours{% else %}Horaires d'ouverture{% endif %}</h3>
+            <span class="coord-value">{{ settings.hours|default:'Lun - Ven : 09h00 - 17h00' }}</span>
+            <p>{{ settings.hours_extra|default:'Fermé le samedi et le dimanche' }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Réseaux sociaux -->
+    <section class="social-contact-section">
+      <div class="container">
+        <h2 class="section-title">{% if current_language == 'ar' %}تابعونا على شبكات التواصل الاجتماعي{% elif current_language == 'en' %}Follow us on social media{% else %}Suivez-nous sur les réseaux sociaux{% endif %}</h2>
+        <p class="section-intro">{% if current_language == 'ar' %}ابق على اطلاع بآخر أخبارنا، تكويناتنا، أنشطتنا، فعالياتنا ومشاريعنا من خلال متابعة حساباتنا الرسمية.{% elif current_language == 'en' %}Stay informed of our news, trainings, activities, events and projects by following our official accounts.{% else %}Restez informé de nos actualités, formations, activités, événements et projets en suivant nos comptes officiels.{% endif %}</p>
+        <div class="social-contact-grid">
+          <div class="social-contact-card facebook">
+            <i class="fab fa-facebook-f"></i>
+            <h3>Facebook</h3>
+            <p>{% if current_language == 'ar' %}تابع منشوراتنا وفعالياتنا وبلاغاتنا الرسمية على فيسبوك.{% elif current_language == 'en' %}Follow our publications, events and official announcements on Facebook.{% else %}Suivez nos publications, nos événements et nos communiqués officiels.{% endif %}</p>
+            <a href="{{ settings.facebook_url|default:'#' }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-light" aria-label="Suivre sur Facebook">{% if current_language == 'ar' %}متابعتنا على فيسبوك{% elif current_language == 'en' %}Follow on Facebook{% else %}Suivre sur Facebook{% endif %}</a>
+          </div>
+          <div class="social-contact-card instagram">
+            <i class="fab fa-instagram"></i>
+            <h3>Instagram</h3>
+            <p>{% if current_language == 'ar' %}اكتشف الصور والقصص ومقاطع الريلز وأبرز لحظات أنشطتنا.{% elif current_language == 'en' %}Discover photos, stories, Reels and highlights of our activities.{% else %}Découvrez les photos, les stories, les Reels et les moments forts de nos activités.{% endif %}</p>
+            <a href="{{ settings.instagram_url|default:'#' }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-light" aria-label="Suivre sur Instagram">{% if current_language == 'ar' %}متابعتنا على إنستغرام{% elif current_language == 'en' %}Follow on Instagram{% else %}Suivre sur Instagram{% endif %}</a>
+          </div>
+          <div class="social-contact-card youtube">
+            <i class="fab fa-youtube"></i>
+            <h3>YouTube</h3>
+            <p>{% if current_language == 'ar' %}شاهد فيديوهات برامجنا وفعالياتنا وتكويناتنا على يوتيوب.{% elif current_language == 'en' %}Watch videos of our programs, events and trainings on YouTube.{% else %}Regardez les vidéos de nos programmes, événements et formations.{% endif %}</p>
+            <a href="{{ settings.youtube_url|default:'#' }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-light" aria-label="Voir notre chaîne YouTube">{% if current_language == 'ar' %}قناتنا على يوتيوب{% elif current_language == 'en' %}Watch on YouTube{% else %}Voir notre chaîne YouTube{% endif %}</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Formulaire + Google Maps -->
+    <section class="form-map-section" id="formulaire">
+      <div class="container">
+        <div class="form-map-wrapper">
+          <!-- Formulaire -->
+          <div class="form-container reveal">
+            <h2>{% if current_language == 'ar' %}أرسل لنا رسالة{% elif current_language == 'en' %}Send us a message{% else %}Envoyer-nous un message{% endif %}</h2>
+            <p>{% if current_language == 'ar' %}يرجى ملء الاستمارة أدناه. وسيقوم فريقنا بالرد عليك في أقرب وقت ممكن.{% elif current_language == 'en' %}Fill out the form below. Our team will answer you as soon as possible.{% else %}Remplissez le formulaire ci-dessous. Notre équipe vous répondra dès que possible.{% endif %}</p>
+            <form class="contact-form" id="contactForm" novalidate>
+              {% csrf_token %}
+              <div class="form-row">
+                <div class="form-group"><label for="nom">{% if current_language == 'ar' %}الاسم الكامل *{% elif current_language == 'en' %}Full name *{% else %}Nom complet *{% endif %}</label><input type="text" id="nom" name="nom" placeholder="{% if current_language == 'ar' %}الاسم الكامل{% elif current_language == 'en' %}Your full name{% else %}Votre nom complet{% endif %}" required></div>
+                <div class="form-group"><label for="email">{% if current_language == 'ar' %}البريد الإلكتروني *{% elif current_language == 'en' %}Email address *{% else %}Adresse e-mail *{% endif %}</label><input type="email" id="email" name="email" placeholder="nom@exemple.com" required></div>
+              </div>
+              <div class="form-row">
+                <div class="form-group"><label for="tel">{% if current_language == 'ar' %}الهاتف{% elif current_language == 'en' %}Phone{% else %}Téléphone{% endif %}</label><input type="tel" id="tel" name="telephone" placeholder="{% if current_language == 'ar' %}الهاتف{% elif current_language == 'en' %}Phone{% else %}Téléphone{% endif %}"></div>
+                <div class="form-group"><label for="ville">{% if current_language == 'ar' %}المدينة{% elif current_language == 'en' %}City{% else %}Ville{% endif %}</label><select id="ville"><option value="">{% if current_language == 'ar' %}اختر{% elif current_language == 'en' %}Select{% else %}Sélectionnez{% endif %}</option><option>{% if current_language == 'ar' %}طنجة{% else %}Tanger{% endif %}</option><option>{% if current_language == 'ar' %}تطوان{% else %}Tétouan{% endif %}</option><option>{% if current_language == 'ar' %}العرائش{% else %}Larache{% endif %}</option><option>{% if current_language == 'ar' %}أصيلة{% else %}Asilah{% endif %}</option><option value="autre">{% if current_language == 'ar' %}أخرى{% else %}Autre{% endif %}</option></select></div>
+              </div>
+              <div class="form-group" id="autreVilleGroup" style="display:none">
+                <label for="autreVille">{% if current_language == 'ar' %}حدد مدينتك{% elif current_language == 'en' %}Specify your city{% else %}Précisez votre ville{% endif %}</label>
+                <input type="text" id="autreVille" placeholder="{% if current_language == 'ar' %}اسم المدينة{% elif current_language == 'en' %}City name{% else %}Nom de la ville{% endif %}">
+              </div>
+              <div class="form-group"><label for="objet">{% if current_language == 'ar' %}موضوع الرسالة *{% elif current_language == 'en' %}Subject of the message *{% else %}Objet du message *{% endif %}</label><select id="objet" required><option value="">{% if current_language == 'ar' %}اختر{% elif current_language == 'en' %}Select{% else %}Sélectionnez{% endif %}</option><option value="Demande d'information">{% if current_language == 'ar' %}طلب معلومات{% else %}Demande d'information{% endif %}</option><option value="Formation">{% if current_language == 'ar' %}تكوين{% else %}Formation{% endif %}</option><option value="Activité">{% if current_language == 'ar' %}نشاط{% else %}Activité{% endif %}</option><option value="Bénévolat">{% if current_language == 'ar' %}تطوع{% else %}Bénévolat{% endif %}</option><option value="Partenariat">{% if current_language == 'ar' %}شراكة{% else %}Partenariat{% endif %}</option><option value="Presse et médias">{% if current_language == 'ar' %}الصحافة والإعلام{% else %}Presse et médias{% endif %}</option><option value="Réclamation">{% if current_language == 'ar' %}شكوى{% else %}Réclamation{% endif %}</option><option value="autre">{% if current_language == 'ar' %}أخرى{% else %}Autre{% endif %}</option></select></div>
+              <div class="form-group" id="autreObjetGroup" style="display:none">
+                <label for="autreObjet">{% if current_language == 'ar' %}حدد موضوع الرسالة المخصص *{% elif current_language == 'en' %}Specify custom subject *{% else %}Précisez l'objet personnalisé *{% endif %}</label>
+                <input type="text" id="autreObjet" placeholder="{% if current_language == 'ar' %}أدخل الموضوع المخصص{% elif current_language == 'en' %}Enter custom subject{% else %}Saisir l'objet personnalisé{% endif %}">
+              </div>
+              <div class="form-group"><label for="sujet">{% if current_language == 'ar' %}العنوان *{% elif current_language == 'en' %}Subject *{% else %}Sujet *{% endif %}</label><input type="text" id="sujet" name="sujet" placeholder="{% if current_language == 'ar' %}عنوان رسالتك{% elif current_language == 'en' %}Subject of your message{% else %}Sujet de votre message{% endif %}" required></div>
+              <div class="form-group">
+                <label for="message">{% if current_language == 'ar' %}الرسالة *{% elif current_language == 'en' %}Message *{% else %}Message *{% endif %} <small id="charCount">0 / 1000 {% if current_language == 'ar' %}حرف{% else %}caractères{% endif %}</small></label>
+                <textarea id="message" name="message" rows="5" placeholder="{% if current_language == 'ar' %}صف طلبك بالتفصيل{% elif current_language == 'en' %}Describe your request in detail{% else %}Décrivez votre demande en détail{% endif %}" maxlength="1000" required></textarea>
+              </div>
+              <div class="form-group">
+                <label for="pj">{% if current_language == 'ar' %}مرفق (PDF, DOC, DOCX, JPG, PNG - حد أقصى 5 ميغا){% elif current_language == 'en' %}Attachment (PDF, DOC, DOCX, JPG, PNG - Max 5 MB){% else %}Pièce jointe (PDF, DOC, DOCX, JPG, PNG - Max 5 Mo){% endif %}</label>
+                <input type="file" id="pj" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"><small id="pjInfo"></small>
+              </div>
+              <label class="checkbox-label"><input type="checkbox" id="consentement" required> {% if current_language == 'ar' %}أوافق على استخدام معلوماتي الشخصية فقط لمعالجة طلبي *{% elif current_language == 'en' %}I accept that my information will be used only to process my request *{% else %}J'accepte que mes informations soient utilisées uniquement pour traiter ma demande *{% endif %}</label>
+              <button type="submit" class="btn btn-primary btn-lg" id="submitBtn">{% if current_language == 'ar' %}إرسال الرسالة{% elif current_language == 'en' %}Send message{% else %}Envoyer le message{% endif %}</button>
+            </form>
+            <div class="form-success" id="formSuccess" style="display:none">
+              <i class="fas fa-check-circle"></i>
+              <h3>{% if current_language == 'ar' %}تم إرسال الرسالة بنجاح{% elif current_language == 'en' %}Message sent successfully{% else %}Message envoyé avec succès{% endif %}</h3>
+              <p>{% if current_language == 'ar' %}شكراً لتواصلكم معنا. تم تسجيل رسالتكم بنجاح وسيرد عليكم فريقنا في أقرب وقت ممكن.{% elif current_language == 'en' %}Thank you for contacting us. Your message has been successfully registered and our team will answer you as soon as possible.{% else %}Merci de nous avoir contactés. Votre message a bien été enregistré et notre équipe vous répondra dans les meilleurs délais.{% endif %}</p>
+              <p><strong>{% if current_language == 'ar' %}المرجع :{% elif current_language == 'en' %}Reference:{% else %}Référence :{% endif %}</strong> <span id="refMessage"></span></p>
+              <button class="btn btn-primary" onclick="location.reload()">{% if current_language == 'ar' %}إرسال رسالة جديدة{% elif current_language == 'en' %}Send a new message{% else %}Envoyer un nouveau message{% endif %}</button>
+            </div>
+          </div>
+
+          <!-- Google Maps -->
+          <div class="map-container reveal" id="localisation">
+            <h2>{% if current_language == 'ar' %}موقعنا على الخريطة{% elif current_language == 'en' %}Our location{% else %}Notre localisation{% endif %}</h2>
+            <p>{% if current_language == 'ar' %}اعثر على {{ brand_name }} واحصل على الاتجاهات بسهولة.{% elif current_language == 'en' %}Find the {{ brand_name }} and get directions easily.{% else %}Retrouvez la {{ brand_name }} et obtenez facilement votre itinéraire.{% endif %}</p>
+            <div class="map-frame">
+              <iframe src="{{ settings.map_embed|default:'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d103531.824278963!2d-5.866666684509277!3d35.76666668450928!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd0b2655c0e0e0e1%3A0x5e5c5e5e5e5e5e5e!2sTanger%2C%20Maroc!5e0!3m2!1sfr!2sma!4v1690000000000' }}" width="100%" height="450" style="border:0;border-radius:16px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Localisation de la {{ brand_name }}"></iframe>
+            </div>
+            <div class="map-info">
+              <p><i class="fas fa-map-marker-alt"></i> {{ settings.address|default:'23 Rue de la Liberté, Tanger 90000' }}</p>
+              <p><i class="fas fa-phone-alt"></i> {{ settings.phone|default:'+212 5 39 94 00 00' }}</p>
+              <p><i class="fas fa-envelope"></i> {{ settings.email|default:'contact@tangermetropole.ma' }}</p>
+              <a href="{{ settings.map_link|default:'https://maps.google.com/?q=Tanger,Maroc' }}" target="_blank" rel="noopener" class="btn btn-outline">{% if current_language == 'ar' %}فتح في خرائط جوجل{% elif current_language == 'en' %}Open in Google Maps{% else %}Ouvrir dans Google Maps{% endif %} <i class="fas fa-external-link-alt"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+      <div class="container">
+        <h2 class="section-title">{% if current_language == 'ar' %}الأسئلة الشائعة{% elif current_language == 'en' %}Frequently Asked Questions{% else %}Questions fréquentes{% endif %}</h2>
+        <div class="faq-list" id="faqList"></div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+      <div class="container">
+        <h2>{% if current_language == 'ar' %}هل ترغب في التعاون معنا؟{% elif current_language == 'en' %}Do you want to collaborate with us?{% else %}Vous souhaitez collaborer avec nous ?{% endif %}</h2>
+        <p>{% if current_language == 'ar' %}انضم إلى برامجنا، كن متطوعاً أو اقترح شراكة تخدم تنمية طنجة الكبرى.{% elif current_language == 'en' %}Join our programs, become a volunteer or propose a partnership for the development of Grand Tanger.{% else %}Rejoignez nos programmes, devenez bénévole ou proposez un partenariat au service du développement du Grand Tanger.{% endif %}</p>
+        <div class="cta-buttons">
+          <a href="{% url 'core:benevolat' %}" class="btn btn-primary">{% if current_language == 'ar' %}كن متطوعاً{% elif current_language == 'en' %}Become a volunteer{% else %}Devenir bénévole{% endif %}</a>
+          <a href="{% url 'core:programme' %}" class="btn btn-outline-light">{% if current_language == 'ar' %}اكتشف برامجنا{% elif current_language == 'en' %}Discover our programs{% else %}Découvrir nos programmes{% endif %}</a>
+        </div>
+      </div>
+    </section>
+  </main>
+{% endblock %}
+{% block extra_js %}
+  <script src="{% static 'core/js/contact.js' %}?v={% now 'U' %}"></script>
+{% endblock %}
