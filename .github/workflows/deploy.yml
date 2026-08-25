@@ -19,7 +19,7 @@ jobs:
         with:
           host: ${{ secrets.SERVER_HOST || '198.199.75.86' }}
           username: ${{ secrets.SERVER_USER || 'ubuntu' }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          key: ${{ secrets.SSH_PRIVATE_KEY || secrets.fondation_deploy || secrets.FONDATION_DEPLOY }}
           port: ${{ secrets.SERVER_PORT || 22 }}
           script: |
             set -e
