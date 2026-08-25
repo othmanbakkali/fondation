@@ -48,7 +48,8 @@ jobs:
             python manage.py migrate --noinput
             python manage.py collectstatic --noinput
             
-            # Restart Gunicorn service
+            # Restart Gunicorn service & reload Nginx
             sudo systemctl restart django-fondation
+            sudo systemctl reload nginx || true
             
             echo "✅ Deployment completed successfully on fondation.sdbo.ma!"
