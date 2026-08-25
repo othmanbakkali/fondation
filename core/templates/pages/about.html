@@ -137,13 +137,30 @@
         </div>
       </div>
       <div class="membres-info-bar">
-        <p id="memberCount" class="member-count"><span>{{ team_members|length }}</span> membres affichÃ©s sur <span>{{ team_members|length }}</span></p>
+        <p id="memberCount" class="member-count">
+          {% if current_language == 'ar' %}
+            تم عرض <span>{{ team_members|length }}</span> عضو من أصل <span>{{ team_members|length }}</span>
+          {% elif current_language == 'en' %}
+            <span>{{ team_members|length }}</span> members displayed out of <span>{{ team_members|length }}</span>
+          {% else %}
+            <span>{{ team_members|length }}</span> membres affichés sur <span>{{ team_members|length }}</span>
+          {% endif %}
+        </p>
         <button id="exportBtn" class="btn btn-sm btn-outline" aria-label="{{ about_texts.members_export }}"><i class="fas fa-download"></i> {{ about_texts.members_export }}</button>
       </div>
       <div class="table-wrapper">
         <div class="table-responsive">
           <table class="membres-table" id="membresTable">
-            <thead><tr><th>NÂ°</th><th>Photo</th><th>Nom complet</th><th>Fonction</th><th>Statut</th><th>Actions</th></tr></thead>
+            <thead>
+              <tr>
+                <th>{% if current_language == 'ar' %}الترتيب{% elif current_language == 'en' %}N°{% else %}N°{% endif %}</th>
+                <th>{% if current_language == 'ar' %}الصورة{% elif current_language == 'en' %}Photo{% else %}Photo{% endif %}</th>
+                <th>{% if current_language == 'ar' %}الاسم الكامل{% elif current_language == 'en' %}Full Name{% else %}Nom complet{% endif %}</th>
+                <th>{% if current_language == 'ar' %}المنصب{% elif current_language == 'en' %}Role{% else %}Fonction{% endif %}</th>
+                <th>{% if current_language == 'ar' %}الحالة{% elif current_language == 'en' %}Status{% else %}Statut{% endif %}</th>
+                <th>{% if current_language == 'ar' %}إجراءات{% elif current_language == 'en' %}Actions{% else %}Actions{% endif %}</th>
+              </tr>
+            </thead>
             <tbody>
               {% for member in team_members %}
               <tr data-fonction="{{ member.role }}" data-nom="{{ member.name }}">
@@ -151,8 +168,11 @@
                 <td><div class="member-avatar"><img src="{{ member.image }}" alt="{{ member.name }}" loading="lazy"><span class="avatar-status online"></span></div></td>
                 <td class="col-nom"><strong>{{ member.name }}</strong><small>{{ member.email|default:"contact@tangermetropole.ma" }}</small></td>
                 <td><span class="badge-fonction {% if forloop.first %}president{% else %}vice-president{% endif %}">{{ member.role }}</span></td>
-                <td><span class="badge-statut actif">Actif</span></td>
-                <td class="col-actions"><button class="action-btn" title="Voir profil"><i class="fas fa-eye"></i></button><button class="action-btn" title="Envoyer message"><i class="fas fa-envelope"></i></button></td>
+                <td><span class="badge-statut actif">{% if current_language == 'ar' %}نشط{% elif current_language == 'en' %}Active{% else %}Actif{% endif %}</span></td>
+                <td class="col-actions">
+                  <button class="action-btn" title="{% if current_language == 'ar' %}عرض الملف الشخصي{% elif current_language == 'en' %}View Profile{% else %}Voir profil{% endif %}"><i class="fas fa-eye"></i></button>
+                  <button class="action-btn" title="{% if current_language == 'ar' %}إرسال رسالة{% elif current_language == 'en' %}Send Message{% else %}Envoyer un message{% endif %}"><i class="fas fa-envelope"></i></button>
+                </td>
               </tr>
               {% endfor %}
             </tbody>
