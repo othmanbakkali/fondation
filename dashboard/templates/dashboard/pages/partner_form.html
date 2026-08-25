@@ -189,7 +189,7 @@
     <label class="switch-row">
       <span>Afficher sur la page d'accueil</span>
       <span class="switch">
-        <input type="checkbox" name="featured_home" {% if object.featured_home %}checked{% endif %}>
+        <input type="checkbox" name="featured_home" {% if object.featured_home or not object %}checked{% endif %}>
         <span></span>
       </span>
     </label>

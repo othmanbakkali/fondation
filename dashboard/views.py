@@ -1165,6 +1165,18 @@ def translate_api_view(request):
     import urllib.request, urllib.parse, json
     
     def translate_helper(txt, lang):
+        # 1. Try Chrome Extension Google Translate API (reliable, bypasses 429)
+        try:
+            url = "https://clients5.google.com/translate_a/t?client=dict-chrome-ex&sl=fr&tl=" + lang + "&q=" + urllib.parse.quote(txt)
+            req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+            res = urllib.request.urlopen(req, timeout=5)
+            data = json.loads(res.read().decode('utf-8'))
+            if isinstance(data, list) and len(data) > 0:
+                return data[0]
+        except Exception:
+            pass
+            
+        # 2. Fallback to gtx endpoint
         try:
             url = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=fr&tl=" + lang + "&dt=t&q=" + urllib.parse.quote(txt)
             req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
